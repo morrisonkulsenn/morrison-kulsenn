@@ -1,0 +1,183 @@
+<!-- TOC Include: Sumário dinâmico com subitens, animação suave, responsivo e compatível com modo escuro -->
+<link rel="stylesheet" href="{{ '/assets/css/bootstrap-toc.min.css' | relative_url }}">
+<style>
+  #toc-container {
+    position: fixed;
+    top: 100px;
+    right: 40px;
+    width: 260px;
+    max-height: 70vh;
+    overflow-y: auto;
+    border-radius: 10px;
+    box-shadow: none;
+    z-index: 1000;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.4s;
+  }
+  #toc-container.visible {
+    opacity: 1;
+    pointer-events: auto;
+  }
+  #toc h4 {
+    margin: 0 0 10px 0;
+    color: #8cb4ff;
+    font-size: 1.2em;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+  }
+  #toc ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  #toc ul ul {
+    display: none;
+    margin-left: 1em;
+    padding-left: 0.8em;
+    border-left: none;
+  }
+  #toc li.active > ul {
+    display: block;
+    animation: fadeIn 0.4s;
+  }
+  #toc li.active > a {
+    border-left: 1px solid rgb(221, 62, 13);
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+  #toc a {
+    color: #8d8d8d;
+    text-decoration: none;
+    display: block;
+    padding: 4px 0 4px 0.3em;
+    border-radius: 4px;
+    transition: background 0.2s, color 0.2s;
+  }
+  #toc > ul > li > a {
+    font-size: 0.82em;
+    font-weight: bold;
+  }
+  #toc ul ul a {
+    font-size: 0.72em;
+  }
+  #toc a:hover, #toc li.active > a {
+    color: rgb(221, 62, 13);
+    font-weight: bold;
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  @media (max-width: 900px) {
+    #toc-container {
+      display: none !important;
+    }
+  }
+  .dark-mode #toc-container {
+  }
+</style>
+
+<div id="toc-container">
+  <nav id="toc">
+    <ul id="toc-list"></ul>
+  </nav>
+</div>
+
+<script>
+(function() {
+  // Aguarda DOM pronto
+  document.addEventListener('DOMContentLoaded', function() {
+    const tocContainer = document.getElementById('toc-container');
+    const tocList = document.getElementById('toc-list');
+    const banner = document.querySelector('.title-banner');
+    if (!tocContainer || !tocList || !banner) return;
+
+    // Gera TOC automático com base nos h2/h3
+    function buildTOC() {
+      const headers = Array.from(document.querySelectorAll('.page-container h2, .page-container h3'));
+      let lastH2 = null;
+      tocList.innerHTML = '';
+      headers.forEach(header => {
+        if (!header.id) {
+          header.id = header.textContent.trim().toLowerCase().replace(/[^\w]+/g, '-');
+        }
+        const li = document.createElement('li');
+        const a = document.createElement('a');
+        a.href = '#' + header.id;
+        a.textContent = header.textContent;
+        li.appendChild(a);
+        if (header.tagName === 'H2') {
+          tocList.appendChild(li);
+          lastH2 = li;
+        } else if (header.tagName === 'H3' && lastH2) {
+          let sublist = lastH2.querySelector('ul');
+          if (!sublist) {
+            sublist = document.createElement('ul');
+            lastH2.appendChild(sublist);
+          }
+          sublist.appendChild(li);
+        }
+      });
+    }
+
+    // Animação de scroll suave
+    tocList.addEventListener('click', function(e) {
+      if (e.target.tagName === 'A') {
+        const target = document.getElementById(e.target.hash.slice(1));
+        if (target) {
+          e.preventDefault();
+          window.scrollTo({
+            top: target.getBoundingClientRect().top + window.scrollY - 80,
+            behavior: 'smooth'
+          });
+        }
+      }
+    });
+
+    // Mostra/oculta TOC com base no scroll após a faixa azul
+    function toggleTocVisibility() {
+      const bannerBottom = banner.getBoundingClientRect().bottom + window.scrollY;
+      if (window.scrollY > bannerBottom - 60) {
+        tocContainer.classList.add('visible');
+      } else {
+        tocContainer.classList.remove('visible');
+      }
+    }
+    window.addEventListener('scroll', toggleTocVisibility);
+    window.addEventListener('resize', toggleTocVisibility);
+
+    // Expande subitens do TOC conforme seção ativa
+    function highlightSection() {
+      const headers = Array.from(document.querySelectorAll('.page-container h2, .page-container h3'));
+      let current = null;
+      const scrollPos = window.scrollY + 90;
+      for (let i = 0; i < headers.length; i++) {
+        if (headers[i].offsetTop <= scrollPos) {
+          current = headers[i];
+        }
+      }
+      Array.from(tocList.querySelectorAll('li')).forEach(li => {
+        li.classList.remove('active');
+      });
+      if (current) {
+        const link = tocList.querySelector('a[href="#' + current.id + '"]');
+        if (link) {
+          let li = link.parentElement;
+          li.classList.add('active');
+          // Expande sublista se for subitem
+          if (li.parentElement !== tocList) {
+            li.parentElement.parentElement.classList.add('active');
+          }
+        }
+      }
+    }
+    window.addEventListener('scroll', highlightSection);
+    window.addEventListener('resize', highlightSection);
+
+    buildTOC();
+    toggleTocVisibility();
+    highlightSection();
+  });
+})();
+</script>

@@ -1,0 +1,308 @@
+/* Estilos para a página da Tabela Z */
+/* Sobrescreve o container da página para permitir largura total */
+.page-container {
+    max-width: 100% !important;
+    width: 100% !important;
+    padding: 0 !important;
+}
+
+/* Estilos para o modo escuro */
+body.dark-mode .tabela-z-container {
+    color: #fff;
+}
+
+body.dark-mode .tabela-z th, 
+body.dark-mode .tabela-z td {
+    background-color: #222;
+    color: #fff;
+}
+
+body.dark-mode .tabela-z tr:nth-child(even) {
+    background-color: #333;
+}
+
+body.dark-mode .tabela-z tr:hover {
+    background-color: #444;
+}
+
+body.dark-mode .tabela-z td:first-child {
+    background-color: #222;
+}
+
+body.dark-mode tr.sticky-z-positive th, 
+body.dark-mode tr.sticky-z-positive td {
+    background-color: #222;
+}
+
+.tabela-z-container {
+    max-width: 1600px;
+    margin: 0 auto;
+    padding: 20px;
+    text-align: center;
+    width: 95%;
+}
+
+.tabela-descricao {
+    margin: 20px auto;
+    max-width: 800px;
+    text-align: justify;
+    line-height: 1.6;
+}
+
+.table-responsive {
+    overflow-x: auto;
+    margin-bottom: 30px;
+    width: 100%;
+    padding: 0;
+    -webkit-overflow-scrolling: touch;
+}
+
+.tabela-z {
+    border-collapse: collapse;
+    width: 100%;
+    min-width: 900px;
+    table-layout: fixed;
+    margin: 0 auto;
+}
+
+.tabela-z th, 
+.tabela-z td {
+    padding: 8px 12px;
+    text-align: center;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+    white-space: nowrap;
+}
+
+.tabela-z th {
+    position: sticky;
+    top: 0;
+    background-color: var(--bg-color);
+    z-index: 2;
+    font-weight: bold;
+}
+
+.tabela-z tr:nth-child(even) {
+    background-color: rgba(0, 0, 0, 0.03);
+}
+
+.tabela-z tr:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+}
+
+/* Destaque para a primeira coluna */
+.tabela-z td:first-child {
+    font-weight: bold;
+    position: sticky;
+    left: 0;
+    background-color: var(--bg-color);
+    z-index: 1;
+}
+
+/* Estilos de destaque */
+.highlight-row {
+    background-color: rgba(0, 0, 0, 0.1) !important;
+}
+
+.highlight-col {
+    background-color: rgba(0, 0, 0, 0.1) !important;
+}
+
+.highlight {
+    background-color: rgba(0, 0, 0, 0.1) !important;
+}
+
+/* Estilo de zoom */
+.zoomed {
+    color: var(--primary-color) !important;
+    z-index: 1;
+    font-weight: bold;
+}
+
+/* Destaque para cabeçalho de coluna e primeira linha */
+.highlight-header {
+    color: var(--primary-color) !important;
+    background-color: rgba(0, 0, 0, 0.1) !important;
+}
+
+.highlight-first-cell {
+    color: var(--primary-color) !important;
+}
+
+body.dark-mode .highlight-header {
+    color: #fff !important;
+    background-color: rgba(255, 255, 255, 0.15) !important;
+}
+
+body.dark-mode .highlight-first-cell {
+    color: #fff !important;
+}
+
+/* Destaque para linha e coluna completas */
+.highlight-full-row {
+    background-color: rgba(0, 0, 0, 0.1) !important;
+}
+
+.highlight-full-col {
+    background-color: rgba(0, 0, 0, 0.1) !important;
+}
+
+body.dark-mode .highlight-full-row,
+body.dark-mode .highlight-full-col {
+    background-color: rgba(255, 255, 255, 0.15) !important;
+}
+
+/* Linha fixa para o Z positivo */
+tr.sticky-z-positive th, 
+tr.sticky-z-positive td {
+    position: sticky;
+    top: 40px;
+    background-color: var(--bg-color);
+    z-index: 3;
+}
+
+/* Destaque para linhas e colunas clicadas */
+.highlight-click {
+    background-color: rgba(0, 0, 0, 0.1) !important;
+}
+
+body.dark-mode .highlight-click {
+    background-color: rgba(255, 255, 255, 0.15) !important;
+}
+
+/* Estilos para a calculadora */
+.calculator {
+    max-width: 500px;
+    padding: 25px;
+    margin: 30px auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+    background-color: rgba(255, 255, 255, 0.95);
+    border: 1px solid #ddd;
+    transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+}
+
+body.dark-mode .calculator {
+    background-color: #333;
+    color: #fff;
+    border-color: #555;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.calculator h2 {
+    margin-top: 0;
+    text-align: center;
+    margin-bottom: 20px;
+    transition: color 0.3s;
+}
+
+body.dark-mode .calculator h2 {
+    color: #fff;
+}
+
+.calculator-form {
+    margin-bottom: 30px;
+}
+
+.calculator label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    transition: color 0.3s;
+}
+
+body.dark-mode .calculator label {
+    color: #eee;
+}
+
+.calculator input[type="number"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #aaa;
+    border-radius: 4px;
+    background-color: rgba(255, 255, 255, 0.9);
+    color: #333;
+    font-size: 16px;
+}
+
+.calculator input[type="number"]:focus {
+    outline: none;
+    border-color: #555;
+    box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+}
+
+.calculator button {
+    width: 100%;
+    padding: 12px;
+    background-color: #333;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s, transform 0.2s;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.calculator button:hover {
+    background-color: #555;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.result {
+    text-align: center;
+    color: #333;
+    font-weight: bold;
+    margin: 15px 0;
+    transition: color 0.3s;
+}
+
+body.dark-mode .result {
+    color: #4CAF50;
+}
+
+.chart-container {
+    margin-top: 20px;
+    max-width: 100%;
+    height: 250px;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .tabela-z-container {
+        width: 100%;
+        padding: 10px;
+    }
+    
+    .tabela-z th, 
+    .tabela-z td {
+        padding: 5px;
+        font-size: 12px;
+    }
+    
+    .calculator {
+        padding: 15px;
+        max-width: 100%;
+    }
+}
+
+/* Indicador de scroll horizontal */
+.table-responsive::-webkit-scrollbar {
+    height: 8px;
+}
+
+.table-responsive::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 4px;
+}
+
+.table-responsive::-webkit-scrollbar-thumb {
+    background: var(--primary-color, #333);
+    border-radius: 4px;
+}
+
+.table-responsive::-webkit-scrollbar-thumb:hover {
+    background: var(--secondary-color, #555);
+}

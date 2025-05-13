@@ -1,0 +1,118 @@
+/* Estilo minimalista com cores para elementos essenciais */
+
+/* Cor padrão para a maioria dos elementos */
+.highlight .hll, .highlight .err, .highlight .k, .highlight .o, .highlight .ch, 
+.highlight .cp, .highlight .cpf, .highlight .gd, .highlight .ge, .highlight .gr, 
+.highlight .gh, .highlight .gi, .highlight .go, .highlight .gp, .highlight .gs, 
+.highlight .gu, .highlight .gt, .highlight .kc, .highlight .kd, .highlight .kn, 
+.highlight .kp, .highlight .kr, .highlight .kt, .highlight .m, .highlight .na, 
+.highlight .nb, .highlight .nc, .highlight .no, .highlight .nd, .highlight .ni, 
+.highlight .ne, .highlight .nl, .highlight .nn, .highlight .nt, .highlight .nv, 
+.highlight .ow, .highlight .w, .highlight .mb, .highlight .mf, .highlight .mh, 
+.highlight .mi, .highlight .mo, .highlight .bp, .highlight .vc, .highlight .vg, 
+.highlight .vi, .highlight .vm, .highlight .il {
+    color: #f0f0f0;
+    font-style: normal;
+    font-weight: normal;
+    background-color: transparent;
+}
+
+/* Funções - Azul brilhante */
+.highlight .nf, .highlight .fm {
+    color: #79c0ff;
+}
+
+/* Comentários - Verde claro */
+.highlight .c, .highlight .cm, .highlight .c1, .highlight .cs {
+    color: #a5d6a7;
+    font-style: italic;
+}
+
+/* Strings - Laranja brilhante */
+.highlight .s, .highlight .sa, .highlight .sb, .highlight .sc, .highlight .dl, 
+.highlight .sd, .highlight .s2, .highlight .se, .highlight .sh, .highlight .si, 
+.highlight .sx, .highlight .sr, .highlight .s1, .highlight .ss {
+    color: #ffab70;
+}
+
+/* Palavras-chave - Roxo claro */
+.highlight .k, .highlight .kc, .highlight .kd, .highlight .kn, .highlight .kp, .highlight .kr, .highlight .kt {
+    color: #d2a8ff;
+}
+
+/* Números - Ciano claro */
+.highlight .m, .highlight .mb, .highlight .mf, .highlight .mh, .highlight .mi, .highlight .mo, .highlight .il {
+    color: #56d4dd;
+}
+
+/* Estilos específicos para Julia - cores oficiais da linguagem */
+.language-julia .nf, .language-julia .fm { color: #79c0ff; } /* Funções - azul */
+.language-julia .c, .language-julia .cm, .language-julia .c1 { color: #a5d6a7; font-style: italic; } /* Comentários - verde */
+.language-julia .s { color: #ffab70; } /* Strings - laranja */
+.language-julia .k, .language-julia .kc, .language-julia .kd { color: #d2a8ff; } /* Palavras-chave - roxo */
+.language-julia .mi, .language-julia .mf { color: #56d4dd; } /* Números - ciano */
+
+/* Estilo do bloco de código */
+.code-container {
+    position: relative;
+    margin: 20px 0;
+}
+
+pre.highlight {
+    background-color: #1e1e1e;
+    border: none;
+    border-radius: 8px;
+    padding: 15px;
+    margin: 0;
+    overflow-x: auto;
+    font-family: Consolas, 'Courier New', monospace;
+    font-size: 14px;
+    line-height: 1.5;
+    color: #f0f0f0;
+}
+
+/* Botão de copiar código */
+.copy-button {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    color: #666;
+    font-size: 12px;
+    transition: color 0.2s;
+    opacity: 0.7;
+}
+
+.copy-button:hover {
+    color: #333;
+    opacity: 1;
+}
+
+.copy-button svg {
+    width: 16px;
+    height: 16px;
+    margin-right: 4px;
+    fill: currentColor;
+}
+
+.copy-button.copied {
+    color: #009900;
+}
+
+/* Linhas numeradas - desativadas */
+.highlight .lineno {
+    display: none;
+}
+
+/* Melhorias para leitura em telas menores */
+@media (max-width: 768px) {
+    pre.highlight {
+        font-size: 13px;
+        padding: 10px;
+    }
+}

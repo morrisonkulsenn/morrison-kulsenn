@@ -1,0 +1,1209 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <!-- Meta Tags Básicas -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    
+    <!-- Título Otimizado (Jekyll) -->
+    <title>FAQ - Perguntas Frequentes | Portal dedicado ao estudo e aplicação de conceitos estatísticos e probabilísticos. Conteúdo educativo sobre análise de dados, inferência estatística e modelos estatísticos.</title>
+    
+    <!-- Meta Description (Jekyll) -->
+    <meta name="description" content="Portal dedicado ao estudo e aplicação de conceitos estatísticos e probabilísticos. Conteúdo educativo sobre análise de dados, inferência estatística e modelos estatísticos.">
+    
+    <!-- Favicon -->
+    <link rel="icon" href="/assets/images/icons/favicon.png" type="image/png">
+    <link rel="apple-touch-icon" href="/assets/images/icons/favicon.png">
+    
+    <!-- Canonical URL (Jekyll) -->
+    <link rel="canonical" href="http://localhost:4000/faq/">
+    
+    <!-- Open Graph / Social Media Meta Tags (Jekyll) -->
+    <meta property="og:title" content="FAQ - Perguntas Frequentes">
+    <meta property="og:description" content="Portal dedicado ao estudo e aplicação de conceitos estatísticos e probabilísticos. Conteúdo educativo sobre análise de dados, inferência estatística e modelos estatísticos.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="http://localhost:4000/faq/">
+    <meta property="og:image" content="https://raw.githubusercontent.com/dancartorio/intuity/main/logo.png">
+    <meta property="og:site_name" content="Morrison Külsenn - Estatística e Probabilidade">
+    <meta property="og:locale" content="pt_BR">
+    
+    <!-- Twitter Card Meta Tags (Jekyll) -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="FAQ - Perguntas Frequentes">
+    <meta name="twitter:description" content="Portal dedicado ao estudo e aplicação de conceitos estatísticos e probabilísticos. Conteúdo educativo sobre análise de dados, inferência estatística e modelos estatísticos.">
+    <meta name="twitter:image" content="https://raw.githubusercontent.com/dancartorio/intuity/main/logo.png">
+    
+    <!-- CSS (Jekyll) -->
+    <link rel="stylesheet" href="/assets/css/styles.css">
+    <link rel="stylesheet" href="/assets/css/syntax-highlighting.css">
+    
+    <!-- Pré-conexão -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    <!-- MathJax para renderizar fórmulas matemáticas -->
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    
+    <!-- jQuery e dependências -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js"></script>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Inicialização do Bootstrap TOC -->
+    <script>
+      // Carregar jQuery primeiro
+      (function() {
+        var jqueryLoaded = false;
+        
+        function checkJQuery() {
+          if (typeof window.jQuery === 'undefined') {
+            console.log('jQuery ainda não está disponível, aguardando...');
+            setTimeout(checkJQuery, 100);
+            return;
+          }
+          
+          if (!jqueryLoaded) {
+            jqueryLoaded = true;
+            console.log('jQuery carregado com sucesso, versão:', window.jQuery.fn.jquery);
+            loadBootstrapToc();
+          }
+        }
+        
+        // Iniciar verificação do jQuery
+        checkJQuery();
+      })();
+      
+      // Função para carregar o Bootstrap TOC
+      function loadBootstrapToc() {
+        console.log('Iniciando carregamento do Bootstrap TOC...');
+        
+        // Verificar se já está carregado
+        if (typeof Toc !== 'undefined') {
+          console.log('Bootstrap TOC já está disponível');
+          dispatchTocLoaded();
+          return;
+        }
+        
+        // Carregar o script do Bootstrap TOC
+        var script = document.createElement('script');
+        script.src = '/assets/js/bootstrap-toc.min.js';
+        script.id = 'bootstrap-toc-script';
+        script.async = false; // Importante: carregar de forma síncrona
+        
+        script.onload = function() {
+          console.log('Script do Bootstrap TOC carregado com sucesso');
+          
+          // Dar um pequeno atraso para garantir que o Toc foi definido
+          var checkToc = setInterval(function() {
+            if (typeof Toc !== 'undefined') {
+              clearInterval(checkToc);
+              console.log('Toc está definido, disparando evento...');
+              dispatchTocLoaded();
+            } else {
+              console.log('Aguardando definição do Toc...');
+            }
+          }, 100);
+          
+          // Timeout de segurança
+          setTimeout(function() {
+            clearInterval(checkToc);
+            if (typeof Toc === 'undefined') {
+              console.error('Timeout: Toc não foi definido após o carregamento do script');
+            }
+          }, 3000);
+        };
+        
+        script.onerror = function(error) {
+          console.error('Erro ao carregar o script do Bootstrap TOC:', error);
+          console.error('Caminho tentado:', script.src);
+        };
+        
+        console.log('Adicionando script do Bootstrap TOC ao documento');
+        document.head.appendChild(script);
+      }
+      
+      // Função para disparar o evento de TOC carregado
+      function dispatchTocLoaded() {
+        console.log('Disparando evento toc:loaded');
+        var event = new Event('toc:loaded');
+        document.dispatchEvent(event);
+      }
+    </script>
+    <script>
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']],
+        processEscapes: true
+      },
+      svg: {
+        fontCache: 'global'
+      }
+    };
+    </script>
+    
+    <!-- Schema.org (Needs review for dynamic content if applicable) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "LocalBusiness",
+      "name": "Morrison Külsenn - Estatística e Probabilidade",
+      "image": "https://raw.githubusercontent.com/dancartorio/intuity/main/logo.png",
+      "@id": "",
+      "url": "http://localhost:4000/",
+      "telephone": "+55 (XX) XXXX-XXXX", // Update with actual phone
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Endereço completo", // Update with actual address
+        "addressLocality": "Petrolina",
+        "addressRegion": "PE",
+        "postalCode": "XXXXX-XXX", // Update with actual postal code
+        "addressCountry": "BR"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": "-9.3887",
+        "longitude": "-40.5044"
+      },
+      "openingHoursSpecification": {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": [
+          "Monday",
+          "Tuesday",
+          "Wednesday",
+          "Thursday",
+          "Friday"
+        ],
+        "opens": "08:00",
+        "closes": "17:00"
+      },
+      "sameAs": [
+        "URL das redes sociais se houver" // Update with actual social links
+      ]
+    }
+    </script>
+    
+    <!-- Meta Tags para Buscas Locais -->
+    <meta name="geo.region" content="BR-PE">
+    <meta name="geo.placename" content="Petrolina">
+    <meta name="geo.position" content="-9.3887;-40.5044">
+    <meta name="ICBM" content="-9.3887, -40.5044">
+    
+    <!-- Robots Meta Tag -->
+    <meta name="robots" content="index, follow">
+    
+    <!-- Autor e Direitos Autorais -->
+    <meta name="author" content="Morrison Külsenn - Estatística e Probabilidade">
+    <meta name="copyright" content="© 2025 Morrison Külsenn - Estatística e Probabilidade">
+    
+    <!-- Meta Tags Adicionais para SEO -->
+    <meta name="keywords" content="estatística, probabilidade, análise de dados, medidas de tendência central, inferência estatística">
+    <meta name="application-name" content="Morrison Külsenn - Estatística e Probabilidade">
+    <meta name="apple-mobile-web-app-title" content="Morrison Külsenn - Estatística e Probabilidade">
+    <meta name="theme-color" content="#ffffff">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="format-detection" content="telephone=no">
+    
+    <!-- Verificação de propriedade -->
+    <!-- <meta name="google-site-verification" content="sua-chave-aqui"> -->
+    <!-- <meta name="msvalidate.01" content="sua-chave-aqui"> -->
+</head>
+<body>
+    <header>
+        <!-- Seletor de Idioma (fora do menu principal) - comentado para uso futuro -->
+        <!-- 
+        <div class="language-selector-container">
+            <div class="language-dropdown">
+                <select id="language-select" onchange="changeLanguage(this.value)" class="language-select">
+                    <option value="pt" selected>PT</option>
+                    <option value="en" >EN</option>
+                </select>
+            </div>
+        </div>
+        -->
+        
+        <nav>
+            <ul class="main-menu">
+                <div class="logo-container">
+                    <li class="main-menu-logo">
+                        <a href="/">
+                            <img src="/assets/images/logos/logo.png" alt="Logo Morrison Külsenn - Estatística e Probabilidade" class="header-logo">
+                        </a>
+                    </li>
+                </div>
+                <div class="menu-container">
+                    <!-- Morrison Külsenn -->
+                    <li class="morrison-name">
+                        <a href="/">Morrison Külsenn</a>
+                    </li>
+                    
+                    <!-- Estatística Descritiva -->
+                    <li class="has-submenu">
+                        <a href="#" class="submenu-toggle" onclick="toggleSubmenu(this.parentElement)">
+                            Estatística Descritiva
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="chevron" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708"/></svg>
+                        </a>
+                        <div class="submenu-bar">
+                            <ul class="submenu-items">
+                                <li class="has-dropdown">
+                                    <a href="/orientacoes/atendimento" onclick="toggleDropdown(this.parentElement)">
+                                        Medidas de Tendência Central
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="chevron" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708"/></svg>
+                                    </a>
+                                    <ul class="dropdown-list">
+                                        <li><a href="/medidas-tendencia-central/media">Média</a></li>
+                                        <li><a href="#">Mediana</a></li>
+                                        <li><a href="#">Moda</a></li>
+                                    </ul>
+                                </li>
+                                <li class="has-dropdown">
+                                    <a href="/orientacoes/documentos-necessarios" onclick="toggleDropdown(this.parentElement)">
+                                        Medidas de Dispersão
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="chevron" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708"/></svg>
+                                    </a>
+                                    <ul class="dropdown-list">
+                                        <li><a href="#">Variância</a></li>
+                                        <li><a href="#">Desvio Padrão</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="/orientacoes/etapas-processo">Quartis e Percentis</a></li>
+                                <li><a href="/orientacoes/prazos">Assimetria</a></li>
+                                <li><a href="/orientacoes/custas-e-emolumentos">Curtose</a></li>
+                                <li><a href="/orientacoes/abrangencia">Gráficos Estatísticos</a></li>
+                                <li><a href="/orientacoes/codigo-de-normas">Análise Exploratória</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    
+                    <!-- Probabilidade -->
+                    <li class="has-submenu">
+                        <a href="#" class="submenu-toggle" onclick="toggleSubmenu(this.parentElement)">
+                            Probabilidade
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="chevron" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708"/></svg>
+                        </a>
+                        <div class="submenu-bar">
+                            <ul class="submenu-items">
+                                <li><a href="/servicos/certidao">Distribuições de Probabilidade</a></li>
+                                <li><a href="https://sicase.tjpe.jus.br/sicase//externo/autenticidadeselo/form_validarautenticidadeselo.jsf" target="_blank" rel="noopener noreferrer">Variáveis Aleatórias</a></li>
+                                <li><a href="/servicos/registro-pets">Teorema do Limite Central</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    
+                    <!-- Inferência Estatística -->
+                    <li class="has-submenu">
+                        <a href="#" class="submenu-toggle" onclick="toggleSubmenu(this.parentElement)">
+                            Inferência Estatística
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="chevron" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708"/></svg>
+                        </a>
+                        <div class="submenu-bar">
+                            <ul class="submenu-items">
+                                <li><a href="/institucional/sobre-nos">Testes de Hipótese</a></li>
+                                <li><a href="#">Intervalos de Confiança</a></li>
+                                <li><a href="#">Amostragem</a></li>
+                                <li><a href="#">Estimadores</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    
+                    <!-- Modelos Estatísticos -->
+                    <li>
+                        <a href="/lgpd">Modelos Estatísticos</a>
+                    </li>
+                    
+                    <!-- Análise de Dados -->
+                    <li class="has-submenu">
+                        <a href="#" class="submenu-toggle" onclick="toggleSubmenu(this.parentElement)">
+                            Análise de Dados
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="chevron" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708"/></svg>
+                        </a>
+                        <div class="submenu-bar">
+                            <ul class="submenu-items">
+                                <li><a href="#">Regressão Linear</a></li>
+                                <li><a href="#">Séries Temporais</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    
+                    <!-- Blog -->
+                    <li class="highlight-menu-item">
+                        <a href="/blog/all/" style="color: rgb(140, 180, 255);">
+                            Blog
+                        </a>
+                    </li>
+                </div>
+            </ul>
+        </nav>
+    </header>
+    
+    <script>
+    function toggleSubmenu(parentElement) {
+        event.preventDefault();
+        
+        // Fecha todos os submenus primeiro
+        document.querySelectorAll('.submenu-bar').forEach(submenu => {
+            if (submenu !== parentElement.querySelector('.submenu-bar')) {
+                submenu.style.display = 'none';
+                submenu.parentElement.querySelector('.chevron').style.transform = 'rotate(0deg)';
+            }
+        });
+        
+        // Alterna o submenu atual
+        const submenu = parentElement.querySelector('.submenu-bar');
+        const chevron = parentElement.querySelector('.chevron');
+        
+        if (submenu.style.display === 'block') {
+            submenu.style.display = 'none';
+            chevron.style.transform = 'rotate(0deg)';
+        } else {
+            submenu.style.display = 'block';
+            chevron.style.transform = 'rotate(180deg)';
+        }
+    }
+    
+    function toggleDropdown(parentElement) {
+        event.preventDefault();
+        const dropdown = parentElement.querySelector('.dropdown-list');
+        const chevron = parentElement.querySelector('.chevron');
+        
+        if (dropdown.style.display === 'block') {
+            dropdown.style.display = 'none';
+            chevron.style.transform = 'rotate(0deg)';
+        } else {
+            // Fecha outros dropdowns no mesmo submenu
+            parentElement.parentElement.querySelectorAll('.dropdown-list').forEach(d => {
+                if (d !== dropdown) {
+                    d.style.display = 'none';
+                    d.parentElement.querySelector('.chevron').style.transform = 'rotate(0deg)';
+                }
+            });
+            
+            dropdown.style.display = 'block';
+            chevron.style.transform = 'rotate(180deg)';
+        }
+    }
+    
+    // Fecha os menus ao clicar fora
+    document.addEventListener('click', function(event) {
+        if (!event.target.closest('.has-submenu') && !event.target.closest('.submenu-bar')) {
+            document.querySelectorAll('.submenu-bar').forEach(submenu => {
+                submenu.style.display = 'none';
+                submenu.parentElement.querySelector('.chevron').style.transform = 'rotate(0deg)';
+            });
+        }
+        
+        if (!event.target.closest('.has-dropdown')) {
+            document.querySelectorAll('.dropdown-list').forEach(dropdown => {
+                dropdown.style.display = 'none';
+                if (dropdown.parentElement.querySelector('.chevron')) {
+                    dropdown.parentElement.querySelector('.chevron').style.transform = 'rotate(0deg)';
+                }
+            });
+        }
+    });
+    </script>
+    
+    <div id="main-content">
+        <div class="faq-container dark-mode">
+    <h1 class="faq-title">Perguntas Frequentes</h1>
+    
+    <div class="faq-categories">
+        <h2>Categorias</h2>
+        <ul>
+            
+            
+            <li>
+                <a href="#estatística-básica">
+                    Estatística Básica
+                </a>
+            </li>
+            
+            <li>
+                <a href="#probabilidade">
+                    Probabilidade
+                </a>
+            </li>
+            
+            <li>
+                <a href="#distribuições">
+                    Distribuições
+                </a>
+            </li>
+            
+            <li>
+                <a href="#inferência-estatística">
+                    Inferência Estatística
+                </a>
+            </li>
+            
+            <li>
+                <a href="#análise-de-dados">
+                    Análise de Dados
+                </a>
+            </li>
+            
+            <li>
+                <a href="#geral">
+                    Geral
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+
+    <div class="faq-list">
+        
+        
+        <section id="estatística-básica" class="faq-section">
+            <h2>Estatística Básica</h2>
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleAnswer(this)">
+                    <h3>Qual a diferença entre média, mediana e moda?</h3>
+                    <span class="faq-toggle">+</span>
+                </div>
+                <div class="faq-answer">
+                    <p>A média é sensível a valores extremos (outliers), sendo calculada pela soma dos valores dividida pelo número de observações. A mediana é o valor central quando os dados estão ordenados, sendo mais robusta a outliers. A moda é o valor que ocorre com maior frequência, podendo não existir ou haver múltiplas modas.</p>
+                </div>
+            </div>
+            
+            
+            
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleAnswer(this)">
+                    <h3>O que são medidas de dispersão?</h3>
+                    <span class="faq-toggle">+</span>
+                </div>
+                <div class="faq-answer">
+                    <p>Medidas de dispersão indicam o quanto os dados estão espalhados ou concentrados em torno da média. As principais são: variância (média dos quadrados dos desvios), desvio padrão (raiz quadrada da variância), amplitude (diferença entre o maior e o menor valor) e intervalo interquartil (diferença entre o terceiro e o primeiro quartil).</p>
+                </div>
+            </div>
+            
+            
+            
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleAnswer(this)">
+                    <h3>O que são medidas de tendência central?</h3>
+                    <span class="faq-toggle">+</span>
+                </div>
+                <div class="faq-answer">
+                    <p>Medidas de tendência central são valores que representam o centro de um conjunto de dados. As principais são: média (soma dos valores dividida pelo número de observações), mediana (valor central quando os dados estão ordenados) e moda (valor que ocorre com maior frequência).</p>
+                </div>
+            </div>
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+        </section>
+        
+        <section id="probabilidade" class="faq-section">
+            <h2>Probabilidade</h2>
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleAnswer(this)">
+                    <h3>O que é probabilidade condicional?</h3>
+                    <span class="faq-toggle">+</span>
+                </div>
+                <div class="faq-answer">
+                    <p>Probabilidade condicional é a probabilidade de um evento A ocorrer, dado que outro evento B já ocorreu. É representada por P(A|B) e calculada pela fórmula P(A|B) = P(A ∩ B) / P(B), onde P(A ∩ B) é a probabilidade da interseção dos eventos A e B, e P(B) é a probabilidade do evento B.</p>
+                </div>
+            </div>
+            
+            
+            
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleAnswer(this)">
+                    <h3>O que é o Teorema de Bayes?</h3>
+                    <span class="faq-toggle">+</span>
+                </div>
+                <div class="faq-answer">
+                    <p>O Teorema de Bayes é uma fórmula que relaciona probabilidades condicionais. Ele permite calcular a probabilidade de uma hipótese com base em evidências observadas. A fórmula é: P(A|B) = [P(B|A) × P(A)] / P(B), onde P(A|B) é a probabilidade posterior, P(B|A) é a verossimilhança, P(A) é a probabilidade prévia e P(B) é a probabilidade marginal.</p>
+                </div>
+            </div>
+            
+            
+            
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleAnswer(this)">
+                    <h3>O que são eventos independentes?</h3>
+                    <span class="faq-toggle">+</span>
+                </div>
+                <div class="faq-answer">
+                    <p>Eventos independentes são aqueles em que a ocorrência de um não afeta a probabilidade de ocorrência do outro. Matematicamente, dois eventos A e B são independentes se P(A ∩ B) = P(A) × P(B), ou equivalentemente, se P(A|B) = P(A) ou P(B|A) = P(B).</p>
+                </div>
+            </div>
+            
+            
+        </section>
+        
+        <section id="distribuições" class="faq-section">
+            <h2>Distribuições</h2>
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleAnswer(this)">
+                    <h3>O que é a distribuição normal?</h3>
+                    <span class="faq-toggle">+</span>
+                </div>
+                <div class="faq-answer">
+                    <p>A distribuição normal, também conhecida como distribuição gaussiana, é uma distribuição contínua de probabilidade caracterizada por sua forma de sino simétrica. É definida por dois parâmetros: média (μ) e desvio padrão (σ). Muitos fenômenos naturais seguem aproximadamente esta distribuição, e ela é fundamental no Teorema Central do Limite.</p>
+                </div>
+            </div>
+            
+            
+            
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleAnswer(this)">
+                    <h3>O que é a tabela Z e como utilizá-la?</h3>
+                    <span class="faq-toggle">+</span>
+                </div>
+                <div class="faq-answer">
+                    <p>A tabela Z é uma ferramenta que fornece probabilidades associadas à distribuição normal padrão (média 0 e desvio padrão 1). Para utilizá-la, primeiro padronizamos a variável normal X através da fórmula Z = (X - μ)/σ, onde μ é a média e σ é o desvio padrão. Em seguida, consultamos a tabela Z para encontrar a probabilidade correspondente ao valor de Z calculado.</p>
+                </div>
+            </div>
+            
+            
+            
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleAnswer(this)">
+                    <h3>Qual a diferença entre distribuição binomial e Poisson?</h3>
+                    <span class="faq-toggle">+</span>
+                </div>
+                <div class="faq-answer">
+                    <p>A distribuição binomial modela o número de sucessos em n ensaios independentes, cada um com probabilidade p de sucesso. É discreta e caracterizada pelos parâmetros n e p. A distribuição de Poisson modela o número de eventos que ocorrem em um intervalo fixo de tempo ou espaço, quando esses eventos ocorrem independentemente a uma taxa constante λ. É usada quando n é grande e p é pequeno na binomial.</p>
+                </div>
+            </div>
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+        </section>
+        
+        <section id="inferência-estatística" class="faq-section">
+            <h2>Inferência Estatística</h2>
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleAnswer(this)">
+                    <h3>O que é um teste de hipótese?</h3>
+                    <span class="faq-toggle">+</span>
+                </div>
+                <div class="faq-answer">
+                    <p>Um teste de hipótese é um procedimento estatístico que permite decidir se uma hipótese sobre uma população deve ser rejeitada com base em evidências amostrais. Envolve a formulação de uma hipótese nula (H₀) e uma hipótese alternativa (H₁), o cálculo de uma estatística de teste, a determinação do p-valor e a comparação deste com o nível de significância α (geralmente 0,05).</p>
+                </div>
+            </div>
+            
+            
+            
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleAnswer(this)">
+                    <h3>O que é um intervalo de confiança?</h3>
+                    <span class="faq-toggle">+</span>
+                </div>
+                <div class="faq-answer">
+                    <p>Um intervalo de confiança é um intervalo estimado de um parâmetro populacional. É associado a um nível de confiança, geralmente 95%, que indica a probabilidade de que o procedimento de construção do intervalo contenha o verdadeiro valor do parâmetro. Por exemplo, um intervalo de confiança de 95% para a média populacional significa que, se repetirmos o experimento muitas vezes, 95% dos intervalos construídos conterão a verdadeira média.</p>
+                </div>
+            </div>
+            
+            
+            
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleAnswer(this)">
+                    <h3>O que é o valor-p (p-value)?</h3>
+                    <span class="faq-toggle">+</span>
+                </div>
+                <div class="faq-answer">
+                    <p>O valor-p (p-value) é a probabilidade de obter um resultado igual ou mais extremo que o observado, assumindo que a hipótese nula é verdadeira. Um valor-p pequeno (tipicamente ≤ 0,05) sugere que os dados observados são improváveis sob a hipótese nula, levando à sua rejeição. O valor-p não é a probabilidade de a hipótese nula ser verdadeira.</p>
+                </div>
+            </div>
+            
+            
+            
+            
+            
+            
+            
+            
+        </section>
+        
+        <section id="análise-de-dados" class="faq-section">
+            <h2>Análise de Dados</h2>
+            
+            
+            
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleAnswer(this)">
+                    <h3>O que é regressão linear?</h3>
+                    <span class="faq-toggle">+</span>
+                </div>
+                <div class="faq-answer">
+                    <p>Regressão linear é uma técnica estatística para modelar a relação entre uma variável dependente e uma ou mais variáveis independentes. Na regressão linear simples (uma variável independente), o modelo tem a forma Y = β₀ + β₁X + ε, onde β₀ é o intercepto, β₁ é a inclinação e ε é o erro aleatório. O método dos mínimos quadrados é comumente usado para estimar os parâmetros do modelo.</p>
+                </div>
+            </div>
+            
+            
+            
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleAnswer(this)">
+                    <h3>O que é análise de variância (ANOVA)?</h3>
+                    <span class="faq-toggle">+</span>
+                </div>
+                <div class="faq-answer">
+                    <p>ANOVA (Análise de Variância) é uma técnica estatística que compara as médias de três ou mais grupos para determinar se há diferenças estatisticamente significativas entre eles. Ela decompõe a variância total dos dados em variância entre grupos e variância dentro dos grupos, e usa a razão F para testar a hipótese nula de que todas as médias populacionais são iguais.</p>
+                </div>
+            </div>
+            
+            
+            
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleAnswer(this)">
+                    <h3>O que é correlação e como interpretá-la?</h3>
+                    <span class="faq-toggle">+</span>
+                </div>
+                <div class="faq-answer">
+                    <p>Correlação é uma medida estatística que indica a força e a direção da relação linear entre duas variáveis. O coeficiente de correlação de Pearson (r) varia de -1 a 1. Um valor próximo de 1 indica forte correlação positiva, próximo de -1 indica forte correlação negativa, e próximo de 0 indica fraca ou nenhuma correlação linear. É importante lembrar que correlação não implica causalidade.</p>
+                </div>
+            </div>
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+        </section>
+        
+        <section id="geral" class="faq-section">
+            <h2>Geral</h2>
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleAnswer(this)">
+                    <h3>Qual a diferença entre estatística descritiva e inferencial?</h3>
+                    <span class="faq-toggle">+</span>
+                </div>
+                <div class="faq-answer">
+                    <p>Estatística descritiva resume e descreve características de um conjunto de dados através de medidas numéricas, tabelas e gráficos, sem fazer inferências além dos dados observados. Estatística inferencial usa dados amostrais para fazer generalizações ou inferências sobre uma população maior, envolvendo estimação de parâmetros, intervalos de confiança e testes de hipóteses.</p>
+                </div>
+            </div>
+            
+            
+            
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleAnswer(this)">
+                    <h3>Quais são as aplicações da estatística no dia a dia?</h3>
+                    <span class="faq-toggle">+</span>
+                </div>
+                <div class="faq-answer">
+                    <p>A estatística está presente em diversos aspectos do cotidiano: previsões meteorológicas, pesquisas eleitorais, análise de dados de saúde, controle de qualidade na indústria, pesquisas de mercado, análise de risco em investimentos, algoritmos de recomendação em plataformas digitais, estudos epidemiológicos, e desenvolvimento de políticas públicas baseadas em evidências.</p>
+                </div>
+            </div>
+            
+            
+            
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleAnswer(this)">
+                    <h3>Quais são os pré-requisitos para estudar estatística?</h3>
+                    <span class="faq-toggle">+</span>
+                </div>
+                <div class="faq-answer">
+                    <p>Os pré-requisitos básicos para estudar estatística incluem conhecimentos de matemática (especialmente álgebra), compreensão de conceitos de probabilidade, habilidade para interpretar gráficos e tabelas, e familiaridade com lógica. Para estudos mais avançados, cálculo diferencial e integral, álgebra linear e programação computacional são importantes.</p>
+                </div>
+            </div>
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+        </section>
+        
+    </div>
+</div>
+
+<style>
+.faq-container.dark-mode {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+    background-color: #121212;
+    color: #fff;
+    min-height: 100vh;
+}
+
+.faq-title {
+    text-align: center;
+    margin-bottom: 2rem;
+    color: #fff;
+    font-size: 2.5rem;
+    font-weight: 600;
+}
+
+.faq-categories {
+    margin-bottom: 2rem;
+}
+
+.faq-categories h2 {
+    color: #8cb4ff;
+    margin-bottom: 1rem;
+    font-size: 1.8rem;
+}
+
+.faq-categories ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.faq-categories li {
+    background: #1a1a1a;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+    border: 1px solid #333;
+}
+
+.faq-categories li:hover {
+    background: rgba(100, 100, 100, 0.2);
+    transform: translateY(-2px);
+}
+
+.faq-categories a {
+    color: #9d9d9e;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.faq-categories a:hover {
+    color: #fff;
+}
+
+.faq-list {
+    margin-top: 2rem;
+}
+
+.faq-section {
+    margin-bottom: 3rem;
+    padding: 1.5rem;
+    background: #1a1a1a;
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+    border: 1px solid #333;
+}
+
+.faq-section h2 {
+    color: #8cb4ff;
+    margin-bottom: 1.5rem;
+    font-size: 1.5rem;
+    border-bottom: 1px solid #333;
+    padding-bottom: 0.5rem;
+}
+
+.faq-item {
+    margin-bottom: 1rem;
+    background: #252525;
+    border-radius: 4px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.faq-question {
+    padding: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+}
+
+.faq-question h3 {
+    color: #fff;
+    margin: 0;
+    font-size: 1.1rem;
+    font-weight: 500;
+}
+
+.faq-toggle {
+    color: #9d9d9e;
+    font-size: 1.5rem;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+.faq-answer {
+    padding: 0 1rem;
+    max-height: 0;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.faq-answer p {
+    color: #ccc;
+    line-height: 1.6;
+    padding: 0 0 1rem 0;
+    margin: 0;
+}
+
+.faq-item.active .faq-answer {
+    max-height: 1000px;
+}
+
+.faq-item.active .faq-toggle {
+    transform: rotate(45deg);
+}
+
+.faq-item:hover {
+    background: #2a2a2a;
+}
+
+@media (max-width: 768px) {
+    .faq-container {
+        padding: 1rem;
+    }
+    
+    .faq-categories ul {
+        gap: 0.5rem;
+    }
+    
+    .faq-categories li {
+        padding: 0.3rem 0.8rem;
+    }
+    
+    .faq-title {
+        font-size: 2rem;
+    }
+}
+</style>
+
+<script>
+function toggleAnswer(element) {
+    const item = element.parentElement;
+    item.classList.toggle('active');
+}
+</script>
+
+
+    </div>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-columns">
+                <div class="footer-menu">
+                    <h3>Estatística Descritiva</h3>
+                    <ul>
+                        <li><a href="#">Medidas de Tendência Central</a></li>
+                        <li><a href="#">Medidas de Dispersão</a></li>
+                        <li><a href="#">Gráficos Estatísticos</a></li>
+                        <li><a href="#">Análise Exploratória</a></li>
+                        <li><a href="#">Visualização de Dados</a></li>
+                    </ul>
+                </div>
+                <div class="footer-menu">
+                    <h3>Probabilidade</h3>
+                    <ul>
+                        <li><a href="#">Distribuições de Probabilidade</a></li>
+                        <li><a href="#">Variáveis Aleatórias</a></li>
+                        <li><a href="#">Teorema do Limite Central</a></li>
+                        <li><a href="#">Eventos e Espaço Amostral</a></li>
+                        <li><a href="#">Probabilidade Condicional</a></li>
+                    </ul>
+                </div>
+                <div class="footer-menu">
+                    <h3>Inferência Estatística</h3>
+                    <ul>
+                        <li><a href="#">Testes de Hipótese</a></li>
+                        <li><a href="#">Intervalos de Confiança</a></li>
+                        <li><a href="#">Amostragem</a></li>
+                        <li><a href="#">Estimadores</a></li>
+                        <li><a href="#">Análise de Variância</a></li>
+                    </ul>
+                </div>
+                <div class="footer-menu">
+                    <h3>Análise de Dados</h3>
+                    <ul>
+                        <li><a href="#">Regressão Linear</a></li>
+                        <li><a href="#">Séries Temporais</a></li>
+                        <li><a href="#">Análise Multivariada</a></li>
+                        <li><a href="#">Modelos Preditivos</a></li>
+                        <li><a href="https://jekyllrb.com/" target="_blank">Jekyll Site</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-logo-container">
+                <img src="/assets/images/logos/logo2.png" alt="Logo do Cartório" class="logo">
+            </div>
+            <div class="footer-bottom">
+                <p class="copyright" style="font-size: 1em;">
+                  <a href="https://morrisonkulsenn.com" style="color: #ffffff; text-decoration: none;">Morrison Külsenn</a> © 2025 by
+                  <a href="https://creativecommons.org" style="color: #ffffff; text-decoration: none;">Morrison Külsenn</a> is licensed under
+                  <a href="https://creativecommons.org/licenses/by/4.0/" style="color: #ffffff; text-decoration: none;">CC BY 4.0</a>
+                  <img src="https://mirrors.creativecommons.org/presskit/icons/cc.svg" style="max-width: 1em; max-height:1em; margin-left: .2em; vertical-align: text-bottom;">
+                  <img src="https://mirrors.creativecommons.org/presskit/icons/by.svg" style="max-width: 1em; max-height:1em; margin-left: .2em; vertical-align: text-bottom;">
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modal de Feriado -->
+    <div id="feriadoModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2>Aviso de Funcionamento</h2>
+            <p>Hoje, <strong id="feriadoNome">[Nome do Feriado]</strong>, nosso horário de atendimento será:</p>
+            <p><strong id="feriadoHorario">[Horário Especial]</strong></p>
+            <button id="entendiBtn">Entendi</button>
+        </div>
+    </div>
+
+    <!-- Modal de Cookie -->
+    <div id="cookie-consent-modal" class="cookie-modal">
+        <div class="cookie-content" id="cookie-main-view">
+            <div class="cookie-text">
+                <h3>🍪 Uso de Cookies</h3>
+                <p>Nós usamos cookies para melhorar sua experiência no site. Ao continuar navegando, você concorda com nossa <a href="/politica-de-privacidade" target="_blank">Política de Privacidade</a>.</p>
+            </div>
+            <div class="cookie-buttons">
+                <button id="cookie-accept" class="cookie-btn accept">Aceitar todos</button>
+                <button id="cookie-settings" class="cookie-btn settings">Configurar</button>
+                <button id="cookie-decline" class="cookie-btn decline">Recusar todos</button>
+            </div>
+        </div>
+        <!-- Configurações avançadas -->
+        <div class="cookie-settings" id="cookie-settings-view" style="display: none;">
+            <div class="cookie-text">
+                <h3>⚙️ Configurações de Cookies</h3>
+                <p>Selecione quais tipos de cookies você permite que utilizemos:</p>
+                
+                <div class="cookie-category">
+                    <div class="cookie-toggle">
+                        <label class="toggle-switch">
+                            <input type="checkbox" id="necessary-cookies" checked disabled>
+                            <span class="slider round"></span>
+                        </label>
+                        <div class="toggle-label">
+                            <strong>Cookies Necessários</strong>
+                            <small>Essenciais para o funcionamento do site (sempre ativos)</small>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="cookie-category">
+                    <div class="cookie-toggle">
+                        <label class="toggle-switch">
+                            <input type="checkbox" id="analytics-cookies">
+                            <span class="slider round"></span>
+                        </label>
+                        <div class="toggle-label">
+                            <strong>Cookies Analíticos</strong>
+                            <small>Ajudam a entender como os visitantes interagem com o site.</small>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="cookie-category">
+                    <div class="cookie-toggle">
+                        <label class="toggle-switch">
+                            <input type="checkbox" id="marketing-cookies">
+                            <span class="slider round"></span>
+                        </label>
+                        <div class="toggle-label">
+                            <strong>Cookies de Marketing</strong>
+                            <small>Usados para rastrear visitantes e exibir anúncios relevantes.</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="cookie-settings-buttons">
+                <button id="cookie-save-settings" class="cookie-btn save">Salvar Configurações</button>
+                <button id="cookie-settings-back" class="cookie-btn back">Voltar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- JS (Jekyll) -->
+    <script src="/assets/js/script.js" defer></script>
+    <script src="/assets/js/copy-code.js" defer></script>
+    <script src="/assets/js/language-switcher.js" defer></script>
+    
+    <!-- Bootstrap TOC -->
+    <script src="/assets/js/bootstrap-toc.min.js"></script>
+</body>
+</html>
+
+    <script src="/assets/js/bootstrap-toc.min.js"></script>
+</body>
+</html>
+

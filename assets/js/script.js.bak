@@ -1,0 +1,505 @@
+document.addEventListener('DOMContentLoaded', function() {
+    const dropdownToggles = document.querySelectorAll('.dropdown-toggle');
+    const dropdownMenus = document.querySelectorAll('.dropdown-menu');
+    const mainContent = document.getElementById('main-content');
+    const navLis = document.querySelectorAll('nav ul li.dropdown');
+
+    function closeAllMenus() {
+        dropdownMenus.forEach(menu => menu.classList.remove('active'));
+        navLis.forEach(li => li.classList.remove('active'));
+        if (mainContent) {
+            mainContent.classList.remove('menu-open-main');
+            mainContent.style.marginTop = '';
+        }
+    }
+
+    dropdownToggles.forEach((toggle, index) => {
+        toggle.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            const currentMenu = document.getElementById(
+                index === 0 ? 'estatistica-menu' : 
+                index === 1 ? 'probabilidade-menu' : 'ciencia-dados-menu'
+            );
+            const currentLi = navLis[index];
+
+            if (currentMenu.classList.contains('active')) {
+                currentMenu.classList.remove('active');
+                currentLi.classList.remove('active');
+                if (mainContent) {
+                    mainContent.classList.remove('menu-open-main');
+                    mainContent.style.marginTop = '';
+                }
+            } else {
+                closeAllMenus();
+                currentMenu.classList.add('active');
+                currentLi.classList.add('active');
+                setTimeout(() => {
+                    const rect = currentMenu.getBoundingClientRect();
+                    const height = rect.height;
+                    if (mainContent) {
+                        mainContent.classList.add('menu-open-main');
+                        mainContent.style.marginTop = height + 'px';
+                    }
+                }, 10);
+            }
+        });
+    });
+
+    document.addEventListener('click', closeAllMenus);
+
+    dropdownMenus.forEach(menu => {
+        menu.addEventListener('click', function(e) {
+            e.stopPropagation();
+        });
+    });
+
+    // testimonials
+    const testimonials = [
+        {
+            name: "Como faço para registrar um imóvel em Pernambuco?",
+            text: "Você deve levar a escritura pública ao Cartório de Registro de Imóveis competente para que o registro seja efetuado na matrícula do imóvel."
+        },
+        {
+            name: "Quais documentos são necessários para o registro de um imóvel?",
+            text: "Normalmente são exigidos: escritura pública, documentos pessoais dos envolvidos, comprovante de pagamento do ITBI e certidões negativas."
+        },
+        {
+            name: "Quanto tempo leva para um imóvel ser registrado no cartório?",
+            text: "O prazo médio é de 15 a 30 dias úteis, dependendo da regularidade da documentação apresentada."
+        },
+        {
+            name: "É possível consultar a matrícula de um imóvel online em Pernambuco?",
+            text: "Sim. Através do site da Central de Registros do Estado de Pernambuco (CRC/PE), é possível solicitar certidões e consultar informações básicas."
+        },
+        {
+            name: "Qual a diferença entre escritura pública e registro de imóvel?",
+            text: "A escritura comprova o acordo entre as partes. Já o registro no cartório transfere oficialmente a propriedade e dá validade legal à transação."
+        },
+        {
+            name: "O que é matrícula do imóvel?",
+            text: "É o documento que identifica legalmente o imóvel, contendo seu histórico, localização, proprietários anteriores, e alterações."
+        },
+        {
+            name: "Preciso registrar o contrato de compra e venda?",
+            text: "O contrato tem valor entre as partes, mas só o registro no cartório garante a transferência oficial da propriedade."
+        },
+        {
+            name: "Quanto custa para registrar um imóvel?",
+            text: "Os custos variam conforme o valor do imóvel, e incluem taxas de cartório, ITBI e emolumentos. Consulte o cartório local ou a tabela da Anoreg-PE."
+        },
+        {
+            name: "Imóveis financiados são registrados normalmente?",
+            text: "Sim. O registro é feito em nome do comprador, com a averbação da alienação fiduciária em favor da instituição financeira."
+        },
+        {
+            name: "O que é ITBI e quando devo pagá-lo?",
+            text: "É o Imposto de Transmissão de Bens Imóveis. Deve ser pago antes do registro, geralmente no município onde está localizado o imóvel."
+        }
+    ];
+    
+    const testimonialList = document.getElementById('testimonial-list');
+    
+    // Clona os cards para criar efeito de loop
+    const renderTestimonials = () => {
+        const cards = [];
+    
+        // Clonar último elemento e colocar no início
+        const last = testimonials[testimonials.length - 1];
+        cards.push(last, ...testimonials, testimonials[0]); // Clona primeiro e último
+    
+        cards.forEach(t => {
+            const div = document.createElement('div');
+            div.className = 'testimonial';
+            div.innerHTML = `
+                <span class="testimonial-name">${t.name}</span>
+                <blockquote>${t.text}</blockquote>
+            `;
+            testimonialList.appendChild(div);
+        });
+    };
+    
+    renderTestimonials();
+    
+    let index = 1; // Começa no "real" primeiro
+    const testimonialWidth = 284; // 260 + margem (aprox.)
+    const total = testimonials.length;
+    
+    // Ajustar posição inicial
+    testimonialList.style.transform = `translateX(-${testimonialWidth * index}px)`;
+    
+    const updatePosition = () => {
+        testimonialList.style.transition = 'transform 0.5s ease-in-out';
+        testimonialList.style.transform = `translateX(-${testimonialWidth * index}px)`;
+    };
+    
+    const resetPosition = () => {
+        testimonialList.style.transition = 'none';
+        testimonialList.style.transform = `translateX(-${testimonialWidth * index}px)`;
+    };
+    
+    document.getElementById('prevBtn').addEventListener('click', () => {
+        if (index <= 0) return;
+        index--;
+        updatePosition();
+    });
+    
+    document.getElementById('nextBtn').addEventListener('click', () => {
+        if (index >= total + 1) return;
+        index++;
+        updatePosition();
+    });
+    
+    // Verifica se estamos em um clone para resetar sem animação
+    testimonialList.addEventListener('transitionend', () => {
+        if (index === 0) {
+            index = total;
+            resetPosition();
+        }
+        if (index === total + 1) {
+            index = 1;
+            resetPosition();
+        }
+    });
+    
+
+    // Conteúdo dinâmico: Últimos artigos do blog
+    const blogPosts = [
+        { title: "Como usar Regressão Linear em Python", url: "#" },
+        { title: "Entendendo o Teorema de Bayes na Prática", url: "#" },
+        { title: "5 Dicas para Visualização de Dados Eficiente", url: "#" }
+    ];
+
+    const blogList = document.getElementById('blog-list');
+    if (blogList) {
+        blogPosts.forEach(post => {
+            const li = document.createElement('li');
+            li.innerHTML = `<a href="${post.url}">${post.title}</a>`;
+            blogList.appendChild(li);
+        });
+    }
+});
+
+// Lista de feriados com horários especiais
+const feriados = [
+    {
+      data: '2023-12-25', // Natal
+      nome: 'Natal',
+      horario: 'Fechado'
+    },
+    {
+      data: '2023-01-01', // Ano Novo
+      nome: 'Ano Novo',
+      horario: 'Fechado'
+    },
+    {
+      data: '2023-09-07', // Independência
+      nome: 'Independência do Brasil',
+      horario: 'Fechado'
+    },
+    {
+      data: '2025-05-03', // Corpus Christi (exemplo)
+      nome: 'Teste',
+      horario: 'Atendimento das 9h às 12h'
+    },
+    // Adicione outros feriados conforme necessário
+  ];
+  
+  // Função para verificar se hoje é feriado
+  function verificarFeriado() {
+    const hoje = new Date();
+    const hojeFormatado = hoje.toISOString().split('T')[0]; // Formato YYYY-MM-DD
+    
+    // Verifica se a data atual está na lista de feriados
+    const feriadoAtual = feriados.find(feriado => feriado.data === hojeFormatado);
+    
+    return feriadoAtual;
+  }
+  
+  // Função para mostrar o modal
+  function mostrarModalFeriado(feriado) {
+    const modal = document.getElementById('feriadoModal');
+    document.getElementById('feriadoNome').textContent = feriado.nome;
+    document.getElementById('feriadoHorario').textContent = feriado.horario;
+    
+    modal.style.display = 'block';
+    
+    // Fechar modal ao clicar no X
+    document.querySelector('.close-modal').onclick = function() {
+      modal.style.display = 'none';
+    }
+    
+    // Fechar modal ao clicar no botão
+    document.getElementById('entendiBtn').onclick = function() {
+      modal.style.display = 'none';
+    }
+    
+    // Fechar modal ao clicar fora do conteúdo
+    window.onclick = function(event) {
+      if (event.target == modal) {
+        modal.style.display = 'none';
+      }
+    }
+  }
+  
+  // Verificar feriado quando a página carregar
+  document.addEventListener('DOMContentLoaded', function() {
+    const feriado = verificarFeriado();
+    if (feriado) {
+      // Mostrar o modal após 1 segundo (pode ajustar)
+      setTimeout(() => {
+        mostrarModalFeriado(feriado);
+      }, 1000);
+    }
+  });
+
+  //cookies
+  document.addEventListener('DOMContentLoaded', function() {
+    const cookieModal = document.getElementById('cookie-consent-modal');
+    const acceptButton = document.getElementById('cookie-accept');
+    const settingsButton = document.getElementById('cookie-settings');
+    const declineButton = document.getElementById('cookie-decline');
+    const settingsView = document.getElementById('cookie-settings-view');
+    const mainView = document.getElementById('cookie-main-view');
+    const settingsBackButton = document.getElementById('cookie-settings-back');
+    const saveSettingsButton = document.getElementById('cookie-save-settings');
+    const analyticsCheckbox = document.getElementById('analytics-cookies');
+    const marketingCheckbox = document.getElementById('marketing-cookies');
+    
+    // Verificar preferências salvas
+    const cookieConsent = getCookie('cookie_consent');
+    const cookiePreferences = getCookie('cookie_preferences') 
+        ? JSON.parse(getCookie('cookie_preferences'))
+        : null;
+    
+    // Se já tiver consentimento, não mostrar o modal
+    if (!cookieConsent) {
+        setTimeout(() => {
+            cookieModal.style.display = 'block';
+        }, 1000);
+    } else if (cookieConsent === 'custom') {
+        // Se foi um consentimento customizado, carregar as preferências
+        loadCookiesAccordingToPreferences(cookiePreferences);
+    }
+    
+    // Mostrar configurações avançadas
+    settingsButton.addEventListener('click', function() {
+        mainView.style.display = 'none';
+        settingsView.style.display = 'block';
+        
+        // Carregar preferências salvas se existirem
+        if (cookiePreferences) {
+            analyticsCheckbox.checked = cookiePreferences.analytics || false;
+            marketingCheckbox.checked = cookiePreferences.marketing || false;
+        } else {
+            // Valores padrão para primeira vez
+            analyticsCheckbox.checked = true;
+            marketingCheckbox.checked = false;
+        }
+    });
+    
+    // Voltar para a view principal
+    settingsBackButton.addEventListener('click', function() {
+        settingsView.style.display = 'none';
+        mainView.style.display = 'block';
+    });
+    
+    // Aceitar todos os cookies
+    acceptButton.addEventListener('click', function() {
+        setCookie('cookie_consent', 'accepted', 365);
+        setCookie('cookie_preferences', JSON.stringify({
+            analytics: true,
+            marketing: true
+        }), 365);
+        cookieModal.style.display = 'none';
+        loadAllCookies();
+    });
+    
+    // Recusar todos os cookies
+    declineButton.addEventListener('click', function() {
+        setCookie('cookie_consent', 'declined', 365);
+        setCookie('cookie_preferences', JSON.stringify({
+            analytics: false,
+            marketing: false
+        }), 365);
+        cookieModal.style.display = 'none';
+    });
+    
+    // Salvar configurações personalizadas
+    saveSettingsButton.addEventListener('click', function() {
+        const preferences = {
+            analytics: analyticsCheckbox.checked,
+            marketing: marketingCheckbox.checked
+        };
+        
+        setCookie('cookie_consent', 'custom', 365);
+        setCookie('cookie_preferences', JSON.stringify(preferences), 365);
+        cookieModal.style.display = 'none';
+        
+        loadCookiesAccordingToPreferences(preferences);
+    });
+    
+    // Funções auxiliares para cookies
+    function setCookie(name, value, days) {
+        const date = new Date();
+        date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+        const expires = "expires=" + date.toUTCString();
+        document.cookie = name + "=" + value + ";" + expires + ";path=/;SameSite=Lax";
+    }
+    
+    function getCookie(name) {
+        const cookieName = name + "=";
+        const decodedCookie = decodeURIComponent(document.cookie);
+        const cookieArray = decodedCookie.split(';');
+        for(let i = 0; i < cookieArray.length; i++) {
+            let cookie = cookieArray[i];
+            while (cookie.charAt(0) === ' ') {
+                cookie = cookie.substring(1);
+            }
+            if (cookie.indexOf(cookieName) === 0) {
+                return cookie.substring(cookieName.length, cookie.length);
+            }
+        }
+        return "";
+    }
+    
+    // Carregar cookies baseado nas preferências
+    function loadCookiesAccordingToPreferences(prefs) {
+        if (prefs.analytics) {
+            loadAnalyticsCookies();
+        }
+        
+        if (prefs.marketing) {
+            loadMarketingCookies();
+        }
+    }
+    
+    // Carregar todos os cookies
+    function loadAllCookies() {
+        loadAnalyticsCookies();
+        loadMarketingCookies();
+    }
+    
+    // Exemplos de funções para carregar cookies específicos
+    function loadAnalyticsCookies() {
+        console.log('Carregando cookies analíticos...');
+        // Implementação real: Google Analytics, Hotjar, etc.
+    }
+    
+    function loadMarketingCookies() {
+        console.log('Carregando cookies de marketing...');
+        // Implementação real: Facebook Pixel, Google Ads, etc.
+    }
+});
+
+document.addEventListener('DOMContentLoaded', function() {
+    // Seleciona os elementos principais
+    const mainMenu = document.querySelector('.main-menu');
+    const submenuContainer = document.querySelector('.submenu-container');
+    const menuItems = mainMenu.querySelectorAll('li');
+    
+    // Estado inicial
+    submenuContainer.style.display = 'none';
+    let currentOpenItem = null;
+
+    // Fecha todos os dropdowns e reseta os ícones
+    function closeAllDropdowns() {
+        document.querySelectorAll('.dropdown').forEach(dropdown => {
+            dropdown.style.display = 'none';
+        });
+        document.querySelectorAll('.chevron').forEach(chevron => {
+            chevron.style.transform = 'rotate(0deg)';
+        });
+        submenuContainer.style.display = 'none';
+        currentOpenItem = null;
+    }
+
+    // Verifica se o item tem submenu
+    function hasSubmenu(item) {
+        return item.classList.contains('has-submenu') || 
+               item.querySelector('.dropdown') !== null ||
+               (item.querySelector('a') && 
+                (item.querySelector('a').href.includes('/servicos/') || 
+                 item.querySelector('a').href.includes('/orientacoes/')));
+    }
+
+    // Atualiza o menu ativo com base na URL
+    function updateActiveMenu() {
+        const currentPath = window.location.pathname;
+        
+        // Remove todas as classes active
+        document.querySelectorAll('.main-menu li, .submenu li, .dropdown li').forEach(el => {
+            el.classList.remove('active');
+        });
+
+        // Marca os itens ativos no menu principal
+        menuItems.forEach(item => {
+            const link = item.querySelector('a');
+            if (!link) return;
+
+            const linkPath = new URL(link.href).pathname;
+
+            if (currentPath === linkPath || (currentPath.startsWith(linkPath) && linkPath !== '/')) {
+                item.classList.add('active');
+                
+                if (hasSubmenu(item)) {
+                    submenuContainer.style.display = 'flex';
+                    const chevron = item.querySelector('.chevron');
+                    if (chevron) chevron.style.transform = 'rotate(180deg)';
+                    currentOpenItem = item;
+                }
+            }
+        });
+    }
+
+    // Configura os eventos de clique nos itens do menu
+    menuItems.forEach(item => {
+        const link = item.querySelector('a');
+        const chevron = item.querySelector('.chevron');
+        
+        item.addEventListener('click', function(e) {
+            if (hasSubmenu(item) && link && !link.href.startsWith('http')) {
+                e.preventDefault();
+                
+                // Se já está aberto, fecha
+                if (currentOpenItem === item) {
+                    closeAllDropdowns();
+                } 
+                // Se não está aberto, abre
+                else {
+                    closeAllDropdowns();
+                    submenuContainer.style.display = 'flex';
+                    if (chevron) chevron.style.transform = 'rotate(180deg)';
+                    currentOpenItem = item;
+                }
+            }
+        });
+    });
+
+    // Configura os eventos de clique nos submenus
+    submenuContainer.querySelectorAll('li').forEach(item => {
+        const dropdown = item.querySelector('.dropdown');
+        if (!dropdown) return;
+
+        item.addEventListener('click', function(e) {
+            e.stopPropagation();
+            const chevron = item.querySelector('.chevron');
+            
+            if (dropdown.style.display === 'block') {
+                dropdown.style.display = 'none';
+                if (chevron) chevron.style.transform = 'rotate(0deg)';
+            } else {
+                closeAllDropdowns();
+                dropdown.style.display = 'block';
+                if (chevron) chevron.style.transform = 'rotate(180deg)';
+            }
+        });
+    });
+
+    // Inicializa o menu
+    updateActiveMenu();
+    window.addEventListener('popstate', updateActiveMenu);
+});
+
+

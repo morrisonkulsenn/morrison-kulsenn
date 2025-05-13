@@ -1,0 +1,80 @@
+categories:
+  - Estatística Básica
+  - Probabilidade
+  - Distribuições
+  - Inferência Estatística
+  - Análise de Dados
+  - Geral
+
+entries:
+  - category: Estatística Básica
+    question: "O que são medidas de tendência central?"
+    answer: "Medidas de tendência central são valores que representam o centro de um conjunto de dados. As principais são: média (soma dos valores dividida pelo número de observações), mediana (valor central quando os dados estão ordenados) e moda (valor que ocorre com maior frequência)."
+  
+  - category: Estatística Básica
+    question: "Qual a diferença entre média, mediana e moda?"
+    answer: "A média é sensível a valores extremos (outliers), sendo calculada pela soma dos valores dividida pelo número de observações. A mediana é o valor central quando os dados estão ordenados, sendo mais robusta a outliers. A moda é o valor que ocorre com maior frequência, podendo não existir ou haver múltiplas modas."
+  
+  - category: Estatística Básica
+    question: "O que são medidas de dispersão?"
+    answer: "Medidas de dispersão indicam o quanto os dados estão espalhados ou concentrados em torno da média. As principais são: variância (média dos quadrados dos desvios), desvio padrão (raiz quadrada da variância), amplitude (diferença entre o maior e o menor valor) e intervalo interquartil (diferença entre o terceiro e o primeiro quartil)."
+  
+  - category: Probabilidade
+    question: "O que é probabilidade condicional?"
+    answer: "Probabilidade condicional é a probabilidade de um evento A ocorrer, dado que outro evento B já ocorreu. É representada por P(A|B) e calculada pela fórmula P(A|B) = P(A ∩ B) / P(B), onde P(A ∩ B) é a probabilidade da interseção dos eventos A e B, e P(B) é a probabilidade do evento B."
+  
+  - category: Probabilidade
+    question: "O que é o Teorema de Bayes?"
+    answer: "O Teorema de Bayes é uma fórmula que relaciona probabilidades condicionais. Ele permite calcular a probabilidade de uma hipótese com base em evidências observadas. A fórmula é: P(A|B) = [P(B|A) × P(A)] / P(B), onde P(A|B) é a probabilidade posterior, P(B|A) é a verossimilhança, P(A) é a probabilidade prévia e P(B) é a probabilidade marginal."
+  
+  - category: Probabilidade
+    question: "O que são eventos independentes?"
+    answer: "Eventos independentes são aqueles em que a ocorrência de um não afeta a probabilidade de ocorrência do outro. Matematicamente, dois eventos A e B são independentes se P(A ∩ B) = P(A) × P(B), ou equivalentemente, se P(A|B) = P(A) ou P(B|A) = P(B)."
+  
+  - category: Distribuições
+    question: "O que é a distribuição normal?"
+    answer: "A distribuição normal, também conhecida como distribuição gaussiana, é uma distribuição contínua de probabilidade caracterizada por sua forma de sino simétrica. É definida por dois parâmetros: média (μ) e desvio padrão (σ). Muitos fenômenos naturais seguem aproximadamente esta distribuição, e ela é fundamental no Teorema Central do Limite."
+  
+  - category: Distribuições
+    question: "O que é a tabela Z e como utilizá-la?"
+    answer: "A tabela Z é uma ferramenta que fornece probabilidades associadas à distribuição normal padrão (média 0 e desvio padrão 1). Para utilizá-la, primeiro padronizamos a variável normal X através da fórmula Z = (X - μ)/σ, onde μ é a média e σ é o desvio padrão. Em seguida, consultamos a tabela Z para encontrar a probabilidade correspondente ao valor de Z calculado."
+  
+  - category: Distribuições
+    question: "Qual a diferença entre distribuição binomial e Poisson?"
+    answer: "A distribuição binomial modela o número de sucessos em n ensaios independentes, cada um com probabilidade p de sucesso. É discreta e caracterizada pelos parâmetros n e p. A distribuição de Poisson modela o número de eventos que ocorrem em um intervalo fixo de tempo ou espaço, quando esses eventos ocorrem independentemente a uma taxa constante λ. É usada quando n é grande e p é pequeno na binomial."
+  
+  - category: Inferência Estatística
+    question: "O que é um intervalo de confiança?"
+    answer: "Um intervalo de confiança é um intervalo estimado de um parâmetro populacional. É associado a um nível de confiança, geralmente 95%, que indica a probabilidade de que o procedimento de construção do intervalo contenha o verdadeiro valor do parâmetro. Por exemplo, um intervalo de confiança de 95% para a média populacional significa que, se repetirmos o experimento muitas vezes, 95% dos intervalos construídos conterão a verdadeira média."
+  
+  - category: Inferência Estatística
+    question: "O que é um teste de hipótese?"
+    answer: "Um teste de hipótese é um procedimento estatístico que permite decidir se uma hipótese sobre uma população deve ser rejeitada com base em evidências amostrais. Envolve a formulação de uma hipótese nula (H₀) e uma hipótese alternativa (H₁), o cálculo de uma estatística de teste, a determinação do p-valor e a comparação deste com o nível de significância α (geralmente 0,05)."
+  
+  - category: Inferência Estatística
+    question: "O que é o valor-p (p-value)?"
+    answer: "O valor-p (p-value) é a probabilidade de obter um resultado igual ou mais extremo que o observado, assumindo que a hipótese nula é verdadeira. Um valor-p pequeno (tipicamente ≤ 0,05) sugere que os dados observados são improváveis sob a hipótese nula, levando à sua rejeição. O valor-p não é a probabilidade de a hipótese nula ser verdadeira."
+  
+  - category: Análise de Dados
+    question: "O que é correlação e como interpretá-la?"
+    answer: "Correlação é uma medida estatística que indica a força e a direção da relação linear entre duas variáveis. O coeficiente de correlação de Pearson (r) varia de -1 a 1. Um valor próximo de 1 indica forte correlação positiva, próximo de -1 indica forte correlação negativa, e próximo de 0 indica fraca ou nenhuma correlação linear. É importante lembrar que correlação não implica causalidade."
+  
+  - category: Análise de Dados
+    question: "O que é regressão linear?"
+    answer: "Regressão linear é uma técnica estatística para modelar a relação entre uma variável dependente e uma ou mais variáveis independentes. Na regressão linear simples (uma variável independente), o modelo tem a forma Y = β₀ + β₁X + ε, onde β₀ é o intercepto, β₁ é a inclinação e ε é o erro aleatório. O método dos mínimos quadrados é comumente usado para estimar os parâmetros do modelo."
+  
+  - category: Análise de Dados
+    question: "O que é análise de variância (ANOVA)?"
+    answer: "ANOVA (Análise de Variância) é uma técnica estatística que compara as médias de três ou mais grupos para determinar se há diferenças estatisticamente significativas entre eles. Ela decompõe a variância total dos dados em variância entre grupos e variância dentro dos grupos, e usa a razão F para testar a hipótese nula de que todas as médias populacionais são iguais."
+  
+  - category: Geral
+    question: "Quais são os pré-requisitos para estudar estatística?"
+    answer: "Os pré-requisitos básicos para estudar estatística incluem conhecimentos de matemática (especialmente álgebra), compreensão de conceitos de probabilidade, habilidade para interpretar gráficos e tabelas, e familiaridade com lógica. Para estudos mais avançados, cálculo diferencial e integral, álgebra linear e programação computacional são importantes."
+  
+  - category: Geral
+    question: "Quais são as aplicações da estatística no dia a dia?"
+    answer: "A estatística está presente em diversos aspectos do cotidiano: previsões meteorológicas, pesquisas eleitorais, análise de dados de saúde, controle de qualidade na indústria, pesquisas de mercado, análise de risco em investimentos, algoritmos de recomendação em plataformas digitais, estudos epidemiológicos, e desenvolvimento de políticas públicas baseadas em evidências."
+  
+  - category: Geral
+    question: "Qual a diferença entre estatística descritiva e inferencial?"
+    answer: "Estatística descritiva resume e descreve características de um conjunto de dados através de medidas numéricas, tabelas e gráficos, sem fazer inferências além dos dados observados. Estatística inferencial usa dados amostrais para fazer generalizações ou inferências sobre uma população maior, envolvendo estimação de parâmetros, intervalos de confiança e testes de hipóteses."

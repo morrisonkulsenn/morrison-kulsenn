@@ -1,0 +1,21 @@
+site:
+  title: "Morrison Külsenn - Estatística e Probabilidade"
+  description: "Espaço dedicado ao estudo e à aplicação de Estatística e Probabilidade"
+  
+nav:
+  home: "Início"
+  about: "Sobre"
+  services: "Serviços"
+  blog: "Blog"
+  contact: "Contato"
+  language: "Idioma"
+  
+hero:
+  welcome: "Seja Bem-vindo"
+  description: "Este espaço é dedicado ao estudo e à aplicação de Estatística e Probabilidade. Nosso objetivo é tornar conceitos técnicos mais acessíveis, promovendo o entendimento por meio de conteúdos claros, exemplos práticos e ferramentas interativas."
+  cta: "Conheça nossos serviços"
+  
+footer:
+  rights: "Todos os direitos reservados"
+  privacy: "Política de Privacidade"
+  terms: "Termos de Uso"

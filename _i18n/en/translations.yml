@@ -1,0 +1,21 @@
+site:
+  title: "Morrison Külsenn - Statistics and Probability"
+  description: "Space dedicated to the study and application of Statistics and Probability"
+  
+nav:
+  home: "Home"
+  about: "About"
+  services: "Services"
+  blog: "Blog"
+  contact: "Contact"
+  language: "Language"
+  
+hero:
+  welcome: "Welcome"
+  description: "This space is dedicated to the study and application of Statistics and Probability. Our goal is to make technical concepts more accessible, promoting understanding through clear content, practical examples, and interactive tools."
+  cta: "Explore our services"
+  
+footer:
+  rights: "All rights reserved"
+  privacy: "Privacy Policy"
+  terms: "Terms of Use"

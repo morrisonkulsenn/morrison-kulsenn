@@ -1,0 +1,570 @@
+---
+layout: default
+title: Blog
+permalink: /blog/all/
+---
+
+<div class="all-posts-page dark-mode">
+  <div class="blog-container full-width">
+  <header class="blog-header">
+    <h1 class="blog-title">Blog</h1>
+    <p class="blog-subtitle">Explore nosso acervo completo de artigos sobre estatística e probabilidade</p>
+  </header>
+
+  <div class="post-list" id="post-container">
+    {% for post in site.posts %}
+      <!-- Alternar layout para cada post, independente do índice -->
+      <a href="{{ post.url | relative_url }}" class="post-link">
+        <article class="post-item {% cycle 'post-item-right', 'post-item-left' %}">
+        {% if forloop.index0 | modulo: 2 == 0 %}
+          <!-- Layout da primeira postagem (e ímpares): imagem à esquerda -->
+          <div class="post-image">
+            {% if post.image %}
+              <img src="{{ post.image | relative_url }}" alt="{{ post.title }}" loading="lazy">
+            {% else %}
+              <div class="placeholder-image">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="64" height="64"><path fill="none" d="M0 0h24v24H0z"/><path d="M4.828 21l-.02.02-.021-.02H2.992A.993.993 0 0 1 2 20.007V3.993A1 1 0 0 1 2.992 3h18.016c.548 0 .992.445.992.993v16.014a1 1 0 0 1-.992.993H4.828zM20 15V5H4v14L14 9l6 6zm0 2.828l-6-6L6.828 19H20v-1.172zM8 11a2 2 0 1 1 0-4 2 2 0 0 1 0 4z" fill="#ccc"/></svg>
+              </div>
+            {% endif %}
+          </div>
+          <div class="post-content">
+            <h2 class="post-title">{{ post.title }}</h2>
+            <div class="post-meta">
+              <time class="post-date" datetime="{{ post.date | date_to_xmlschema }}">
+                {{ post.date | date: "%d/%m/%Y" }}
+              </time>
+              {% if post.author %}
+                <span class="post-author">por {{ post.author }}</span>
+              {% endif %}
+              {% if post.category %}
+                <span class="post-category">em {{ post.category }}</span>
+              {% endif %}
+              {% if post.read_time %}
+                <span class="post-read-time">{{ post.read_time }}</span>
+              {% endif %}
+            </div>
+            {% if post.excerpt %}
+              <div class="post-excerpt">
+                {{ post.excerpt | strip_html | truncatewords: 40 }}
+              </div>
+            {% endif %}
+            <span class="read-more-hint">Clique para ler o artigo completo</span>
+          </div>
+        {% else %}
+          <!-- Layout da segunda postagem (e pares): conteúdo à esquerda, imagem à direita -->
+          <div class="post-content">
+            <h2 class="post-title">{{ post.title }}</h2>
+            <div class="post-meta">
+              <time class="post-date" datetime="{{ post.date | date_to_xmlschema }}">
+                {{ post.date | date: "%d/%m/%Y" }}
+              </time>
+              {% if post.author %}
+                <span class="post-author">por {{ post.author }}</span>
+              {% endif %}
+              {% if post.category %}
+                <span class="post-category">em {{ post.category }}</span>
+              {% endif %}
+              {% if post.read_time %}
+                <span class="post-read-time">{{ post.read_time }}</span>
+              {% endif %}
+            </div>
+            {% if post.excerpt %}
+              <div class="post-excerpt">
+                {{ post.excerpt | strip_html | truncatewords: 40 }}
+              </div>
+            {% endif %}
+            <span class="read-more-hint">Clique para ler o artigo completo</span>
+          </div>
+          <div class="post-image">
+            {% if post.image %}
+              <img src="{{ post.image | relative_url }}" alt="{{ post.title }}" loading="lazy">
+            {% else %}
+              <div class="placeholder-image">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="64" height="64"><path fill="none" d="M0 0h24v24H0z"/><path d="M4.828 21l-.02.02-.021-.02H2.992A.993.993 0 0 1 2 20.007V3.993A1 1 0 0 1 2.992 3h18.016c.548 0 .992.445.992.993v16.014a1 1 0 0 1-.992.993H4.828zM20 15V5H4v14L14 9l6 6zm0 2.828l-6-6L6.828 19H20v-1.172zM8 11a2 2 0 1 1 0-4 2 2 0 0 1 0 4z" fill="#ccc"/></svg>
+              </div>
+            {% endif %}
+          </div>
+        {% endif %}
+      </article>
+      </a>
+    {% endfor %}
+    
+    <!-- Paginação com JavaScript -->
+    <div class="pagination">
+      <a href="#" class="pagination-prev" id="prev-page">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+        
+      </a>
+      
+      <div class="pagination-numbers" id="pagination-numbers">
+        <!-- Números de página serão inseridos via JavaScript -->
+      </div>
+      
+      <a href="#" class="pagination-next" id="next-page">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+      </a>
+    </div>
+  </div>
+  </div>
+</div>
+
+<style>
+  .all-posts-page {
+    background-color: #121212;
+    color: #fff;
+    min-height: 100vh;
+    position: relative;
+    z-index: 1;
+    padding-bottom: 0;
+    margin-bottom: 0;
+  }
+
+  .blog-container.full-width {
+    max-width: 100%;
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #fff;
+  }
+
+  .blog-header {
+    text-align: center;
+    margin-bottom: 60px;
+    padding: 80px 30px;
+    border-bottom: 1px solid #333;
+    background-color: #1a1a1a;
+    background-image: linear-gradient(135deg, #1a1a1a 0%, #252525 100%);
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    z-index: 1;
+  }
+  
+  .blog-header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('/assets/images/patterns/dots.svg');
+    background-size: 20px;
+    opacity: 0.05;
+    pointer-events: none;
+  }
+
+  .blog-title {
+    font-size: 3.2rem;
+    color: #8cb4ff;
+    margin-bottom: 1.2rem;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    line-height: 1.3;
+    position: relative;
+    display: inline-block;
+  }
+  
+  .blog-title::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 50%;
+    width: 80px;
+    height: 3px;
+    background: linear-gradient(90deg, #0066cc, #4d94ff);
+    transform: translateX(-50%);
+    border-radius: 3px;
+  }
+
+  .blog-subtitle {
+    font-size: 1.4rem;
+    color: #aaa;
+    margin: 1.5rem 0 1rem;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  .blog-categories {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 20px;
+  }
+  
+  .category-tag {
+    display: inline-block;
+    padding: 6px 14px;
+    background-color: rgba(0, 102, 204, 0.08);
+    color: #0066cc;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    border: 1px solid rgba(0, 102, 204, 0.15);
+  }
+  
+  .category-tag:hover {
+    background-color: rgba(0, 102, 204, 0.15);
+    transform: translateY(-2px);
+    box-shadow: 0 3px 6px rgba(0, 102, 204, 0.1);
+  }
+  
+  .dark-mode .category-tag {
+    background-color: rgba(140, 180, 255, 0.1);
+    color: #8cb4ff;
+    border-color: rgba(140, 180, 255, 0.2);
+  }
+  
+  .dark-mode .category-tag:hover {
+    background-color: rgba(140, 180, 255, 0.2);
+  }
+
+  .post-list {
+    padding: 0 5%;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 60px;
+  }
+
+  .post-link {
+    text-decoration: none;
+    display: block;
+    margin-bottom: 60px;
+    color: inherit;
+  }
+  
+  .post-item {
+    background: #121212;
+    border: none;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+    transition: transform 0.3s ease;
+    display: flex;
+    overflow: hidden;
+    position: relative;
+    height: 320px;
+    cursor: pointer;
+  }
+  
+  .post-item-left {
+    flex-direction: row;
+  }
+  
+  .post-item-right {
+    flex-direction: row-reverse;
+  }
+  
+  .post-item::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(to right, #8cb4ff, #6c8cd5);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s ease;
+    z-index: 1;
+  }
+  
+  .post-item:hover::after {
+    transform: scaleX(1);
+  }
+
+  .post-image {
+    flex: 0 0 40%;
+    background-color: #1a1a1a;
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 320px;
+  }
+
+  .post-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    aspect-ratio: 4/3;
+    transition: transform 0.5s ease;
+    max-height: 320px;
+  }
+
+  /* Removido efeito de zoom na imagem */
+
+  .placeholder-image {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #1a1a1a;
+    aspect-ratio: 4/3;
+  }
+
+  .post-content {
+    flex: 1;
+    padding: 40px 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .post-title {
+    margin: 0 0 16px;
+    font-size: 2rem;
+    font-weight: 600;
+    line-height: 1.3;
+  }
+
+  .post-title {
+    color: #fff;
+    transition: color 0.3s;
+  }
+
+  .post-item:hover .post-title {
+    color: #8cb4ff;
+  }
+
+  .post-meta {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    font-size: 0.95rem;
+    color: #aaa;
+    flex-wrap: wrap;
+    gap: 15px;
+  }
+
+  .post-author {
+    font-style: italic;
+  }
+
+  .post-excerpt {
+    margin-bottom: 25px;
+    font-size: 1.05rem;
+    line-height: 1.7;
+    color: #ccc;
+    flex-grow: 1;
+  }
+
+
+
+  /* Paginação */
+  .pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 80px;
+    padding: 20px 0 80px 0;
+    gap: 20px;
+    position: relative;
+    bottom: 0;
+  }
+  
+  .pagination-prev,
+  .pagination-next {
+    display: flex;
+    align-items: center;
+    color: #9d9d9e;
+    text-decoration: none;
+    font-size: 1rem;
+    transition: all 0.2s;
+    gap: 8px;
+  }
+  
+  .pagination-prev:hover,
+  .pagination-next:hover {
+    transform: translateY(-2px);
+    background-color: rgba(100, 100, 100, 0.2);
+    padding: 5px 10px;
+    border-radius: 4px;
+  }
+  
+  .pagination-numbers {
+    display: flex;
+    gap: 10px;
+  }
+  
+  .pagination-link,
+  .pagination-current {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 4px;
+    font-size: 0.95rem;
+    transition: all 0.2s;
+  }
+  
+  .pagination-link {
+    color: #ccc;
+    text-decoration: none;
+  }
+  
+  .pagination-link:hover {
+    background-color: rgba(100, 100, 100, 0.2);
+    color: #ffffff;
+  }
+  
+  .pagination-current {
+    background-color: #9d9d9e
+    color: #ffffff;
+    font-weight: 500;
+  }
+  
+  /* Responsividade */
+  .post-category {
+    background-color: rgba(140, 180, 255, 0.1);
+    padding: 3px 10px;
+    border-radius: 15px;
+    font-size: 0.85rem;
+  }
+  
+  .post-read-time {
+    opacity: 0.7;
+  }
+  
+  @media (max-width: 768px) {
+    .post-item, .post-item-left, .post-item-right {
+      flex-direction: column;
+      height: auto;
+    }
+    
+    .post-image, .post-content {
+      flex: 1 1 auto;
+      width: 100%;
+    }
+    
+    .post-image {
+      height: 220px;
+    }
+    
+    .post-image img {
+      max-height: 220px;
+    }
+    
+    .post-content {
+      padding: 20px;
+      min-height: 200px;
+    }
+  }
+  
+  @media (max-width: 576px) {
+    .blog-title {
+      font-size: 2.5rem;
+    }
+  }
+  /* Garantir que não haja faixa branca no final da página */
+  html, body {
+    background-color: #121212;
+  }
+  
+  .all-posts-page {
+    padding-bottom: 80px;
+  }
+  /* Estilo para posts escondidos */
+  .post-link.hidden {
+    display: none;
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    // Configurações de paginação
+    const postsPerPage = 3; // Número de posts por página
+    const paginationContainer = document.getElementById('pagination-numbers');
+    const prevButton = document.getElementById('prev-page');
+    const nextButton = document.getElementById('next-page');
+    
+    // Obter todos os posts
+    const allPosts = document.querySelectorAll('.post-link');
+    const totalPosts = allPosts.length;
+    const totalPages = Math.ceil(totalPosts / postsPerPage);
+    
+    let currentPage = 1;
+    
+    // Função para mostrar os posts da página atual
+    function showPage(page) {
+      // Esconder todos os posts
+      allPosts.forEach(post => {
+        post.classList.add('hidden');
+      });
+      
+      // Calcular quais posts mostrar
+      const startIndex = (page - 1) * postsPerPage;
+      const endIndex = Math.min(startIndex + postsPerPage, totalPosts);
+      
+      // Mostrar os posts da página atual
+      for (let i = startIndex; i < endIndex; i++) {
+        allPosts[i].classList.remove('hidden');
+      }
+      
+      // Atualizar a navegação
+      updatePagination();
+    }
+    
+    // Função para atualizar os números de página
+    function updatePagination() {
+      // Limpar os números de página existentes
+      paginationContainer.innerHTML = '';
+      
+      // Adicionar números de página
+      for (let i = 1; i <= totalPages; i++) {
+        if (i === currentPage) {
+          // Página atual
+          const currentSpan = document.createElement('span');
+          currentSpan.className = 'pagination-current';
+          currentSpan.textContent = i;
+          paginationContainer.appendChild(currentSpan);
+        } else {
+          // Outras páginas
+          const pageLink = document.createElement('a');
+          pageLink.href = '#';
+          pageLink.className = 'pagination-link';
+          pageLink.textContent = i;
+          pageLink.addEventListener('click', function(e) {
+            e.preventDefault();
+            currentPage = i;
+            showPage(currentPage);
+            window.scrollTo(0, 0); // Rolar para o topo
+          });
+          paginationContainer.appendChild(pageLink);
+        }
+      }
+      
+      // Atualizar estado dos botões anterior/próximo
+      prevButton.style.visibility = currentPage === 1 ? 'hidden' : 'visible';
+      nextButton.style.visibility = currentPage === totalPages ? 'hidden' : 'visible';
+    }
+    
+    // Configurar eventos para os botões anterior/próximo
+    prevButton.addEventListener('click', function(e) {
+      e.preventDefault();
+      if (currentPage > 1) {
+        currentPage--;
+        showPage(currentPage);
+        window.scrollTo(0, 0); // Rolar para o topo
+      }
+    });
+    
+    nextButton.addEventListener('click', function(e) {
+      e.preventDefault();
+      if (currentPage < totalPages) {
+        currentPage++;
+        showPage(currentPage);
+        window.scrollTo(0, 0); // Rolar para o topo
+      }
+    });
+    
+    // Inicializar a primeira página
+    showPage(currentPage);
+  });
+</script>
