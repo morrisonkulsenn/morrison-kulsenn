@@ -8,4 +8,5 @@ gem "jekyll-paginate-v2"
 gem "jekyll-polyglot"
 gem "jekyll-sitemap"
 
+gem "sass-embedded", "~> 1.75.0"
 
