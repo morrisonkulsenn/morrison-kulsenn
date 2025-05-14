@@ -1,7 +1,7 @@
 title: Morrison Külsenn - Estatística e Probabilidade
 description: Portal dedicado ao estudo e aplicação de conceitos estatísticos e probabilísticos. Conteúdo educativo sobre análise de dados, inferência estatística e modelos estatísticos.
-baseurl: "" # the subpath of your site, e.g. /blog
-url: "https://morrisonkulsenn.com" # substitua pelo seu domínio real quando estiver em produção
+baseurl: "/morrison-kulsenn" # the subpath of your site, e.g. /blog
+url: "https://morrisonkulsenn.github.io" # substitua pelo seu domínio real quando estiver em produção
 
 # Build settings
 markdown: kramdown
