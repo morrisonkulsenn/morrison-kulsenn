@@ -1,0 +1,1893 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <!-- Meta Tags Básicas -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    
+    <!-- Título Otimizado (Jekyll) -->
+    <title>Registro de Pets | Portal dedicado ao estudo e aplicação de conceitos estatísticos e probabilísticos. Conteúdo educativo sobre análise de dados, inferência estatística e modelos estatísticos.</title>
+    
+    <!-- Meta Description (Jekyll) -->
+    <meta name="description" content="Portal dedicado ao estudo e aplicação de conceitos estatísticos e probabilísticos. Conteúdo educativo sobre análise de dados, inferência estatística e modelos estatísticos.">
+    
+    <!-- Favicon -->
+    <link rel="icon" href="/morrison-kulsenn/assets/images/icons/favicon.png" type="image/png">
+    <link rel="apple-touch-icon" href="/morrison-kulsenn/assets/images/icons/favicon.png">
+    
+    <!-- Canonical URL (Jekyll) -->
+    <link rel="canonical" href="https://morrisonkulsenn.github.io/morrison-kulsenn/servicos/registro-pets/">
+    
+    <!-- Open Graph / Social Media Meta Tags (Jekyll) -->
+    <meta property="og:title" content="Registro de Pets">
+    <meta property="og:description" content="Portal dedicado ao estudo e aplicação de conceitos estatísticos e probabilísticos. Conteúdo educativo sobre análise de dados, inferência estatística e modelos estatísticos.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://morrisonkulsenn.github.io/morrison-kulsenn/servicos/registro-pets/">
+    <meta property="og:image" content="https://raw.githubusercontent.com/dancartorio/intuity/main/logo.png">
+    <meta property="og:site_name" content="Morrison Külsenn - Estatística e Probabilidade">
+    <meta property="og:locale" content="pt_BR">
+    
+    <!-- Twitter Card Meta Tags (Jekyll) -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Registro de Pets">
+    <meta name="twitter:description" content="Portal dedicado ao estudo e aplicação de conceitos estatísticos e probabilísticos. Conteúdo educativo sobre análise de dados, inferência estatística e modelos estatísticos.">
+    <meta name="twitter:image" content="https://raw.githubusercontent.com/dancartorio/intuity/main/logo.png">
+    
+    <!-- CSS (Jekyll) -->
+    <link rel="stylesheet" href="/morrison-kulsenn/assets/css/styles.css">
+    <link rel="stylesheet" href="/morrison-kulsenn/assets/css/syntax-highlighting.css">
+    
+    <!-- Pré-conexão -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    <!-- MathJax para renderizar fórmulas matemáticas -->
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    
+    <!-- jQuery e dependências -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js"></script>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Inicialização do Bootstrap TOC -->
+    <script>
+      // Carregar jQuery primeiro
+      (function() {
+        var jqueryLoaded = false;
+        
+        function checkJQuery() {
+          if (typeof window.jQuery === 'undefined') {
+            console.log('jQuery ainda não está disponível, aguardando...');
+            setTimeout(checkJQuery, 100);
+            return;
+          }
+          
+          if (!jqueryLoaded) {
+            jqueryLoaded = true;
+            console.log('jQuery carregado com sucesso, versão:', window.jQuery.fn.jquery);
+            loadBootstrapToc();
+          }
+        }
+        
+        // Iniciar verificação do jQuery
+        checkJQuery();
+      })();
+      
+      // Função para carregar o Bootstrap TOC
+      function loadBootstrapToc() {
+        console.log('Iniciando carregamento do Bootstrap TOC...');
+        
+        // Verificar se já está carregado
+        if (typeof Toc !== 'undefined') {
+          console.log('Bootstrap TOC já está disponível');
+          dispatchTocLoaded();
+          return;
+        }
+        
+        // Carregar o script do Bootstrap TOC
+        var script = document.createElement('script');
+        script.src = '/morrison-kulsenn/assets/js/bootstrap-toc.min.js';
+        script.id = 'bootstrap-toc-script';
+        script.async = false; // Importante: carregar de forma síncrona
+        
+        script.onload = function() {
+          console.log('Script do Bootstrap TOC carregado com sucesso');
+          
+          // Dar um pequeno atraso para garantir que o Toc foi definido
+          var checkToc = setInterval(function() {
+            if (typeof Toc !== 'undefined') {
+              clearInterval(checkToc);
+              console.log('Toc está definido, disparando evento...');
+              dispatchTocLoaded();
+            } else {
+              console.log('Aguardando definição do Toc...');
+            }
+          }, 100);
+          
+          // Timeout de segurança
+          setTimeout(function() {
+            clearInterval(checkToc);
+            if (typeof Toc === 'undefined') {
+              console.error('Timeout: Toc não foi definido após o carregamento do script');
+            }
+          }, 3000);
+        };
+        
+        script.onerror = function(error) {
+          console.error('Erro ao carregar o script do Bootstrap TOC:', error);
+          console.error('Caminho tentado:', script.src);
+        };
+        
+        console.log('Adicionando script do Bootstrap TOC ao documento');
+        document.head.appendChild(script);
+      }
+      
+      // Função para disparar o evento de TOC carregado
+      function dispatchTocLoaded() {
+        console.log('Disparando evento toc:loaded');
+        var event = new Event('toc:loaded');
+        document.dispatchEvent(event);
+      }
+    </script>
+    <script>
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']],
+        processEscapes: true
+      },
+      svg: {
+        fontCache: 'global'
+      }
+    };
+    </script>
+    
+    <!-- Schema.org (Needs review for dynamic content if applicable) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "LocalBusiness",
+      "name": "Morrison Külsenn - Estatística e Probabilidade",
+      "image": "https://raw.githubusercontent.com/dancartorio/intuity/main/logo.png",
+      "@id": "",
+      "url": "https://morrisonkulsenn.github.io/morrison-kulsenn/",
+      "telephone": "+55 (XX) XXXX-XXXX", // Update with actual phone
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Endereço completo", // Update with actual address
+        "addressLocality": "Petrolina",
+        "addressRegion": "PE",
+        "postalCode": "XXXXX-XXX", // Update with actual postal code
+        "addressCountry": "BR"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": "-9.3887",
+        "longitude": "-40.5044"
+      },
+      "openingHoursSpecification": {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": [
+          "Monday",
+          "Tuesday",
+          "Wednesday",
+          "Thursday",
+          "Friday"
+        ],
+        "opens": "08:00",
+        "closes": "17:00"
+      },
+      "sameAs": [
+        "URL das redes sociais se houver" // Update with actual social links
+      ]
+    }
+    </script>
+    
+    <!-- Meta Tags para Buscas Locais -->
+    <meta name="geo.region" content="BR-PE">
+    <meta name="geo.placename" content="Petrolina">
+    <meta name="geo.position" content="-9.3887;-40.5044">
+    <meta name="ICBM" content="-9.3887, -40.5044">
+    
+    <!-- Robots Meta Tag -->
+    <meta name="robots" content="index, follow">
+    
+    <!-- Autor e Direitos Autorais -->
+    <meta name="author" content="Morrison Külsenn - Estatística e Probabilidade">
+    <meta name="copyright" content="© 2025 Morrison Külsenn - Estatística e Probabilidade">
+    
+    <!-- Meta Tags Adicionais para SEO -->
+    <meta name="keywords" content="estatística, probabilidade, análise de dados, medidas de tendência central, inferência estatística">
+    <meta name="application-name" content="Morrison Külsenn - Estatística e Probabilidade">
+    <meta name="apple-mobile-web-app-title" content="Morrison Külsenn - Estatística e Probabilidade">
+    <meta name="theme-color" content="#ffffff">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="format-detection" content="telephone=no">
+    
+    <!-- Verificação de propriedade -->
+    <!-- <meta name="google-site-verification" content="sua-chave-aqui"> -->
+    <!-- <meta name="msvalidate.01" content="sua-chave-aqui"> -->
+</head>
+<body>
+    <header>
+        <!-- Seletor de Idioma (fora do menu principal) - comentado para uso futuro -->
+        <!-- 
+        <div class="language-selector-container">
+            <div class="language-dropdown">
+                <select id="language-select" onchange="changeLanguage(this.value)" class="language-select">
+                    <option value="pt" selected>PT</option>
+                    <option value="en" >EN</option>
+                </select>
+            </div>
+        </div>
+        -->
+        
+        <nav>
+            <ul class="main-menu">
+                <div class="logo-container">
+                    <li class="main-menu-logo">
+                        <a href="/morrison-kulsenn/">
+                            <img src="/morrison-kulsenn/assets/images/logos/logo.png" alt="Logo Morrison Külsenn - Estatística e Probabilidade" class="header-logo">
+                        </a>
+                    </li>
+                </div>
+                <div class="menu-container">
+                    <!-- Morrison Külsenn -->
+                    <li class="morrison-name">
+                        <a href="/morrison-kulsenn/">Morrison Külsenn</a>
+                    </li>
+                    
+                    <!-- Estatística Descritiva -->
+                    <li class="has-submenu">
+                        <a href="#" class="submenu-toggle" onclick="toggleSubmenu(this.parentElement)">
+                            Estatística Descritiva
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="chevron" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708"/></svg>
+                        </a>
+                        <div class="submenu-bar">
+                            <ul class="submenu-items">
+                                <li class="has-dropdown">
+                                    <a href="/morrison-kulsenn/orientacoes/atendimento" onclick="toggleDropdown(this.parentElement)">
+                                        Medidas de Tendência Central
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="chevron" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708"/></svg>
+                                    </a>
+                                    <ul class="dropdown-list">
+                                        <li><a href="/morrison-kulsenn/medidas-tendencia-central/media">Média</a></li>
+                                        <li><a href="#">Mediana</a></li>
+                                        <li><a href="#">Moda</a></li>
+                                    </ul>
+                                </li>
+                                <li class="has-dropdown">
+                                    <a href="/morrison-kulsenn/orientacoes/documentos-necessarios" onclick="toggleDropdown(this.parentElement)">
+                                        Medidas de Dispersão
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="chevron" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708"/></svg>
+                                    </a>
+                                    <ul class="dropdown-list">
+                                        <li><a href="#">Variância</a></li>
+                                        <li><a href="#">Desvio Padrão</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="/morrison-kulsenn/orientacoes/etapas-processo">Quartis e Percentis</a></li>
+                                <li><a href="/morrison-kulsenn/orientacoes/prazos">Assimetria</a></li>
+                                <li><a href="/morrison-kulsenn/orientacoes/custas-e-emolumentos">Curtose</a></li>
+                                <li><a href="/morrison-kulsenn/orientacoes/abrangencia">Gráficos Estatísticos</a></li>
+                                <li><a href="/morrison-kulsenn/orientacoes/codigo-de-normas">Análise Exploratória</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    
+                    <!-- Probabilidade -->
+                    <li class="has-submenu">
+                        <a href="#" class="submenu-toggle" onclick="toggleSubmenu(this.parentElement)">
+                            Probabilidade
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="chevron" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708"/></svg>
+                        </a>
+                        <div class="submenu-bar">
+                            <ul class="submenu-items">
+                                <li><a href="/morrison-kulsenn/servicos/certidao">Distribuições de Probabilidade</a></li>
+                                <li><a href="https://sicase.tjpe.jus.br/sicase//externo/autenticidadeselo/form_validarautenticidadeselo.jsf" target="_blank" rel="noopener noreferrer">Variáveis Aleatórias</a></li>
+                                <li><a href="/morrison-kulsenn/servicos/registro-pets">Teorema do Limite Central</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    
+                    <!-- Inferência Estatística -->
+                    <li class="has-submenu">
+                        <a href="#" class="submenu-toggle" onclick="toggleSubmenu(this.parentElement)">
+                            Inferência Estatística
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="chevron" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708"/></svg>
+                        </a>
+                        <div class="submenu-bar">
+                            <ul class="submenu-items">
+                                <li><a href="/morrison-kulsenn/institucional/sobre-nos">Testes de Hipótese</a></li>
+                                <li><a href="#">Intervalos de Confiança</a></li>
+                                <li><a href="#">Amostragem</a></li>
+                                <li><a href="#">Estimadores</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    
+                    <!-- Modelos Estatísticos -->
+                    <li>
+                        <a href="/morrison-kulsenn/lgpd">Modelos Estatísticos</a>
+                    </li>
+                    
+                    <!-- Análise de Dados -->
+                    <li class="has-submenu">
+                        <a href="#" class="submenu-toggle" onclick="toggleSubmenu(this.parentElement)">
+                            Análise de Dados
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="chevron" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708"/></svg>
+                        </a>
+                        <div class="submenu-bar">
+                            <ul class="submenu-items">
+                                <li><a href="#">Regressão Linear</a></li>
+                                <li><a href="#">Séries Temporais</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    
+                    <!-- Blog -->
+                    <li class="highlight-menu-item">
+                        <a href="/morrison-kulsenn/blog/all/" style="color: rgb(140, 180, 255);">
+                            Blog
+                        </a>
+                    </li>
+                </div>
+            </ul>
+        </nav>
+    </header>
+    
+    <script>
+    function toggleSubmenu(parentElement) {
+        event.preventDefault();
+        
+        // Fecha todos os submenus primeiro
+        document.querySelectorAll('.submenu-bar').forEach(submenu => {
+            if (submenu !== parentElement.querySelector('.submenu-bar')) {
+                submenu.style.display = 'none';
+                submenu.parentElement.querySelector('.chevron').style.transform = 'rotate(0deg)';
+            }
+        });
+        
+        // Alterna o submenu atual
+        const submenu = parentElement.querySelector('.submenu-bar');
+        const chevron = parentElement.querySelector('.chevron');
+        
+        if (submenu.style.display === 'block') {
+            submenu.style.display = 'none';
+            chevron.style.transform = 'rotate(0deg)';
+        } else {
+            submenu.style.display = 'block';
+            chevron.style.transform = 'rotate(180deg)';
+        }
+    }
+    
+    function toggleDropdown(parentElement) {
+        event.preventDefault();
+        const dropdown = parentElement.querySelector('.dropdown-list');
+        const chevron = parentElement.querySelector('.chevron');
+        
+        if (dropdown.style.display === 'block') {
+            dropdown.style.display = 'none';
+            chevron.style.transform = 'rotate(0deg)';
+        } else {
+            // Fecha outros dropdowns no mesmo submenu
+            parentElement.parentElement.querySelectorAll('.dropdown-list').forEach(d => {
+                if (d !== dropdown) {
+                    d.style.display = 'none';
+                    d.parentElement.querySelector('.chevron').style.transform = 'rotate(0deg)';
+                }
+            });
+            
+            dropdown.style.display = 'block';
+            chevron.style.transform = 'rotate(180deg)';
+        }
+    }
+    
+    // Fecha os menus ao clicar fora
+    document.addEventListener('click', function(event) {
+        if (!event.target.closest('.has-submenu') && !event.target.closest('.submenu-bar')) {
+            document.querySelectorAll('.submenu-bar').forEach(submenu => {
+                submenu.style.display = 'none';
+                submenu.parentElement.querySelector('.chevron').style.transform = 'rotate(0deg)';
+            });
+        }
+        
+        if (!event.target.closest('.has-dropdown')) {
+            document.querySelectorAll('.dropdown-list').forEach(dropdown => {
+                dropdown.style.display = 'none';
+                if (dropdown.parentElement.querySelector('.chevron')) {
+                    dropdown.parentElement.querySelector('.chevron').style.transform = 'rotate(0deg)';
+                }
+            });
+        }
+    });
+    </script>
+    
+    <div id="main-content">
+        
+  <!-- TOC Include: Sumário dinâmico com subitens, animação suave, responsivo e compatível com modo escuro -->
+<link rel="stylesheet" href="/morrison-kulsenn/assets/css/bootstrap-toc.min.css">
+<style>
+  #toc-container {
+    position: fixed;
+    top: 100px;
+    right: 40px;
+    width: 260px;
+    max-height: 70vh;
+    overflow-y: auto;
+    border-radius: 10px;
+    box-shadow: none;
+    z-index: 1000;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.4s;
+  }
+  #toc-container.visible {
+    opacity: 1;
+    pointer-events: auto;
+  }
+  #toc h4 {
+    margin: 0 0 10px 0;
+    color: #8cb4ff;
+    font-size: 1.2em;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+  }
+  #toc ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  #toc ul ul {
+    display: none;
+    margin-left: 1em;
+    padding-left: 0.8em;
+    border-left: none;
+  }
+  #toc li.active > ul {
+    display: block;
+    animation: fadeIn 0.4s;
+  }
+  #toc li.active > a {
+    border-left: 1px solid rgb(221, 62, 13);
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+  #toc a {
+    color: #8d8d8d;
+    text-decoration: none;
+    display: block;
+    padding: 4px 0 4px 0.3em;
+    border-radius: 4px;
+    transition: background 0.2s, color 0.2s;
+  }
+  #toc > ul > li > a {
+    font-size: 0.82em;
+    font-weight: bold;
+  }
+  #toc ul ul a {
+    font-size: 0.72em;
+  }
+  #toc a:hover, #toc li.active > a {
+    color: rgb(221, 62, 13);
+    font-weight: bold;
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  @media (max-width: 900px) {
+    #toc-container {
+      display: none !important;
+    }
+  }
+  .dark-mode #toc-container {
+  }
+</style>
+
+<div id="toc-container">
+  <nav id="toc">
+    <ul id="toc-list"></ul>
+  </nav>
+</div>
+
+<script>
+(function() {
+  // Aguarda DOM pronto
+  document.addEventListener('DOMContentLoaded', function() {
+    const tocContainer = document.getElementById('toc-container');
+    const tocList = document.getElementById('toc-list');
+    const banner = document.querySelector('.title-banner');
+    if (!tocContainer || !tocList || !banner) return;
+
+    // Gera TOC automático com base nos h2/h3
+    function buildTOC() {
+      const headers = Array.from(document.querySelectorAll('.page-container h2, .page-container h3'));
+      let lastH2 = null;
+      tocList.innerHTML = '';
+      headers.forEach(header => {
+        if (!header.id) {
+          header.id = header.textContent.trim().toLowerCase().replace(/[^\w]+/g, '-');
+        }
+        const li = document.createElement('li');
+        const a = document.createElement('a');
+        a.href = '#' + header.id;
+        a.textContent = header.textContent;
+        li.appendChild(a);
+        if (header.tagName === 'H2') {
+          tocList.appendChild(li);
+          lastH2 = li;
+        } else if (header.tagName === 'H3' && lastH2) {
+          let sublist = lastH2.querySelector('ul');
+          if (!sublist) {
+            sublist = document.createElement('ul');
+            lastH2.appendChild(sublist);
+          }
+          sublist.appendChild(li);
+        }
+      });
+    }
+
+    // Animação de scroll suave
+    tocList.addEventListener('click', function(e) {
+      if (e.target.tagName === 'A') {
+        const target = document.getElementById(e.target.hash.slice(1));
+        if (target) {
+          e.preventDefault();
+          window.scrollTo({
+            top: target.getBoundingClientRect().top + window.scrollY - 80,
+            behavior: 'smooth'
+          });
+        }
+      }
+    });
+
+    // Mostra/oculta TOC com base no scroll após a faixa azul
+    function toggleTocVisibility() {
+      const bannerBottom = banner.getBoundingClientRect().bottom + window.scrollY;
+      if (window.scrollY > bannerBottom - 60) {
+        tocContainer.classList.add('visible');
+      } else {
+        tocContainer.classList.remove('visible');
+      }
+    }
+    window.addEventListener('scroll', toggleTocVisibility);
+    window.addEventListener('resize', toggleTocVisibility);
+
+    // Expande subitens do TOC conforme seção ativa
+    function highlightSection() {
+      const headers = Array.from(document.querySelectorAll('.page-container h2, .page-container h3'));
+      let current = null;
+      const scrollPos = window.scrollY + 90;
+      for (let i = 0; i < headers.length; i++) {
+        if (headers[i].offsetTop <= scrollPos) {
+          current = headers[i];
+        }
+      }
+      Array.from(tocList.querySelectorAll('li')).forEach(li => {
+        li.classList.remove('active');
+      });
+      if (current) {
+        const link = tocList.querySelector('a[href="#' + current.id + '"]');
+        if (link) {
+          let li = link.parentElement;
+          li.classList.add('active');
+          // Expande sublista se for subitem
+          if (li.parentElement !== tocList) {
+            li.parentElement.parentElement.classList.add('active');
+          }
+        }
+      }
+    }
+    window.addEventListener('scroll', highlightSection);
+    window.addEventListener('resize', highlightSection);
+
+    buildTOC();
+    toggleTocVisibility();
+    highlightSection();
+  });
+})();
+</script>
+
+
+
+<style>
+  /* Estilos para a faixa azul do título */
+  .title-banner {
+    background: radial-gradient(circle, rgb(221, 62, 13), black);
+    color: white;
+    padding: 40px 0;
+    margin-bottom: 30px;
+    width: 100%;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .title-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+  
+  .page-title {
+    margin: 0 !important;
+    padding: 0 !important;
+    font-size: 2.5em !important;
+    font-weight: 600 !important;
+    border-bottom: none !important;
+    color: white !important;
+  }
+  
+  .page-subtitle {
+    margin: 10px 0 0 0 !important;
+    font-size: 1.2em !important;
+    font-weight: 300 !important;
+    opacity: 0.9;
+  }
+  
+  /* Ajustes para modo escuro */
+  .dark-mode .title-banner {
+    background-color: #0077b3;
+  }
+  
+  /* Estilos de formatação padrão do Markdown */
+  .page-container {
+    line-height: 1.7;
+    color: #333;
+  }
+  
+  .page-container h1, .page-container h2, .page-container h3, .page-container h4, .page-container h5, .page-container h6 {
+    margin-top: 1.5em;
+    margin-bottom: 0.8em;
+    font-weight: 600;
+    line-height: 1.3;
+  }
+  
+  .page-container h1 {
+    font-size: 2.2em;
+    border-bottom: 1px solid #eaecef;
+    padding-bottom: 0.3em;
+  }
+  
+  .page-container h2 {
+    font-size: 1.8em;
+    border-bottom: 1px solid #eaecef;
+    padding-bottom: 0.3em;
+  }
+  
+  .page-container h3 {
+    font-size: 1.5em;
+  }
+  
+  .page-container h4 {
+    font-size: 1.3em;
+  }
+  
+  .page-container h5 {
+    font-size: 1.15em;
+  }
+  
+  .page-container h6 {
+    font-size: 1em;
+    color: #666;
+  }
+  
+  .page-container p {
+    margin-bottom: 1.2em;
+  }
+  
+  .page-container strong {
+    font-weight: 600;
+  }
+  
+  .page-container em {
+    font-style: italic;
+  }
+  
+  .page-container blockquote {
+    padding: 0.5em 1em;
+    margin: 1.5em 0;
+    border-left: 4px solid #dfe2e5;
+    color: #555;
+    background-color: #f8f8f8;
+  }
+  
+  .page-container blockquote p {
+    margin: 0;
+  }
+  
+  .page-container code {
+    font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;
+    padding: 0.2em 0.4em;
+    margin: 0;
+    font-size: 85%;
+    background-color: rgba(27, 31, 35, 0.05);
+    border-radius: 3px;
+  }
+  
+  .page-container pre {
+    padding: 16px;
+    overflow: auto;
+    font-size: 85%;
+    line-height: 1.45;
+    background-color: #f6f8fa;
+    border-radius: 3px;
+    margin-bottom: 1.5em;
+  }
+  
+  .page-container pre code {
+    padding: 0;
+    margin: 0;
+    background-color: transparent;
+    border: 0;
+  }
+  
+  .page-container ul, .page-container ol {
+    margin-bottom: 1.2em;
+    padding-left: 2em;
+  }
+  
+  .page-container li {
+    margin-bottom: 0.4em;
+  }
+  
+  .page-container table {
+    border-collapse: collapse;
+    width: 100%;
+    margin-bottom: 1.5em;
+  }
+  
+  .page-container table th, .page-container table td {
+    padding: 8px 12px;
+    border: 1px solid #dfe2e5;
+  }
+  
+  .page-container table th {
+    background-color: #f6f8fa;
+    font-weight: 600;
+  }
+  
+  .page-container img {
+    max-width: 100%;
+    margin: 1.5em 0;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  }
+  
+  .page-container hr {
+    height: 1px;
+    background-color: #dfe2e5;
+    border: none;
+    margin: 2em 0;
+  }
+  
+  /* Ajustes para modo escuro */
+  .dark-mode .page-container {
+    color: #eee;
+  }
+  
+  .dark-mode .page-container h1, .dark-mode .page-container h2 {
+    border-bottom-color: #444;
+  }
+  
+  .dark-mode .page-container h6 {
+    color: #aaa;
+  }
+  
+  .dark-mode .page-container blockquote {
+    border-left-color: #555;
+    background-color: #2a2a2a;
+    color: #ddd;
+  }
+  
+  .dark-mode .page-container code {
+    background-color: rgba(200, 200, 200, 0.1);
+  }
+  
+  .dark-mode .page-container pre {
+    background-color: #2a2a2a;
+  }
+  
+  .dark-mode .page-container table th {
+    background-color: #2a2a2a;
+  }
+  
+  .dark-mode .page-container table th, .dark-mode .page-container table td {
+    border-color: #444;
+  }
+  
+  .dark-mode .page-container hr {
+    background-color: #444;
+  }
+.img-caption-contrast {
+  margin-top: 0.9em;
+  font-size: 1em;
+  color: #555;
+  background: rgba(245,245,245,0.96);
+  padding: 10px 18px;
+  border-radius: 6px;
+  box-shadow: 0 1px 6px rgba(0,0,0,0.04);
+  max-width: 520px;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+.dark-mode .img-caption-contrast {
+  color: #f1f1f1 !important;
+  background: rgba(30,30,30,0.97) !important;
+  box-shadow: 0 1px 8px rgba(0,0,0,0.18) !important;
+}
+
+</style>
+
+<!-- Faixa azul para título -->
+<div class="title-banner">
+  <div class="title-container">
+    <h1 class="page-title">Registro de Pets</h1>
+    <p class="page-subtitle"></p>
+  </div>
+</div>
+
+<div class="page-container">
+  <div class="container-header">
+    <div class="a11y-tools" aria-label="Ferramentas de acessibilidade">
+      <button class="a11y-btn" id="increase-font" aria-label="Aumentar fonte" title="Aumentar fonte">A+</button>
+      <button class="a11y-btn" id="decrease-font" aria-label="Diminuir fonte" title="Diminuir fonte">A-</button>
+      <button class="a11y-btn" id="increase-spacing" aria-label="Aumentar espaçamento" title="Aumentar espaçamento">↔</button>
+      <button class="a11y-btn" id="dark-mode" aria-label="Modo escuro" title="Modo escuro">☾</button>
+      <button class="a11y-btn" id="keyboard-nav" aria-label="Navegação por teclado" title="Navegação por teclado">⌨</button>
+      <button class="a11y-btn" id="read-text" aria-label="Ler texto da página" title="Ler texto da página">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M3 9v6h4l5 5V4L7 9H3z" stroke="#777" stroke-width="1.5" fill="none"/>
+          <path d="M16.5 8a4.5 4.5 0 0 1 0 8" stroke="#777" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+  
+  <div class="page-content">
+    <div class="pet-img-container">
+  <img src="/assets/images/img/pets.jpg" alt="Cachorro feliz com coleira, representando registro de pets" />
+</div>
+
+<h1 id="registro-de-pets-no-brasil"> no Brasil
+
+<p>O registro de animais de estimação é uma iniciativa que visa garantir a segurança, a identificação e o bem-estar dos pets e de seus tutores. No Brasil, embora não seja obrigatório por lei federal, o registro pode ser realizado em cartórios ou órgãos municipais, conferindo maior proteção jurídica ao animal e ao responsável.</p>
+
+<h2 id="por-que-registrar-seu-pet">Por que registrar seu pet?</h2>
+<ul>
+  <li>Facilita a identificação em caso de perda ou roubo.</li>
+  <li>Auxilia na comprovação de guarda e responsabilidade.</li>
+  <li>Permite a emissão de documentos oficiais, como declaração de guarda.</li>
+  <li>Contribui para o bem-estar e segurança do animal.</li>
+</ul>
+
+<h2 id="como-fazer-o-registro">Como fazer o registro?</h2>
+<ol>
+  <li>Preencha a declaração de guarda do animal doméstico (modelo disponível abaixo).</li>
+  <li>Reúna documentos do tutor (RG, CPF, comprovante de residência) e do animal (vacinas, fotos, características).</li>
+  <li>Procure um cartório de registro de títulos e documentos para protocolar a declaração.</li>
+  <li>Guarde o comprovante e os documentos emitidos.</li>
+</ol>
+
+<hr />
+
+<h2 id="documentos-úteis">Documentos Úteis</h2>
+
+<ul>
+  <li>
+    <p>📄 <a href="https://docs.google.com/document/d/1XFbDgAXKqcn1Haln6O-VQKCh9n02p0Kh/edit?tab=t.0" target="_blank" rel="noopener">Baixar Declaração de Guarda de Animal Doméstico</a></p>
+  </li>
+  <li>
+    <p>📘 <a href="https://drive.google.com/file/d/1jVAwwWafKz4sTclV9Zzt3kZdywjhKSU4/view?usp=drive_link" target="_blank" rel="noopener">Roteiro/Orientação para Guardiões de Animais</a></p>
+  </li>
+</ul>
+
+<hr />
+
+<blockquote>
+  <p>Caso tenha dúvidas sobre o processo, consulte um cartório de sua confiança ou entre em contato com nossa equipe para orientações adicionais.</p>
+</blockquote>
+
+
+  </div>
+</div>
+
+<script>
+// Ajuste de fonte
+const incFont = document.getElementById('increase-font');
+const decFont = document.getElementById('decrease-font');
+const pageContainer = document.querySelector('.page-container');
+
+// Controle do TOC
+const tocContainer = document.querySelector('.toc-container');
+const titleBanner = document.querySelector('.title-banner');
+let titleBannerHeight = titleBanner ? titleBanner.offsetHeight : 0;
+
+// Função para verificar a posição do scroll e mostrar/ocultar o TOC
+function toggleTocVisibility() {
+  if (!tocContainer) return;
+  
+  const scrollPosition = window.scrollY;
+  const shouldShow = scrollPosition > titleBannerHeight;
+  
+  if (shouldShow) {
+    tocContainer.classList.add('visible');
+  } else {
+    tocContainer.classList.remove('visible');
+  }
+}
+
+// Atualizar a altura do banner quando a janela for redimensionada
+function updateTitleBannerHeight() {
+  titleBannerHeight = titleBanner ? titleBanner.offsetHeight : 0;
+}
+
+// Função para adicionar IDs únicos aos cabeçalhos e melhorar acessibilidade
+function addIdsToHeadings() {
+  $('h2, h3, h4').each(function() {
+    var $header = $(this);
+    var id = $header.attr('id');
+    
+    // Se não tiver ID, criar um baseado no texto
+    if (!id) {
+      id = $header.text()
+        .toLowerCase()
+        .replace(/[^\w\s-]/g, '')  // Remover caracteres especiais
+        .trim()
+        .replace(/\s+/g, '-');  // Substituir espaços por hífens
+      
+      // Garantir que o ID seja único
+      var originalId = id;
+      var counter = 1;
+      while ($('#' + id).length > 0) {
+        id = originalId + '-' + counter;
+        counter++;
+      }
+      
+      // Adicionar ID e atributos ARIA
+      $header.attr({
+        'id': id,
+        'tabindex': '-1', // Tornar focalizável programaticamente
+        'aria-label': $header.text().trim()
+      });
+      
+      // Adicionar link de salto para o cabeçalho
+      $header.prepend(
+        $('<a>', {
+          'href': '#' + id,
+          'class': 'header-link',
+          'aria-hidden': 'true',
+          'tabindex': '-1',
+          'html': '<span class="sr-only">Link para esta seção</span>'
+        })
+      );
+    }
+  });
+}
+
+// Função para inicializar o Bootstrap TOC
+function initializeToc() {
+  console.log('Inicializando Bootstrap TOC...');
+  
+  // Inicializar o TOC
+  var $toc = $('#toc');
+  var $tocContent = $('#toc-content');
+  
+  if ($toc.length === 0) {
+    console.error('Elemento TOC não encontrado na página');
+    return;
+  }
+  
+  // Adicionar atributos ARIA ao TOC
+  $toc.attr({
+    'role': 'navigation',
+    'aria-label': 'Sumário da página',
+    'tabindex': '-1' // Permitir foco programático
+  });
+  
+  // Adicionar botão de alternância para dispositivos móveis
+  if ($(window).width() < 992) {
+    $toc.prepend(
+      $('<button>', {
+        'class': 'toc-toggle',
+        'aria-expanded': 'false',
+        'aria-controls': 'toc-content',
+        'html': '<span class="toc-toggle-icon">▼</span> Sumário'
+      }).on('click', function() {
+        var expanded = $(this).attr('aria-expanded') === 'true';
+        $(this).attr('aria-expanded', !expanded);
+        $tocContent.slideToggle(200);
+      })
+    );
+  }
+  
+  console.log('Elemento TOC encontrado:', $toc[0]);
+  
+  // Verificar se o Toc está disponível
+  if (typeof Toc === 'undefined') {
+    console.error('Toc não está definido. Verifique se o Bootstrap TOC foi carregado corretamente.');
+    console.log('Objeto window:', Object.keys(window).filter(k => k.toLowerCase().includes('toc') || k.toLowerCase().includes('jquery')));
+    return;
+  }
+  
+  console.log('Toc disponível, versão:', Toc.VERSION);
+  
+  try {
+    // Configurar opções do TOC
+    var options = {
+      $nav: $toc,
+      $scope: $('.page-content'),
+      headers: 'h2, h3, h4',
+      listClass: 'nav',
+      listItemClass: 'nav-item',
+      linkClass: 'nav-link',
+      activeClass: 'active',
+      activeParentClass: 'active-parent',
+      activeAncestorClass: 'active-ancestor'
+    };
+    
+    console.log('Opções do TOC:', options);
+    
+    // Verificar se o elemento de escopo existe
+    var $scope = $('.page-content');
+    console.log('Elemento de escopo encontrado:', $scope.length > 0);
+    console.log('Elemento de escopo:', $scope[0]);
+    
+    // Verificar se existem cabeçalhos no escopo
+    var headers = $scope.find('h2, h3, h4');
+    console.log('Cabeçalhos encontrados:', headers.length);
+    
+    // Inicializar o TOC
+    console.log('Criando nova instância do Toc...');
+    var toc = new Toc();
+    console.log('Instância do Toc criada:', toc);
+    
+    console.log('Inicializando TOC com opções...');
+    toc.init(options);
+    console.log('Bootstrap TOC inicializado com sucesso');
+    
+    // Verificar se o TOC foi preenchido
+    setTimeout(function() {
+      var tocItems = $toc.find('a');
+      console.log('Itens no TOC:', tocItems.length);
+      if (tocItems.length === 0) {
+        console.warn('Nenhum item encontrado no TOC. Verifique os cabeçalhos na página.');
+      }
+    }, 100);
+    
+    // Configurar o scroll spy personalizado
+    function updateTocVisibility() {
+      if (!$toc.length) return;
+      
+      var scrollTop = $(window).scrollTop();
+      var titleBannerBottom = $('.title-banner').outerHeight() || 0;
+      
+      // Mostrar/ocultar TOC baseado na posição do scroll
+      if (scrollTop > titleBannerBottom) {
+        $toc.addClass('visible');
+      } else {
+        $toc.removeClass('visible');
+      }
+    }
+    
+    // Atualizar a visibilidade do TOC no scroll
+    $(window).on('scroll', updateTocVisibility);
+    updateTocVisibility(); // Chamar uma vez para definir o estado inicial
+    
+  } catch (error) {
+    console.error('Erro ao inicializar o Bootstrap TOC:', error);
+  }
+}
+
+/**
+ * Configura as funcionalidades de acessibilidade
+ */
+function setupAccessibility() {
+  // Elementos do DOM
+  const pageContainer = document.querySelector('.page-container');
+  const incFont = document.getElementById('increase-font');
+  const decFont = document.getElementById('decrease-font');
+  const spacingBtn = document.getElementById('increase-spacing');
+  const darkModeBtn = document.getElementById('dark-mode');
+  const keyboardNavBtn = document.getElementById('keyboard-nav');
+  
+  // Estado das configurações
+  let fontSize = 1.1;
+  let spacingLevel = 0;
+  
+  // Verificar se os elementos necessários existem
+  if (!pageContainer) {
+    console.error('Elemento .page-container não encontrado');
+    return;
+  }
+  
+  // Configurar aumento/diminuição de fonte
+  if (incFont && decFont) {
+    incFont.addEventListener('click', () => {
+      fontSize = Math.min(fontSize + 0.1, 2);
+      pageContainer.style.fontSize = fontSize + 'rem';
+    });
+    
+    decFont.addEventListener('click', () => {
+      fontSize = Math.max(fontSize - 0.1, 0.8);
+      pageContainer.style.fontSize = fontSize + 'rem';
+    });
+  }
+  
+  // Configurar espaçamento de texto
+  if (spacingBtn) {
+    spacingBtn.addEventListener('click', () => {
+      spacingLevel = (spacingLevel + 1) % 3;
+      switch(spacingLevel) {
+        case 0:
+          pageContainer.style.letterSpacing = 'normal';
+          pageContainer.style.wordSpacing = 'normal';
+          pageContainer.style.lineHeight = '1.7';
+          break;
+        case 1:
+          pageContainer.style.letterSpacing = '0.5px';
+          pageContainer.style.wordSpacing = '1px';
+          pageContainer.style.lineHeight = '1.8';
+          break;
+        case 2:
+          pageContainer.style.letterSpacing = '1px';
+          pageContainer.style.wordSpacing = '2px';
+          pageContainer.style.lineHeight = '2';
+          break;
+      }
+    });
+  }
+  
+  // Configurar modo escuro
+  if (darkModeBtn) {
+    darkModeBtn.addEventListener('click', () => {
+      document.body.classList.toggle('dark-mode');
+    });
+  }
+  
+  // Configurar navegação por teclado
+  if (keyboardNavBtn) {
+    keyboardNavBtn.addEventListener('click', () => {
+      document.body.classList.toggle('keyboard-navigation');
+      if (document.body.classList.contains('keyboard-navigation')) {
+        alert('Navegação por teclado ativada. Use Tab para navegar entre elementos.');
+      }
+    });
+  }
+}
+
+// Configuração da leitura de texto
+function setupTextToSpeech() {
+  const readBtn = document.getElementById('read-text');
+  const pageContainer = document.querySelector('.page-container');
+  
+  if (!readBtn || !pageContainer) {
+    console.error('Elementos necessários para leitura de texto não encontrados');
+    return;
+  }
+  
+  // Verificar suporte à API de síntese de fala
+  const supportsSpeech = 'speechSynthesis' in window;
+  
+  if (!supportsSpeech) {
+    readBtn.disabled = true;
+    readBtn.title = 'Leitura de texto não suportada no seu navegador';
+    return;
+  }
+  
+  // Estado da leitura
+  let isReading = false;
+  let currentUtterance = null;
+  
+  // Atualizar ícone e estado do botão
+  function updateButtonState() {
+    const icon = readBtn.querySelector('svg path');
+    if (isReading) {
+      readBtn.setAttribute('aria-label', 'Parar leitura');
+      readBtn.title = 'Parar leitura';
+      if (icon) {
+        icon.setAttribute('stroke', '#ff4d4d');
+      }
+    } else {
+      readBtn.setAttribute('aria-label', 'Ler texto da página');
+      readBtn.title = 'Ler texto da página';
+      if (icon) {
+        icon.setAttribute('stroke', '#777');
+      }
+    }
+  }
+  
+  // Iniciar ou parar a leitura
+  function toggleReading() {
+    if (isReading) {
+      // Parar a leitura atual
+      window.speechSynthesis.cancel();
+      isReading = false;
+      currentUtterance = null;
+      updateButtonState();
+      return;
+    }
+    
+    // Iniciar nova leitura
+    const text = pageContainer.innerText;
+    if (!text.trim()) {
+      console.warn('Nenhum texto encontrado para leitura');
+      return;
+    }
+    
+    try {
+      currentUtterance = new SpeechSynthesisUtterance(text);
+      currentUtterance.lang = 'pt-BR';
+      currentUtterance.rate = 1.0;
+      currentUtterance.pitch = 1.0;
+      currentUtterance.volume = 1.0;
+      
+      currentUtterance.onstart = () => {
+        isReading = true;
+        updateButtonState();
+      };
+      
+      currentUtterance.onend = () => {
+        isReading = false;
+        updateButtonState();
+      };
+      
+      currentUtterance.onerror = (event) => {
+        console.error('Erro na síntese de fala:', event);
+        isReading = false;
+        updateButtonState();
+        alert('Ocorreu um erro ao tentar ler o texto. Por favor, tente novamente.');
+      };
+      
+      window.speechSynthesis.speak(currentUtterance);
+    } catch (error) {
+      console.error('Erro ao configurar a leitura de texto:', error);
+      alert('Não foi possível iniciar a leitura do texto. Por favor, tente novamente.');
+    }
+  }
+  
+  // Adicionar evento de clique
+  readBtn.addEventListener('click', toggleReading);
+  
+  // Inicializar estado do botão
+  updateButtonState();
+}
+
+// Inicialização quando o documento estiver pronto
+$(document).ready(function() {
+  console.log('Documento pronto, inicializando recursos...');
+  
+  // Verificar se o jQuery está disponível
+  if (typeof $ === 'undefined') {
+    console.error('jQuery não está disponível. Algumas funcionalidades podem não funcionar corretamente.');
+  } else {
+    console.log('jQuery está disponível, versão:', $.fn.jquery);
+    
+    // Adicionar IDs aos cabeçalhos
+    addIdsToHeadings();
+    
+    // Inicializar funções de acessibilidade
+    updateTitleBannerHeight();
+    toggleTocVisibility();
+    
+    // Adicionar event listeners
+    $(window).on('scroll', toggleTocVisibility);
+    $(window).on('resize', updateTitleBannerHeight);
+    
+    // Inicializar TOC
+    function tryInitializeToc() {
+      if (typeof Toc === 'undefined') {
+        console.warn('Toc não está definido. Tentando novamente em 100ms...');
+        setTimeout(tryInitializeToc, 100);
+        return;
+      }
+      
+      console.log('Inicializando Bootstrap TOC...');
+      initializeToc();
+    }
+    
+    tryInitializeToc();
+  }
+  
+  // Configurações de acessibilidade
+  setupAccessibility();
+  setupTextToSpeech();
+  setupContrastMode();
+  
+  // Adicionar botão de retorno ao topo
+  $('body').append(
+    $('<button>', {
+      'id': 'back-to-top',
+      'class': 'back-to-top',
+      'aria-label': 'Voltar ao topo',
+      'title': 'Voltar ao topo',
+      'html': `<svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M12 19V5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M5 12l7-7 7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>`
+    }).on('click', function(e) {
+      e.preventDefault();
+      $('html, body').animate({ scrollTop: 0 }, 800, 'swing');
+      $('h1').first().focus();
+    })
+  );
+  
+  // Mostrar/ocultar botão de retorno ao topo
+  $(window).on('scroll', function() {
+    if ($(this).scrollTop() > 300) {
+      $('#back-to-top').addClass('show');
+    } else {
+      $('#back-to-top').removeClass('show');
+    }
+  });
+});
+</script>
+
+<style>
+/* Estilos para acessibilidade e melhorias no TOC */
+.back-to-top {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 44px;
+  height: 44px;
+  background: rgba(0, 0, 0, 0.7);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+  z-index: 999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.10);
+  padding: 0;
+}
+
+.back-to-top svg {
+  display: block;
+  width: 22px;
+  height: 22px;
+  stroke: currentColor;
+}
+
+.dark-mode .back-to-top {
+  background: rgba(60, 60, 60, 0.85) !important;
+  color: #fff !important;
+}
+
+.back-to-top.show {
+  opacity: 1;
+  visibility: visible;
+}
+
+.back-to-top:focus {
+  outline: 2px solid #FFD700;
+  outline-offset: 2px;
+}
+
+/* Melhorias no TOC para dispositivos móveis */
+@media (max-width: 991.98px) {
+  .toc-toggle {
+    display: block;
+    width: 100%;
+    padding: 10px 15px;
+    background: #f8f9fa;
+    border: 1px solid #dee2e6;
+    border-radius: 4px;
+    text-align: left;
+    cursor: pointer;
+    margin-bottom: 10px;
+  }
+  
+  .toc-toggle[aria-expanded="true"] .toc-toggle-icon {
+    transform: rotate(180deg);
+  }
+  
+  #toc-content {
+    display: none;
+  }
+  
+  #toc-content.show {
+    display: block;
+  }
+}
+
+/* Melhorias de acessibilidade para links de cabeçalho */
+[role="heading"] {
+  position: relative;
+}
+
+.header-link {
+  position: absolute;
+  left: -1.5em;
+  width: 1em;
+  height: 1em;
+  text-decoration: none;
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+
+[role="heading"]:hover .header-link,
+[role="heading"]:focus .header-link {
+  opacity: 1;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+.dark-mode {
+  background: #1a1a1a !important;
+  color: #fff !important;
+}
+
+.dark-mode .page-container {
+  background: #1a1a1a !important;
+  color: #fff !important;
+}
+
+.dark-mode .container-header {
+  border-bottom-color: #333 !important;
+}
+
+.dark-mode a {
+  color: #8cb4ff !important;
+  border-bottom-color: transparent !important;
+}
+
+.dark-mode a:hover {
+  border-bottom-color: #8cb4ff !important;
+}
+
+.dark-mode h1, .dark-mode h2, .dark-mode h3, .dark-mode h4, .dark-mode h5, .dark-mode h6, .dark-mode p, .dark-mode li, .dark-mode span {
+  color: #fff !important;
+}
+/* Não alterar cor dos menus no dark mode */
+.dark-mode .menu, .dark-mode .menu * {
+  color: inherit !important;
+}
+.dark-mode nav, .dark-mode nav * {
+  color: inherit !important;
+}
+
+
+.dark-mode h1 {
+  border-bottom-color: #333 !important;
+}
+
+.dark-mode .a11y-btn {
+  color: #aaa !important;
+}
+
+.dark-mode .a11y-btn:hover {
+  color: #fff !important;
+  background-color: #333 !important;
+}
+
+.keyboard-navigation :focus {
+  outline: 3px solid #ff6600 !important;
+  outline-offset: 3px !important;
+}
+
+.container-header {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 25px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid #f5f5f5;
+}
+
+.a11y-tools {
+  display: flex;
+  flex-direction: row;
+  gap: 12px;
+  align-items: center;
+}
+
+.a11y-btn {
+  background: transparent;
+  border: none;
+  color: #888;
+  font-size: 15px;
+  padding: 6px;
+  margin: 0;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.25s ease;
+  width: 32px;
+  height: 32px;
+  border-radius: 4px;
+  position: relative;
+}
+
+.a11y-btn:hover {
+  color: #444;
+  background-color: #f9f9f9;
+}
+
+.a11y-btn:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(0, 102, 204, 0.2);
+}
+
+.a11y-btn:active {
+  transform: translateY(1px);
+}
+
+
+.page-container {
+  max-width: 1100px;
+  margin: 40px auto;
+  padding: 40px 48px;
+  background: #fff;
+  border-radius: 12px;
+  line-height: 1.7;
+  font-size: 1.1rem;
+  color: #333;
+  transition: all 0.3s ease;
+}
+
+.page-container h1, .page-container h2, .page-container h3 {
+  color: #222;
+  margin-top: 1.8em;
+  margin-bottom: 0.9em;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  line-height: 1.3;
+}
+
+.page-container h1 {
+  font-size: 2.4rem;
+  border-bottom: 1px solid #f0f0f0;
+  padding-bottom: 12px;
+  margin-bottom: 1.2em;
+}
+
+.page-container h2 {
+  font-size: 1.9rem;
+  margin-top: 2em;
+}
+
+.page-container h3 {
+  font-size: 1.5rem;
+  color: #333;
+}
+
+.page-container p {
+  margin-bottom: 1.2em;
+  line-height: 1.8;
+}
+
+.page-container ul, .page-container ol {
+  margin-left: 1.5em;
+  margin-bottom: 1.5em;
+  padding-left: 0.5em;
+}
+
+.page-container li {
+  margin-bottom: 0.6em;
+  line-height: 1.7;
+}
+
+.page-container a {
+  color: #0066cc;
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.2s, color 0.2s;
+}
+
+.page-container a:hover {
+  color: #004e9e;
+  border-bottom-color: currentColor;
+}
+
+.page-container iframe {
+  max-width: 100%;
+  margin-top: 20px;
+}
+
+/* Add other styles as needed to match post layout */
+
+.contrast-mode {
+  background: #000 !important;
+  color: #FFD700 !important;
+}
+.contrast-mode .page-container {
+  background: #000 !important;
+  color: #FFD700 !important;
+  border-color: #FFD700 !important;
+}
+.contrast-mode .page-container h1, 
+.contrast-mode .page-container h2, 
+.contrast-mode .page-container h3 {
+  color: #FFD700 !important;
+}
+.contrast-mode .page-container a {
+  color: #00FFFF !important;
+}
+#contrast-toggle {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  background: #f8f8f8;
+  border: 1px solid #bbb;
+  border-radius: 50%;
+  padding: 4px;
+  cursor: pointer;
+  box-shadow: none;
+  transition: background 0.2s, border 0.2s, box-shadow 0.2s;
+  z-index: 1;
+  opacity: 0.7;
+}
+#contrast-toggle:hover, #contrast-toggle:focus {
+  background: #eee;
+  border-color: #888;
+  opacity: 1;
+  outline: 2px solid #FFD700;
+}
+.page-container {
+  position: relative;
+}
+#contrast-toggle svg {
+  display: block;
+}
+#contrast-toggle:focus {
+  outline: 3px solid #FFD700;
+}
+#contrast-toggle svg {
+  display: block;
+}
+
+</style>
+<script>
+// Configuração do modo de alto contraste
+function setupContrastMode() {
+  const contrastBtn = document.getElementById('contrast-toggle');
+  const prefersContrast = window.matchMedia('(prefers-contrast: more)');
+  
+  if (!contrastBtn) {
+    console.warn('Botão de contraste não encontrado');
+    return;
+  }
+  
+  // Verificar preferência do sistema
+  if (prefersContrast.matches) {
+    document.body.classList.add('contrast-mode');
+    contrastBtn.setAttribute('aria-pressed', 'true');
+    contrastBtn.title = 'Desativar alto contraste';
+  }
+  
+  // Alternar modo de contraste
+  function toggleContrast() {
+    const isContrast = document.body.classList.toggle('contrast-mode');
+    contrastBtn.setAttribute('aria-pressed', isContrast);
+    contrastBtn.title = isContrast ? 'Desativar alto contraste' : 'Ativar alto contraste';
+    
+    // Feedback visual temporário
+    const feedback = document.createElement('div');
+    feedback.textContent = isContrast ? 'Modo de alto contraste ativado' : 'Modo de alto contraste desativado';
+    feedback.setAttribute('role', 'status');
+    feedback.style.position = 'fixed';
+    feedback.style.bottom = '20px';
+    feedback.style.left = '50%';
+    feedback.style.transform = 'translateX(-50%)';
+    feedback.style.padding = '10px 20px';
+    feedback.style.background = isContrast ? '#FFD700' : '#333';
+    feedback.style.color = isContrast ? '#000' : '#fff';
+    feedback.style.borderRadius = '4px';
+    feedback.style.boxShadow = '0 2px 10px rgba(0,0,0,0.2)';
+    feedback.style.zIndex = '1000';
+    feedback.style.opacity = '0';
+    feedback.style.transition = 'opacity 0.3s';
+    
+    document.body.appendChild(feedback);
+    
+    // Forçar repaint
+    void feedback.offsetWidth;
+    
+    // Mostrar feedback
+    feedback.style.opacity = '1';
+    
+    // Remover feedback após 3 segundos
+    setTimeout(() => {
+      feedback.style.opacity = '0';
+      setTimeout(() => {
+        if (document.body.contains(feedback)) {
+          document.body.removeChild(feedback);
+        }
+      }, 300);
+    }, 3000);
+  }
+  
+  // Adicionar evento de clique
+  contrastBtn.addEventListener('click', toggleContrast);
+  
+  // Adicionar suporte a teclado
+  contrastBtn.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      toggleContrast();
+    }
+  });
+  
+  // Observar mudanças na preferência do sistema
+  prefersContrast.addListener((e) => {
+    if (e.matches) {
+      document.body.classList.add('contrast-mode');
+      contrastBtn.setAttribute('aria-pressed', 'true');
+      contrastBtn.title = 'Desativar alto contraste';
+    } else {
+      document.body.classList.remove('contrast-mode');
+      contrastBtn.setAttribute('aria-pressed', 'false');
+      contrastBtn.title = 'Ativar alto contraste';
+    }
+  });
+}
+
+
+</script>
+
+
+    </div>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-columns">
+                <div class="footer-menu">
+                    <h3>Estatística Descritiva</h3>
+                    <ul>
+                        <li><a href="#">Medidas de Tendência Central</a></li>
+                        <li><a href="#">Medidas de Dispersão</a></li>
+                        <li><a href="#">Gráficos Estatísticos</a></li>
+                        <li><a href="#">Análise Exploratória</a></li>
+                        <li><a href="#">Visualização de Dados</a></li>
+                    </ul>
+                </div>
+                <div class="footer-menu">
+                    <h3>Probabilidade</h3>
+                    <ul>
+                        <li><a href="#">Distribuições de Probabilidade</a></li>
+                        <li><a href="#">Variáveis Aleatórias</a></li>
+                        <li><a href="#">Teorema do Limite Central</a></li>
+                        <li><a href="#">Eventos e Espaço Amostral</a></li>
+                        <li><a href="#">Probabilidade Condicional</a></li>
+                    </ul>
+                </div>
+                <div class="footer-menu">
+                    <h3>Inferência Estatística</h3>
+                    <ul>
+                        <li><a href="#">Testes de Hipótese</a></li>
+                        <li><a href="#">Intervalos de Confiança</a></li>
+                        <li><a href="#">Amostragem</a></li>
+                        <li><a href="#">Estimadores</a></li>
+                        <li><a href="#">Análise de Variância</a></li>
+                    </ul>
+                </div>
+                <div class="footer-menu">
+                    <h3>Análise de Dados</h3>
+                    <ul>
+                        <li><a href="#">Regressão Linear</a></li>
+                        <li><a href="#">Séries Temporais</a></li>
+                        <li><a href="#">Análise Multivariada</a></li>
+                        <li><a href="#">Modelos Preditivos</a></li>
+                        <li><a href="https://jekyllrb.com/" target="_blank">Jekyll Site</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-logo-container">
+                <img src="/morrison-kulsenn/assets/images/logos/logo2.png" alt="Logo do Cartório" class="logo">
+            </div>
+            <div class="footer-bottom">
+                <p class="copyright" style="font-size: 1em;">
+                  <a href="https://morrisonkulsenn.com" style="color: #ffffff; text-decoration: none;">Morrison Külsenn</a> © 2025 by
+                  <a href="https://creativecommons.org" style="color: #ffffff; text-decoration: none;">Morrison Külsenn</a> is licensed under
+                  <a href="https://creativecommons.org/licenses/by/4.0/" style="color: #ffffff; text-decoration: none;">CC BY 4.0</a>
+                  <img src="https://mirrors.creativecommons.org/presskit/icons/cc.svg" style="max-width: 1em; max-height:1em; margin-left: .2em; vertical-align: text-bottom;">
+                  <img src="https://mirrors.creativecommons.org/presskit/icons/by.svg" style="max-width: 1em; max-height:1em; margin-left: .2em; vertical-align: text-bottom;">
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modal de Feriado -->
+    <div id="feriadoModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2>Aviso de Funcionamento</h2>
+            <p>Hoje, <strong id="feriadoNome">[Nome do Feriado]</strong>, nosso horário de atendimento será:</p>
+            <p><strong id="feriadoHorario">[Horário Especial]</strong></p>
+            <button id="entendiBtn">Entendi</button>
+        </div>
+    </div>
+
+    <!-- Modal de Cookie -->
+    <div id="cookie-consent-modal" class="cookie-modal">
+        <div class="cookie-content" id="cookie-main-view">
+            <div class="cookie-text">
+                <h3>🍪 Uso de Cookies</h3>
+                <p>Nós usamos cookies para melhorar sua experiência no site. Ao continuar navegando, você concorda com nossa <a href="/politica-de-privacidade" target="_blank">Política de Privacidade</a>.</p>
+            </div>
+            <div class="cookie-buttons">
+                <button id="cookie-accept" class="cookie-btn accept">Aceitar todos</button>
+                <button id="cookie-settings" class="cookie-btn settings">Configurar</button>
+                <button id="cookie-decline" class="cookie-btn decline">Recusar todos</button>
+            </div>
+        </div>
+        <!-- Configurações avançadas -->
+        <div class="cookie-settings" id="cookie-settings-view" style="display: none;">
+            <div class="cookie-text">
+                <h3>⚙️ Configurações de Cookies</h3>
+                <p>Selecione quais tipos de cookies você permite que utilizemos:</p>
+                
+                <div class="cookie-category">
+                    <div class="cookie-toggle">
+                        <label class="toggle-switch">
+                            <input type="checkbox" id="necessary-cookies" checked disabled>
+                            <span class="slider round"></span>
+                        </label>
+                        <div class="toggle-label">
+                            <strong>Cookies Necessários</strong>
+                            <small>Essenciais para o funcionamento do site (sempre ativos)</small>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="cookie-category">
+                    <div class="cookie-toggle">
+                        <label class="toggle-switch">
+                            <input type="checkbox" id="analytics-cookies">
+                            <span class="slider round"></span>
+                        </label>
+                        <div class="toggle-label">
+                            <strong>Cookies Analíticos</strong>
+                            <small>Ajudam a entender como os visitantes interagem com o site.</small>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="cookie-category">
+                    <div class="cookie-toggle">
+                        <label class="toggle-switch">
+                            <input type="checkbox" id="marketing-cookies">
+                            <span class="slider round"></span>
+                        </label>
+                        <div class="toggle-label">
+                            <strong>Cookies de Marketing</strong>
+                            <small>Usados para rastrear visitantes e exibir anúncios relevantes.</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="cookie-settings-buttons">
+                <button id="cookie-save-settings" class="cookie-btn save">Salvar Configurações</button>
+                <button id="cookie-settings-back" class="cookie-btn back">Voltar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- JS (Jekyll) -->
+    <script src="/morrison-kulsenn/assets/js/script.js" defer></script>
+    <script src="/morrison-kulsenn/assets/js/copy-code.js" defer></script>
+    <script src="/morrison-kulsenn/assets/js/language-switcher.js" defer></script>
+    
+    <!-- Bootstrap TOC -->
+    <script src="/morrison-kulsenn/assets/js/bootstrap-toc.min.js"></script>
+</body>
+</html>
+
+    <script src="/morrison-kulsenn/assets/js/bootstrap-toc.min.js"></script>
+</body>
+</html>
+

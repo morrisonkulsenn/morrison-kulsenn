@@ -1,0 +1,1446 @@
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="pt"><generator uri="https://jekyllrb.com/" version="4.4.1">Jekyll</generator><link href="https://morrisonkulsenn.github.io/morrison-kulsenn/feed.xml" rel="self" type="application/atom+xml" /><link href="https://morrisonkulsenn.github.io/morrison-kulsenn/" rel="alternate" type="text/html" hreflang="pt" /><updated>2025-05-14T02:33:09+00:00</updated><id>https://morrisonkulsenn.github.io/morrison-kulsenn/feed.xml</id><title type="html">Morrison Külsenn - Estatística e Probabilidade</title><subtitle>Portal dedicado ao estudo e aplicação de conceitos estatísticos e probabilísticos. Conteúdo educativo sobre análise de dados, inferência estatística e modelos estatísticos.</subtitle><entry><title type="html">Probabilidades no Jogo da Velha: Uma Análise Matemática</title><link href="https://morrisonkulsenn.github.io/morrison-kulsenn/probabilidade/2025/05/11/probabilidades-jogo-da-velha-copy.html" rel="alternate" type="text/html" title="Probabilidades no Jogo da Velha: Uma Análise Matemática" /><published>2025-05-11T13:12:00+00:00</published><updated>2025-05-11T13:12:00+00:00</updated><id>https://morrisonkulsenn.github.io/morrison-kulsenn/probabilidade/2025/05/11/probabilidades-jogo-da-velha%20copy</id><content type="html" xml:base="https://morrisonkulsenn.github.io/morrison-kulsenn/probabilidade/2025/05/11/probabilidades-jogo-da-velha-copy.html"><![CDATA[<p>O jogo da velha, conhecido em inglês como “Tic-tac-toe” ou “Noughts and Crosses”, é um dos jogos mais simples e populares do mundo. Apesar de sua aparente simplicidade, este jogo oferece um fascinante campo de estudo para a teoria da probabilidade e a matemática combinatória.</p>
+
+<h2 id="introdução-ao-jogo-da-velha">Introdução ao Jogo da Velha</h2>
+
+<p>O jogo da velha é disputado em um tabuleiro 3×3, onde dois jogadores alternam marcando espaços vazios com seus símbolos (geralmente X e O). O objetivo é formar uma linha de três símbolos iguais na horizontal, vertical ou diagonal.</p>
+
+<blockquote>
+  <p>🎮 <strong>Curiosidade</strong>: Evidências arqueológicas sugerem que versões primitivas do jogo da velha já eram jogadas no Antigo Egito, por volta de 1300 a.C.</p>
+</blockquote>
+
+<h2 id="espaço-amostral-quantos-jogos-possíveis-existem">Espaço Amostral: Quantos Jogos Possíveis Existem?</h2>
+
+<p>Para entender as probabilidades no jogo da velha, precisamos primeiro determinar o número total de possíveis configurações do tabuleiro.</p>
+
+<h3 id="abordagem-inicial">Abordagem Inicial</h3>
+
+<p>À primeira vista, poderíamos pensar que, com 9 células e cada uma podendo estar em 3 estados (X, O ou vazio), teríamos 3^9 = 19.683 possibilidades. No entanto, esta contagem é imprecisa, pois:</p>
+
+<ol>
+  <li>Os jogadores se alternam, então o número de X’s e O’s deve ser igual ou diferir em apenas 1</li>
+  <li>O jogo termina quando um jogador vence ou o tabuleiro está cheio</li>
+  <li>Certas configurações são impossíveis de alcançar em um jogo real</li>
+</ol>
+
+<h3 id="cálculo-refinado">Cálculo Refinado</h3>
+
+<p>Considerando as restrições acima, o número real de possíveis estados de jogo válidos é significativamente menor:</p>
+
+<ul>
+  <li><strong>Número total de jogos possíveis (incluindo jogos incompletos)</strong>: 255.168</li>
+  <li><strong>Número de jogos completos possíveis</strong>: 26.830</li>
+</ul>
+
+<p>Quando consideramos a simetria do tabuleiro (rotações e reflexões), este número se reduz ainda mais:</p>
+
+<ul>
+  <li><strong>Número de jogos distintos considerando simetria</strong>: 31.896</li>
+</ul>
+
+<h2 id="probabilidades-de-resultados">Probabilidades de Resultados</h2>
+
+<h3 id="distribuição-de-resultados">Distribuição de Resultados</h3>
+
+<p>Em um jogo aleatório (onde ambos os jogadores fazem movimentos aleatórios), as probabilidades de cada resultado são:</p>
+
+<ul>
+  <li><strong>Vitória do primeiro jogador (X)</strong>: 58,27%</li>
+  <li><strong>Vitória do segundo jogador (O)</strong>: 28,65%</li>
+  <li><strong>Empate</strong>: 13,08%</li>
+</ul>
+
+<p>Estes números revelam uma vantagem significativa para o primeiro jogador, o que é esperado em jogos de informação perfeita com número ímpar de casas.</p>
+
+<h3 id="probabilidade-condicional">Probabilidade Condicional</h3>
+
+<p>A probabilidade de vitória muda drasticamente dependendo do primeiro movimento:</p>
+
+\[P(X_{vence} \mid X_{centro}) = 0,659\]
+
+\[P(X_{vence} \mid X_{canto}) = 0,612\]
+
+\[P(X_{vence} \mid X_{lateral}) = 0,521\]
+
+<p>Isto demonstra que iniciar no centro oferece a maior vantagem estatística.</p>
+
+<h2 id="análise-combinatória">Análise Combinatória</h2>
+
+<h3 id="número-de-configurações-vencedoras">Número de Configurações Vencedoras</h3>
+
+<p>Existem 8 linhas vencedoras possíveis (3 horizontais, 3 verticais e 2 diagonais). Para cada linha, existem 2 possibilidades (X ou O), resultando em 16 configurações vencedoras possíveis.</p>
+
+<p>No entanto, nem todas são alcançáveis em um jogo real. O número de configurações vencedoras realmente possíveis é:</p>
+
+<ul>
+  <li><strong>Configurações com vitória de X</strong>: 626</li>
+  <li><strong>Configurações com vitória de O</strong>: 316</li>
+</ul>
+
+<h3 id="cálculo-manual-de-possibilidades">Cálculo Manual de Possibilidades</h3>
+
+<p>Vamos calcular formalmente o número de possíveis jogos até o terceiro movimento:</p>
+
+<h4 id="análise-sem-considerar-simetria">Análise sem considerar simetria</h4>
+
+<ol>
+  <li>
+    <p><strong>Primeiro movimento (X)</strong>: 
+\(N_1 = \binom{9}{1} = 9\)</p>
+
+    <p>Onde $\binom{9}{1}$ representa o número de maneiras de escolher 1 posição dentre 9 disponíveis.</p>
+  </li>
+  <li>
+    <p><strong>Segundo movimento (O)</strong>:
+\(N_2 = N_1 \times \binom{8}{1} = 9 \times 8 = 72\)</p>
+
+    <p>Para cada uma das 9 configurações anteriores, temos 8 posições restantes para O.</p>
+  </li>
+  <li>
+    <p><strong>Terceiro movimento (X)</strong>:
+\(N_3 = N_2 \times \binom{7}{1} = 72 \times 7 = 504\)</p>
+
+    <p>Para cada uma das 72 configurações anteriores, temos 7 posições restantes para X.</p>
+  </li>
+</ol>
+
+<h4 id="análise-considerando-simetria">Análise considerando simetria</h4>
+
+<p>O tabuleiro 3×3 possui 8 simetrias (4 rotações e 4 reflexões). Definindo $G$ como o grupo de simetrias e $X$ como o conjunto de configurações, pelo Lema de Burnside, o número de órbitas distintas é:</p>
+
+\[|X/G| = \frac{1}{|G|} \sum_{g \in G} |X^g|\]
+
+<table>
+  <tbody>
+    <tr>
+      <td>Onde $</td>
+      <td>X^g</td>
+      <td>$ é o número de configurações fixadas pela simetria $g$.</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Aplicando ao primeiro movimento:</p>
+
+<ol>
+  <li><strong>Primeiro movimento (X)</strong>:
+    <ul>
+      <li>Devido à simetria, as 9 posições se reduzem a 3 classes de equivalência:
+        <ul>
+          <li>$C_1 = {(1,1)}$ (centro): 1 posição</li>
+          <li>$C_2 = {(0,0), (0,2), (2,0), (2,2)}$ (cantos): 4 posições equivalentes</li>
+          <li>$C_3 = {(0,1), (1,0), (1,2), (2,1)}$ (laterais): 4 posições equivalentes</li>
+        </ul>
+      </li>
+      <li>
+        <table>
+          <tbody>
+            <tr>
+              <td>Total: $</td>
+              <td>X/G</td>
+              <td>= 3$ possibilidades distintas</td>
+            </tr>
+          </tbody>
+        </table>
+      </li>
+    </ul>
+  </li>
+  <li><strong>Segundo movimento (O) após X no centro</strong>:
+    <ul>
+      <li>Com X no centro, as simetrias preservam 2 classes de equivalência para O:
+        <ul>
+          <li>$D_1 = {(0,0), (0,2), (2,0), (2,2)}$ (cantos): 4 posições equivalentes</li>
+          <li>$D_2 = {(0,1), (1,0), (1,2), (2,1)}$ (laterais): 4 posições equivalentes</li>
+        </ul>
+      </li>
+      <li>
+        <table>
+          <tbody>
+            <tr>
+              <td>Total: $</td>
+              <td>X/G</td>
+              <td>= 2$ possibilidades distintas</td>
+            </tr>
+          </tbody>
+        </table>
+      </li>
+    </ul>
+  </li>
+  <li><strong>Segundo movimento (O) após X no canto</strong>:
+    <ul>
+      <li>Com X em um canto (por exemplo, (0,0)), as simetrias preservam 4 classes:
+        <ul>
+          <li>$E_1 = {(1,1)}$ (centro): 1 posição</li>
+          <li>$E_2 = {(0,2), (2,0)}$ (cantos adjacentes): 2 posições equivalentes</li>
+          <li>$E_3 = {(2,2)}$ (canto oposto): 1 posição</li>
+          <li>$E_4 = {(0,1), (1,0)}$ (laterais adjacentes): 2 posições equivalentes</li>
+          <li>$E_5 = {(1,2), (2,1)}$ (laterais opostas): 2 posições equivalentes</li>
+        </ul>
+      </li>
+      <li>
+        <table>
+          <tbody>
+            <tr>
+              <td>Total: $</td>
+              <td>X/G</td>
+              <td>= 4$ possibilidades distintas</td>
+            </tr>
+          </tbody>
+        </table>
+      </li>
+    </ul>
+  </li>
+  <li><strong>Segundo movimento (O) após X na lateral</strong>:
+    <ul>
+      <li>Com X em uma lateral (por exemplo, (0,1)), as simetrias preservam 4 classes:
+        <ul>
+          <li>$F_1 = {(1,1)}$ (centro): 1 posição</li>
+          <li>$F_2 = {(0,0), (0,2)}$ (cantos adjacentes): 2 posições equivalentes</li>
+          <li>$F_3 = {(2,0), (2,2)}$ (cantos opostos): 2 posições equivalentes</li>
+          <li>$F_4 = {(1,0), (1,2)}$ (laterais adjacentes): 2 posições equivalentes</li>
+          <li>$F_5 = {(2,1)}$ (lateral oposta): 1 posição</li>
+        </ul>
+      </li>
+      <li>
+        <table>
+          <tbody>
+            <tr>
+              <td>Total: $</td>
+              <td>X/G</td>
+              <td>= 4$ possibilidades distintas</td>
+            </tr>
+          </tbody>
+        </table>
+      </li>
+    </ul>
+  </li>
+</ol>
+
+<p>Assim, pelo princípio da adição, o número total de configurações distintas após dois movimentos é:</p>
+
+\[N_{2,simetria} = 2 + 4 + 4 = 10\]
+
+<p>Em vez das 72 configurações sem considerar simetria.</p>
+
+<h3 id="cálculo-de-probabilidade-com-combinatória">Cálculo de Probabilidade com Combinatória</h3>
+
+<p>A probabilidade de uma configuração específica $c$ após $n$ movimentos pode ser calculada usando:</p>
+
+\[P(c) = \frac{1}{|C_n|}\]
+
+<table>
+  <tbody>
+    <tr>
+      <td>Onde $</td>
+      <td>C_n</td>
+      <td>$ é a cardinalidade do conjunto de todas as configurações possíveis após $n$ movimentos.</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Para calcular o número de jogos $N(k)$ que terminam em exatamente $k$ movimentos (onde $k \geq 5$), usamos:</p>
+
+\[N(k) = \binom{9}{k} \times P_{vit\acute{o}ria}(k)\]
+
+<p>Onde $P_{vit\acute{o}ria}(k)$ é a probabilidade de uma configuração de vitória ocorrer no $k$-ésimo movimento, e $\binom{9}{k}$ representa o coeficiente binomial “9 escolhe $k$”.</p>
+
+<p>A probabilidade de vitória do jogador X em um jogo aleatório pode ser expressa como:</p>
+
+\[P(X_{vence}) = \sum_{k=5}^{9} P(X_{vence} \mid k) \times P(k)\]
+
+<p>Onde $P(X_{vence} \mid k)$ é a probabilidade condicional de X vencer dado que o jogo termina em exatamente $k$ movimentos, e $P(k)$ é a probabilidade de um jogo terminar em exatamente $k$ movimentos.</p>
+
+<h3 id="árvore-de-possibilidades">Árvore de Possibilidades</h3>
+
+<p>A árvore completa de possibilidades do jogo da velha tem:</p>
+
+<ul>
+  <li><strong>Profundidade máxima</strong>: 9 níveis (correspondendo aos 9 movimentos possíveis)</li>
+  <li><strong>Fator de ramificação inicial</strong>: 9 (número de primeiras jogadas possíveis)</li>
+  <li><strong>Fator de ramificação médio</strong>: aproximadamente 4,47</li>
+</ul>
+
+<h2 id="estratégia-perfeita-e-teoria-dos-jogos">Estratégia Perfeita e Teoria dos Jogos</h2>
+
+<p>O jogo da velha é considerado “resolvido” na teoria dos jogos, o que significa que conhecemos a estratégia ótima para ambos os jogadores.</p>
+
+<h3 id="teorema-minimax">Teorema Minimax</h3>
+
+<p>Aplicando o algoritmo minimax, podemos provar que:</p>
+
+<ul>
+  <li>Com jogo perfeito de ambos os lados, o resultado será sempre um empate</li>
+  <li>O primeiro jogador pode forçar no mínimo um empate</li>
+  <li>O segundo jogador pode no máximo forçar um empate</li>
+</ul>
+
+<h3 id="árvore-de-decisão-simplificada">Árvore de Decisão Simplificada</h3>
+
+<p>Uma versão simplificada da árvore de decisão para o primeiro movimento mostra:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+</pre></td><td class="rouge-code"><pre>Centro → Oponente no canto → Canto oposto
+Canto → Oponente no centro → Canto adjacente
+Canto → Oponente no canto adjacente → Centro
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<h2 id="implementação-em-julia">Implementação em Julia</h2>
+
+<p>Podemos simular jogos aleatórios para verificar empiricamente as probabilidades teóricas usando Julia, uma linguagem moderna e de alto desempenho para computação científica:</p>
+
+<div class="language-julia highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+</pre></td><td class="rouge-code"><pre><span class="k">using</span> <span class="n">Random</span>
+<span class="k">using</span> <span class="n">StatsBase</span>
+
+<span class="k">function</span><span class="nf"> criar_tabuleiro</span><span class="x">()</span>
+    <span class="k">return</span> <span class="n">zeros</span><span class="x">(</span><span class="kt">Int</span><span class="x">,</span> <span class="mi">3</span><span class="x">,</span> <span class="mi">3</span><span class="x">)</span>
+<span class="k">end</span>
+
+<span class="k">function</span><span class="nf"> verificar_vitoria</span><span class="x">(</span><span class="n">tabuleiro</span><span class="x">,</span> <span class="n">jogador</span><span class="x">)</span>
+    <span class="c"># Verificar linhas e colunas</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="k">in</span> <span class="mi">1</span><span class="o">:</span><span class="mi">3</span>
+        <span class="k">if</span> <span class="n">all</span><span class="x">(</span><span class="n">tabuleiro</span><span class="x">[</span><span class="n">i</span><span class="x">,</span> <span class="o">:</span><span class="x">]</span> <span class="o">.==</span> <span class="n">jogador</span><span class="x">)</span> <span class="o">||</span> <span class="n">all</span><span class="x">(</span><span class="n">tabuleiro</span><span class="x">[</span><span class="o">:</span><span class="x">,</span> <span class="n">i</span><span class="x">]</span> <span class="o">.==</span> <span class="n">jogador</span><span class="x">)</span>
+            <span class="k">return</span> <span class="nb">true</span>
+        <span class="k">end</span>
+    <span class="k">end</span>
+    
+    <span class="c"># Verificar diagonais</span>
+    <span class="k">if</span> <span class="n">all</span><span class="x">(</span><span class="n">diag</span><span class="x">(</span><span class="n">tabuleiro</span><span class="x">)</span> <span class="o">.==</span> <span class="n">jogador</span><span class="x">)</span> <span class="o">||</span> <span class="n">all</span><span class="x">(</span><span class="n">diag</span><span class="x">(</span><span class="n">reverse</span><span class="x">(</span><span class="n">tabuleiro</span><span class="x">,</span> <span class="n">dims</span><span class="o">=</span><span class="mi">2</span><span class="x">))</span> <span class="o">.==</span> <span class="n">jogador</span><span class="x">)</span>
+        <span class="k">return</span> <span class="nb">true</span>
+    <span class="k">end</span>
+    
+    <span class="k">return</span> <span class="nb">false</span>
+<span class="k">end</span>
+
+<span class="k">function</span><span class="nf"> tabuleiro_cheio</span><span class="x">(</span><span class="n">tabuleiro</span><span class="x">)</span>
+    <span class="k">return</span> <span class="o">!</span><span class="n">any</span><span class="x">(</span><span class="n">tabuleiro</span> <span class="o">.==</span> <span class="mi">0</span><span class="x">)</span>
+<span class="k">end</span>
+
+<span class="k">function</span><span class="nf"> simular_jogo</span><span class="x">()</span>
+    <span class="n">tabuleiro</span> <span class="o">=</span> <span class="n">criar_tabuleiro</span><span class="x">()</span>
+    <span class="n">jogador_atual</span> <span class="o">=</span> <span class="mi">1</span>  <span class="c"># 1 para X, 2 para O</span>
+    
+    <span class="k">while</span> <span class="nb">true</span>
+        <span class="c"># Encontrar posições vazias</span>
+        <span class="n">posicoes_vazias</span> <span class="o">=</span> <span class="n">findall</span><span class="x">(</span><span class="n">tabuleiro</span> <span class="o">.==</span> <span class="mi">0</span><span class="x">)</span>
+        
+        <span class="k">if</span> <span class="n">isempty</span><span class="x">(</span><span class="n">posicoes_vazias</span><span class="x">)</span>
+            <span class="k">return</span> <span class="mi">0</span>  <span class="c"># Empate</span>
+        <span class="k">end</span>
+        
+        <span class="c"># Escolher movimento aleatório</span>
+        <span class="n">movimento</span> <span class="o">=</span> <span class="n">rand</span><span class="x">(</span><span class="n">posicoes_vazias</span><span class="x">)</span>
+        <span class="n">tabuleiro</span><span class="x">[</span><span class="n">movimento</span><span class="x">]</span> <span class="o">=</span> <span class="n">jogador_atual</span>
+        
+        <span class="c"># Verificar vitória</span>
+        <span class="k">if</span> <span class="n">verificar_vitoria</span><span class="x">(</span><span class="n">tabuleiro</span><span class="x">,</span> <span class="n">jogador_atual</span><span class="x">)</span>
+            <span class="k">return</span> <span class="n">jogador_atual</span>
+        <span class="k">end</span>
+        
+        <span class="c"># Alternar jogador</span>
+        <span class="n">jogador_atual</span> <span class="o">=</span> <span class="mi">3</span> <span class="o">-</span> <span class="n">jogador_atual</span>  <span class="c"># Alterna entre 1 e 2</span>
+    <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="c"># Simular 10.000 jogos</span>
+<span class="n">resultados</span> <span class="o">=</span> <span class="x">[</span><span class="n">simular_jogo</span><span class="x">()</span> <span class="k">for</span> <span class="n">_</span> <span class="k">in</span> <span class="mi">1</span><span class="o">:</span><span class="mi">10000</span><span class="x">]</span>
+<span class="n">contagem</span> <span class="o">=</span> <span class="n">countmap</span><span class="x">(</span><span class="n">resultados</span><span class="x">)</span>
+
+<span class="n">println</span><span class="x">(</span><span class="s">"X vence: </span><span class="si">$</span><span class="s">(round(contagem[1]/100, digits=2))%"</span><span class="x">)</span>
+<span class="n">println</span><span class="x">(</span><span class="s">"O vence: </span><span class="si">$</span><span class="s">(round(contagem[2]/100, digits=2))%"</span><span class="x">)</span>
+<span class="n">println</span><span class="x">(</span><span class="s">"Empate: </span><span class="si">$</span><span class="s">(round(get(contagem, 0, 0)/100, digits=2))%"</span><span class="x">)</span>
+
+<span class="c"># Visualização dos resultados</span>
+<span class="k">using</span> <span class="n">Plots</span>
+
+<span class="n">labels</span> <span class="o">=</span> <span class="x">[</span><span class="s">"X vence"</span><span class="x">,</span> <span class="s">"O vence"</span><span class="x">,</span> <span class="s">"Empate"</span><span class="x">]</span>
+<span class="n">valores</span> <span class="o">=</span> <span class="x">[</span><span class="n">get</span><span class="x">(</span><span class="n">contagem</span><span class="x">,</span> <span class="mi">1</span><span class="x">,</span> <span class="mi">0</span><span class="x">),</span> <span class="n">get</span><span class="x">(</span><span class="n">contagem</span><span class="x">,</span> <span class="mi">2</span><span class="x">,</span> <span class="mi">0</span><span class="x">),</span> <span class="n">get</span><span class="x">(</span><span class="n">contagem</span><span class="x">,</span> <span class="mi">0</span><span class="x">,</span> <span class="mi">0</span><span class="x">)]</span>
+<span class="n">porcentagens</span> <span class="o">=</span> <span class="n">round</span><span class="o">.</span><span class="x">(</span><span class="n">valores</span> <span class="o">./</span> <span class="n">sum</span><span class="x">(</span><span class="n">valores</span><span class="x">)</span> <span class="o">.*</span> <span class="mi">100</span><span class="x">,</span> <span class="n">digits</span><span class="o">=</span><span class="mi">1</span><span class="x">)</span>
+
+<span class="n">pie</span><span class="x">(</span><span class="n">labels</span><span class="x">,</span> <span class="n">valores</span><span class="x">,</span> 
+    <span class="n">title</span> <span class="o">=</span> <span class="s">"Distribuição de Resultados em 10.000 Jogos"</span><span class="x">,</span>
+    <span class="n">legend</span> <span class="o">=</span> <span class="o">:</span><span class="n">topright</span><span class="x">,</span>
+    <span class="n">annotations</span> <span class="o">=</span> <span class="x">[(</span><span class="mf">0.5</span><span class="x">,</span> <span class="mf">0.5</span><span class="x">,</span> <span class="n">text</span><span class="x">(</span><span class="s">"Total: 10.000"</span><span class="x">,</span> <span class="o">:</span><span class="n">center</span><span class="x">,</span> <span class="mi">10</span><span class="x">))],</span>
+    <span class="n">autopct</span> <span class="o">=</span> <span class="x">(</span><span class="n">x</span><span class="x">)</span> <span class="o">-&gt;</span> <span class="s">"</span><span class="si">$</span><span class="s">(round(x, digits=1))%"</span><span class="x">)</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p>A implementação em Julia oferece várias vantagens:</p>
+
+<ol>
+  <li><strong>Desempenho</strong>: Julia combina a facilidade de uso de Python com o desempenho próximo ao C</li>
+  <li><strong>Sintaxe matemática</strong>: Notação mais próxima da matemática formal</li>
+  <li><strong>Visualização integrada</strong>: Biblioteca Plots para visualização dos resultados</li>
+  <li><strong>Paralelização automática</strong>: Operações vetorizadas são automaticamente paralelizadas</li>
+</ol>
+
+<h2 id="curiosidades-matemáticas">Curiosidades Matemáticas</h2>
+
+<h3 id="relação-com-a-teoria-dos-grafos">Relação com a Teoria dos Grafos</h3>
+
+<p>O jogo da velha pode ser representado como um grafo onde:</p>
+<ul>
+  <li>Cada nó representa um estado do tabuleiro</li>
+  <li>Cada aresta representa um movimento válido</li>
+  <li>O grafo completo contém 5.478 nós</li>
+</ul>
+
+<h3 id="complexidade-computacional">Complexidade Computacional</h3>
+
+<p>Apesar de sua simplicidade, o jogo da velha tem uma complexidade de:</p>
+<ul>
+  <li><strong>Complexidade espacial</strong>: O(b^d) ≈ O(9!)</li>
+  <li><strong>Complexidade temporal para solução exata</strong>: O(b^d) ≈ O(9!)</li>
+</ul>
+
+<p>onde b é o fator de ramificação médio e d é a profundidade máxima.</p>
+
+<h2 id="aplicações-educacionais">Aplicações Educacionais</h2>
+
+<p>O jogo da velha oferece excelentes oportunidades para ensinar conceitos matemáticos:</p>
+
+<ul>
+  <li><strong>Probabilidade condicional</strong>: Como as chances mudam após cada jogada</li>
+  <li><strong>Combinatória</strong>: Contagem de possíveis estados do jogo</li>
+  <li><strong>Teoria dos jogos</strong>: Estratégias ótimas e equilíbrio</li>
+  <li><strong>Simetria</strong>: Como rotações e reflexões reduzem o espaço de estados</li>
+</ul>
+
+<h2 id="conclusão">Conclusão</h2>
+
+<p>Apesar de sua aparente simplicidade, o jogo da velha revela uma rica estrutura matemática quando analisado sob a ótica da probabilidade e da combinatória. Sua completa resolução matemática não diminui seu valor educacional e recreativo, pelo contrário, nos permite apreciar a elegância dos princípios matemáticos subjacentes a este jogo milenar.</p>
+
+<blockquote>
+  <p>🧠 <strong>Reflexão</strong>: A próxima vez que você jogar uma partida de jogo da velha, observe como cada movimento altera drasticamente o espaço de probabilidades do jogo!</p>
+</blockquote>
+
+<h2 id="referências">Referências</h2>
+
+<ol>
+  <li>Ferguson, T. S. (2020). “Game Theory” (2nd ed.). Mathematics Department, UCLA.</li>
+  <li>Schaeffer, J., et al. (2007). “Checkers Is Solved”. Science, 317(5844), 1518-1522.</li>
+  <li>Patashnik, O. (1980). “Qubic: 4×4×4 Tic-Tac-Toe”. Mathematics Magazine, 53(4), 202-216.</li>
+  <li>Gardner, M. (2001). “The Colossal Book of Mathematics: Classic Puzzles, Paradoxes, and Problems”. W. W. Norton &amp; Company.</li>
+</ol>]]></content><author><name>Morrison Külsenn</name></author><category term="PROBABILIDADE" /><category term="probabilidade" /><category term="teoria-dos-jogos" /><category term="combinatoria" /><category term="matematica-recreativa" /><summary type="html"><![CDATA[O jogo da velha, conhecido em inglês como “Tic-tac-toe” ou “Noughts and Crosses”, é um dos jogos mais simples e populares do mundo. Apesar de sua aparente simplicidade, este jogo oferece um fascinante campo de estudo para a teoria da probabilidade e a matemática combinatória.]]></summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://morrisonkulsenn.github.io/morrison-kulsenn/assets/images/img/tictactoes.png" /><media:content medium="image" url="https://morrisonkulsenn.github.io/morrison-kulsenn/assets/images/img/tictactoes.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">A Mediana: Conceito, Propriedades e Aplicações Práticas</title><link href="https://morrisonkulsenn.github.io/morrison-kulsenn/estat%C3%ADstica%20descritiva/2025/05/10/mediana.html" rel="alternate" type="text/html" title="A Mediana: Conceito, Propriedades e Aplicações Práticas" /><published>2025-05-10T14:30:00+00:00</published><updated>2025-05-10T14:30:00+00:00</updated><id>https://morrisonkulsenn.github.io/morrison-kulsenn/estat%C3%ADstica%20descritiva/2025/05/10/mediana</id><content type="html" xml:base="https://morrisonkulsenn.github.io/morrison-kulsenn/estat%C3%ADstica%20descritiva/2025/05/10/mediana.html"><![CDATA[<p>A mediana é uma das medidas de tendência central mais importantes na estatística, frequentemente utilizada em conjunto com a média e a moda. Enquanto a média aritmética pode ser influenciada por valores extremos, a mediana oferece uma perspectiva robusta sobre o “centro” de um conjunto de dados, tornando-se indispensável em diversos contextos analíticos.</p>
+
+<h2 id="o-que-é-a-mediana">O Que é a Mediana?</h2>
+
+<p>A mediana representa o valor central de um conjunto de dados quando estes são organizados em ordem crescente ou decrescente. Em termos simples, é o valor que divide o conjunto exatamente ao meio: metade dos valores estão acima da mediana e metade estão abaixo.</p>
+
+<blockquote>
+  <p>📊 <strong>Definição formal:</strong> Para um conjunto ordenado de valores, a mediana é o valor central se o número de observações for ímpar, ou a média dos dois valores centrais se o número de observações for par.</p>
+</blockquote>
+
+<h2 id="cálculo-da-mediana">Cálculo da Mediana</h2>
+
+<p>O processo para encontrar a mediana depende do número de observações no conjunto de dados:</p>
+
+<h3 id="para-um-número-ímpar-de-observações">Para um número ímpar de observações:</h3>
+
+<ol>
+  <li>Organize os dados em ordem crescente (ou decrescente)</li>
+  <li>A mediana é o valor que ocupa a posição central</li>
+</ol>
+
+<p><strong>Exemplo:</strong> Para o conjunto {3, 7, 8, 9, 12}, a mediana é 8.</p>
+
+<h3 id="para-um-número-par-de-observações">Para um número par de observações:</h3>
+
+<ol>
+  <li>Organize os dados em ordem crescente (ou decrescente)</li>
+  <li>A mediana é a média dos dois valores centrais</li>
+</ol>
+
+<p><strong>Exemplo:</strong> Para o conjunto {3, 7, 8, 9, 12, 15}, a mediana é (8 + 9) ÷ 2 = 8,5.</p>
+
+<h2 id="vantagens-da-mediana">Vantagens da Mediana</h2>
+
+<p>A mediana possui características que a tornam especialmente útil em determinadas situações:</p>
+
+<ol>
+  <li>
+    <p><strong>Robustez a outliers:</strong> Ao contrário da média, a mediana não é afetada por valores extremos, tornando-a ideal para distribuições assimétricas ou com outliers.</p>
+  </li>
+  <li>
+    <p><strong>Representatividade:</strong> Em distribuições com forte assimetria, a mediana frequentemente representa melhor o “valor típico” do que a média.</p>
+  </li>
+  <li>
+    <p><strong>Aplicabilidade a dados ordinais:</strong> A mediana pode ser calculada mesmo quando os dados são ordinais (não numéricos, mas ordenáveis).</p>
+  </li>
+</ol>
+
+<h2 id="aplicações-práticas">Aplicações Práticas</h2>
+
+<p>A mediana é amplamente utilizada em diversos campos:</p>
+
+<h3 id="economia-e-finanças">Economia e Finanças</h3>
+
+<p>No contexto econômico, a mediana é frequentemente preferida para representar rendimentos populacionais. Por exemplo, o “rendimento mediano” é considerado uma medida mais precisa da renda típica de uma população do que o “rendimento médio”, que pode ser inflacionado por poucos indivíduos extremamente ricos.</p>
+
+<h3 id="ciências-sociais">Ciências Sociais</h3>
+
+<p>Pesquisadores frequentemente utilizam a mediana para analisar dados de pesquisas de opinião, especialmente quando as respostas seguem escalas ordinais (como “discordo totalmente” a “concordo totalmente”).</p>
+
+<h3 id="estatísticas-imobiliárias">Estatísticas Imobiliárias</h3>
+
+<p>O preço mediano de imóveis é uma métrica comum no mercado imobiliário, pois não é distorcido por propriedades de luxo extremamente caras ou propriedades extremamente desvalorizadas.</p>
+
+<h2 id="relação-com-outras-medidas-de-tendência-central">Relação com Outras Medidas de Tendência Central</h2>
+
+<p>A comparação entre média, mediana e moda pode revelar informações valiosas sobre a distribuição dos dados:</p>
+
+<ul>
+  <li><strong>Distribuição simétrica:</strong> Média = Mediana = Moda</li>
+  <li><strong>Distribuição assimétrica positiva (cauda à direita):</strong> Média &gt; Mediana &gt; Moda</li>
+  <li><strong>Distribuição assimétrica negativa (cauda à esquerda):</strong> Moda &gt; Mediana &gt; Média</li>
+</ul>
+
+<h2 id="representação-gráfica">Representação Gráfica</h2>
+
+<p>A mediana pode ser visualizada em diversos tipos de gráficos:</p>
+
+<ol>
+  <li><strong>Box plot (ou diagrama de caixa):</strong> A linha central do box plot representa a mediana</li>
+  <li><strong>Histograma:</strong> A mediana pode ser marcada como uma linha vertical</li>
+  <li><strong>Gráfico de densidade:</strong> Similar ao histograma, a mediana pode ser indicada como uma linha vertical</li>
+</ol>
+
+<h2 id="considerações-estatísticas-avançadas">Considerações Estatísticas Avançadas</h2>
+
+<p>Em estatística inferencial, a mediana possui propriedades interessantes:</p>
+
+<ul>
+  <li>É um estimador consistente da mediana populacional</li>
+  <li>Possui uma eficiência assintótica de 2/π (aproximadamente 64%) em relação à média para distribuições normais</li>
+  <li>Em certas distribuições não-normais, pode ser mais eficiente que a média</li>
+</ul>
+
+<h2 id="calculando-a-mediana-em-julia">Calculando a Mediana em Julia</h2>
+
+<p>Julia é uma linguagem de programação moderna, de alto desempenho e especialmente adequada para computação científica e análise de dados. Calcular a mediana em Julia é simples e eficiente, graças às suas bibliotecas estatísticas integradas.</p>
+
+<h3 id="usando-a-biblioteca-statistics">Usando a Biblioteca Statistics</h3>
+
+<p>A biblioteca <code class="language-plaintext highlighter-rouge">Statistics</code> faz parte do pacote padrão de Julia e oferece funções estatísticas básicas, incluindo o cálculo da mediana:</p>
+
+<div class="language-julia highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+</pre></td><td class="rouge-code"><pre><span class="k">using</span> <span class="n">Statistics</span>
+
+<span class="c"># Exemplo com um número ímpar de elementos</span>
+<span class="n">dados_impares</span> <span class="o">=</span> <span class="x">[</span><span class="mi">7</span><span class="x">,</span> <span class="mi">13</span><span class="x">,</span> <span class="mi">2</span><span class="x">,</span> <span class="mi">10</span><span class="x">,</span> <span class="mi">8</span><span class="x">]</span>
+<span class="n">mediana_impares</span> <span class="o">=</span> <span class="n">median</span><span class="x">(</span><span class="n">dados_impares</span><span class="x">)</span>
+<span class="n">println</span><span class="x">(</span><span class="s">"Mediana do conjunto ímpar: "</span><span class="x">,</span> <span class="n">mediana_impares</span><span class="x">)</span>  <span class="c"># Saída: 8.0</span>
+
+<span class="c"># Exemplo com um número par de elementos</span>
+<span class="n">dados_pares</span> <span class="o">=</span> <span class="x">[</span><span class="mi">7</span><span class="x">,</span> <span class="mi">13</span><span class="x">,</span> <span class="mi">2</span><span class="x">,</span> <span class="mi">10</span><span class="x">,</span> <span class="mi">8</span><span class="x">,</span> <span class="mi">5</span><span class="x">]</span>
+<span class="n">mediana_pares</span> <span class="o">=</span> <span class="n">median</span><span class="x">(</span><span class="n">dados_pares</span><span class="x">)</span>
+<span class="n">println</span><span class="x">(</span><span class="s">"Mediana do conjunto par: "</span><span class="x">,</span> <span class="n">mediana_pares</span><span class="x">)</span>  <span class="c"># Saída: 7.5</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<h3 id="implementação-manual">Implementação Manual</h3>
+
+<p>Para fins educacionais, podemos também implementar o cálculo da mediana manualmente:</p>
+
+<div class="language-julia highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+</pre></td><td class="rouge-code"><pre><span class="k">function</span><span class="nf"> calcular_mediana</span><span class="x">(</span><span class="n">dados</span><span class="x">)</span>
+    <span class="c"># Ordena os dados</span>
+    <span class="n">dados_ordenados</span> <span class="o">=</span> <span class="n">sort</span><span class="x">(</span><span class="n">dados</span><span class="x">)</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="n">length</span><span class="x">(</span><span class="n">dados_ordenados</span><span class="x">)</span>
+    
+    <span class="c"># Verifica se o número de elementos é par ou ímpar</span>
+    <span class="k">if</span> <span class="n">n</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">1</span>
+        <span class="c"># Número ímpar de elementos</span>
+        <span class="k">return</span> <span class="n">dados_ordenados</span><span class="x">[</span><span class="n">div</span><span class="x">(</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="x">,</span> <span class="mi">2</span><span class="x">)]</span>
+    <span class="k">else</span>
+        <span class="c"># Número par de elementos</span>
+        <span class="k">return</span> <span class="x">(</span><span class="n">dados_ordenados</span><span class="x">[</span><span class="n">div</span><span class="x">(</span><span class="n">n</span><span class="x">,</span> <span class="mi">2</span><span class="x">)]</span> <span class="o">+</span> <span class="n">dados_ordenados</span><span class="x">[</span><span class="n">div</span><span class="x">(</span><span class="n">n</span><span class="x">,</span> <span class="mi">2</span><span class="x">)</span> <span class="o">+</span> <span class="mi">1</span><span class="x">])</span> <span class="o">/</span> <span class="mi">2</span>
+    <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="c"># Testando a função</span>
+<span class="n">dados_teste</span> <span class="o">=</span> <span class="x">[</span><span class="mi">15</span><span class="x">,</span> <span class="mi">7</span><span class="x">,</span> <span class="mi">12</span><span class="x">,</span> <span class="mi">9</span><span class="x">,</span> <span class="mi">8</span><span class="x">]</span>
+<span class="n">println</span><span class="x">(</span><span class="s">"Mediana calculada manualmente: "</span><span class="x">,</span> <span class="n">calcular_mediana</span><span class="x">(</span><span class="n">dados_teste</span><span class="x">))</span>  <span class="c"># Saída: 9</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<h3 id="mediana-ponderada">Mediana Ponderada</h3>
+
+<p>Em alguns casos, pode ser necessário calcular a mediana ponderada, onde cada valor tem um peso associado. Julia oferece suporte para isso através do pacote <code class="language-plaintext highlighter-rouge">StatsBase</code>:</p>
+
+<div class="language-julia highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+</pre></td><td class="rouge-code"><pre><span class="k">using</span> <span class="n">StatsBase</span>
+
+<span class="c"># Dados e seus respectivos pesos</span>
+<span class="n">dados</span> <span class="o">=</span> <span class="x">[</span><span class="mi">10</span><span class="x">,</span> <span class="mi">20</span><span class="x">,</span> <span class="mi">30</span><span class="x">,</span> <span class="mi">40</span><span class="x">,</span> <span class="mi">50</span><span class="x">]</span>
+<span class="n">pesos</span> <span class="o">=</span> <span class="x">[</span><span class="mi">5</span><span class="x">,</span> <span class="mi">1</span><span class="x">,</span> <span class="mi">3</span><span class="x">,</span> <span class="mi">4</span><span class="x">,</span> <span class="mi">2</span><span class="x">]</span>
+
+<span class="c"># Cálculo da mediana ponderada</span>
+<span class="n">mediana_ponderada</span> <span class="o">=</span> <span class="n">median</span><span class="x">(</span><span class="n">dados</span><span class="x">,</span> <span class="n">weights</span><span class="x">(</span><span class="n">pesos</span><span class="x">))</span>
+<span class="n">println</span><span class="x">(</span><span class="s">"Mediana ponderada: "</span><span class="x">,</span> <span class="n">mediana_ponderada</span><span class="x">)</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<h3 id="visualização-da-mediana-com-plots">Visualização da Mediana com Plots</h3>
+
+<p>Julia possui excelentes bibliotecas de visualização que permitem representar graficamente a mediana:</p>
+
+<div class="language-julia highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+</pre></td><td class="rouge-code"><pre><span class="k">using</span> <span class="n">Plots</span>
+<span class="k">using</span> <span class="n">Statistics</span>
+
+<span class="c"># Gerar dados aleatórios</span>
+<span class="n">dados</span> <span class="o">=</span> <span class="n">randn</span><span class="x">(</span><span class="mi">1000</span><span class="x">)</span> <span class="o">.*</span> <span class="mi">5</span> <span class="o">.+</span> <span class="mi">20</span>  <span class="c"># Distribuição normal com média 20 e desvio padrão 5</span>
+
+<span class="c"># Criar histograma</span>
+<span class="n">histograma</span> <span class="o">=</span> <span class="n">histogram</span><span class="x">(</span><span class="n">dados</span><span class="x">,</span> <span class="n">bins</span><span class="o">=</span><span class="mi">30</span><span class="x">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.6</span><span class="x">,</span> <span class="n">label</span><span class="o">=</span><span class="s">"Dados"</span><span class="x">)</span>
+
+<span class="c"># Adicionar linha vertical na mediana</span>
+<span class="n">mediana_valor</span> <span class="o">=</span> <span class="n">median</span><span class="x">(</span><span class="n">dados</span><span class="x">)</span>
+<span class="n">vline!</span><span class="x">([</span><span class="n">mediana_valor</span><span class="x">],</span> <span class="n">line</span><span class="o">=:</span><span class="n">dash</span><span class="x">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="x">,</span> <span class="n">label</span><span class="o">=</span><span class="s">"Mediana: </span><span class="si">$</span><span class="s">(round(mediana_valor, digits=2))"</span><span class="x">)</span>
+
+<span class="c"># Configurar o gráfico</span>
+<span class="n">title!</span><span class="x">(</span><span class="s">"Histograma com Mediana"</span><span class="x">)</span>
+<span class="n">xlabel!</span><span class="x">(</span><span class="s">"Valores"</span><span class="x">)</span>
+<span class="n">ylabel!</span><span class="x">(</span><span class="s">"Frequência"</span><span class="x">)</span>
+
+<span class="c"># Exibir o gráfico</span>
+<span class="n">display</span><span class="x">(</span><span class="n">histograma</span><span class="x">)</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p>A integração da Julia com pacotes estatísticos avançados como <code class="language-plaintext highlighter-rouge">DataFrames.jl</code>, <code class="language-plaintext highlighter-rouge">GLM.jl</code> e <code class="language-plaintext highlighter-rouge">StatsModels.jl</code> permite análises mais complexas envolvendo a mediana em conjuntos de dados estruturados, regressões robustas e muito mais.</p>
+
+<h2 id="conclusão">Conclusão</h2>
+
+<p>A mediana é uma ferramenta estatística fundamental que oferece uma perspectiva robusta e muitas vezes mais representativa do valor central de um conjunto de dados. Sua resistência a valores extremos a torna particularmente valiosa em análises de dados do mundo real, onde outliers e distribuições assimétricas são comuns.</p>
+
+<p>Compreender quando e como utilizar a mediana, em conjunto com outras medidas estatísticas, é essencial para qualquer análise de dados eficaz e para a interpretação correta de resultados estatísticos em diversos contextos profissionais e acadêmicos.</p>]]></content><author><name>Carlos Mendes</name></author><category term="ESTATÍSTICA DESCRITIVA" /><category term="mediana" /><category term="medidas-de-tendencia-central" /><category term="estatistica-descritiva" /><category term="analise-de-dados" /><summary type="html"><![CDATA[A mediana é uma das medidas de tendência central mais importantes na estatística, frequentemente utilizada em conjunto com a média e a moda. Enquanto a média aritmética pode ser influenciada por valores extremos, a mediana oferece uma perspectiva robusta sobre o “centro” de um conjunto de dados, tornando-se indispensável em diversos contextos analíticos.]]></summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://images.unsplash.com/photo-1635070041078-e363dbe005cb?ixlib=rb-4.0.3&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&amp;auto=format&amp;fit=crop&amp;w=1000&amp;q=80" /><media:content medium="image" url="https://images.unsplash.com/photo-1635070041078-e363dbe005cb?ixlib=rb-4.0.3&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&amp;auto=format&amp;fit=crop&amp;w=1000&amp;q=80" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">A Moda: História, Conceitos e Aplicações em Estatística</title><link href="https://morrisonkulsenn.github.io/morrison-kulsenn/estat%C3%ADstica%20descritiva/2025/05/10/moda.html" rel="alternate" type="text/html" title="A Moda: História, Conceitos e Aplicações em Estatística" /><published>2025-05-10T14:30:00+00:00</published><updated>2025-05-10T14:30:00+00:00</updated><id>https://morrisonkulsenn.github.io/morrison-kulsenn/estat%C3%ADstica%20descritiva/2025/05/10/moda</id><content type="html" xml:base="https://morrisonkulsenn.github.io/morrison-kulsenn/estat%C3%ADstica%20descritiva/2025/05/10/moda.html"><![CDATA[<p>A moda é uma das três principais medidas de tendência central em estatística, junto com a média e a mediana. Embora seja frequentemente ofuscada por suas contrapartes mais complexas, a moda possui características únicas que a tornam insubstituível em determinados contextos de análise de dados.</p>
+
+<h2 id="origens-históricas">Origens Históricas</h2>
+
+<p>O conceito de moda tem raízes antigas, mas sua formalização como medida estatística é relativamente recente na história da matemática.</p>
+
+<blockquote>
+  <p>🏛️ <strong>O termo “moda”</strong> vem do latim <em>modus</em>, que significa “maneira” ou “método”, refletindo a ideia de um valor que aparece com maior frequência.</p>
+</blockquote>
+
+<p>Enquanto civilizações antigas já trabalhavam com conceitos de média e valores centrais, a moda como conceito estatístico formal começou a ganhar destaque apenas no século XVIII, durante o desenvolvimento da estatística como disciplina científica.</p>
+
+<p>O matemático e astrônomo francês <strong>Pierre-Simon Laplace</strong> (1749-1827) foi um dos primeiros a discutir formalmente o conceito em seus trabalhos sobre teoria da probabilidade. No entanto, foi o estatístico belga <strong>Adolphe Quetelet</strong> (1796-1874), considerado um dos fundadores da estatística moderna, quem popularizou o uso da moda em análises demográficas e sociais.</p>
+
+<p>No século XIX, o matemático britânico <strong>Francis Galton</strong> (1822-1911) expandiu o uso da moda em seus estudos sobre distribuições de frequência, contribuindo para sua aceitação como uma medida estatística fundamental.</p>
+
+<h2 id="definição-formal-e-notação-matemática">Definição Formal e Notação Matemática</h2>
+
+<p>A moda é definida simplesmente como o valor que ocorre com maior frequência em um conjunto de dados. Em notação matemática, podemos representá-la como:</p>
+
+\[\text{Moda} = \text{valor } x_i \text{ tal que } f(x_i) \geq f(x_j) \text{ para todo } j \neq i\]
+
+<p>Onde $f(x)$ representa a frequência de ocorrência do valor $x$.</p>
+
+<p>Diferentemente da média e da mediana, a moda apresenta algumas particularidades:</p>
+
+<ol>
+  <li><strong>Multimodalidade</strong>: Um conjunto de dados pode ter mais de uma moda (bimodal, trimodal, etc.) quando dois ou mais valores ocorrem com a mesma frequência máxima.</li>
+  <li><strong>Aplicabilidade a dados categóricos</strong>: A moda é a única medida de tendência central que pode ser aplicada a dados qualitativos (categóricos).</li>
+  <li><strong>Não é afetada por valores extremos</strong>: Outliers não influenciam o valor da moda.</li>
+</ol>
+
+<h2 id="tipos-de-moda">Tipos de Moda</h2>
+
+<p>Dependendo da distribuição dos dados, podemos classificar conjuntos como:</p>
+
+<ul>
+  <li><strong>Unimodal</strong>: Possui apenas uma moda</li>
+  <li><strong>Bimodal</strong>: Possui duas modas</li>
+  <li><strong>Trimodal</strong>: Possui três modas</li>
+  <li><strong>Multimodal</strong>: Possui mais de três modas</li>
+  <li><strong>Amodal</strong>: Não possui moda (todos os valores ocorrem com a mesma frequência)</li>
+</ul>
+
+<h2 id="aplicações-práticas">Aplicações Práticas</h2>
+
+<p>A moda é particularmente útil em diversos contextos:</p>
+
+<h3 id="1-análise-de-dados-categóricos">1. Análise de Dados Categóricos</h3>
+
+<p>Em pesquisas de opinião, estudos de mercado e análises sociológicas, a moda permite identificar a categoria mais comum (por exemplo, a cor preferida, o partido político mais votado, ou o produto mais vendido).</p>
+
+<h3 id="2-controle-de-qualidade">2. Controle de Qualidade</h3>
+
+<p>Na indústria, a moda pode identificar os defeitos mais comuns em uma linha de produção, permitindo intervenções direcionadas para melhorar a qualidade.</p>
+
+<h3 id="3-demografia-e-ciências-sociais">3. Demografia e Ciências Sociais</h3>
+
+<p>A moda é utilizada para identificar características predominantes em populações, como faixa etária mais comum, nível educacional predominante, etc.</p>
+
+<h3 id="4-análise-de-dados-assimétricos">4. Análise de Dados Assimétricos</h3>
+
+<p>Em distribuições fortemente assimétricas, a moda pode fornecer informações valiosas que a média e a mediana não capturam adequadamente.</p>
+
+<h2 id="vantagens-e-limitações">Vantagens e Limitações</h2>
+
+<h3 id="vantagens">Vantagens:</h3>
+<ul>
+  <li>Fácil de entender e calcular</li>
+  <li>Aplicável a dados qualitativos</li>
+  <li>Não é afetada por valores extremos</li>
+  <li>Representa o valor “mais típico” ou “mais popular”</li>
+</ul>
+
+<h3 id="limitações">Limitações:</h3>
+<ul>
+  <li>Pode não existir (dados amodais) ou não ser única (dados multimodais)</li>
+  <li>Não considera todos os valores do conjunto de dados</li>
+  <li>Pode ser instável em amostras pequenas</li>
+</ul>
+
+<h2 id="calculando-a-moda-em-julia">Calculando a Moda em Julia</h2>
+
+<p>Julia é uma linguagem de programação poderosa para análise estatística. Vamos explorar diferentes maneiras de calcular a moda:</p>
+
+<h3 id="usando-o-pacote-statistics">Usando o Pacote Statistics</h3>
+
+<div class="language-julia highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+</pre></td><td class="rouge-code"><pre><span class="k">using</span> <span class="n">Statistics</span>
+
+<span class="c"># Dados de exemplo</span>
+<span class="n">dados</span> <span class="o">=</span> <span class="x">[</span><span class="mi">2</span><span class="x">,</span> <span class="mi">3</span><span class="x">,</span> <span class="mi">3</span><span class="x">,</span> <span class="mi">4</span><span class="x">,</span> <span class="mi">5</span><span class="x">,</span> <span class="mi">5</span><span class="x">,</span> <span class="mi">5</span><span class="x">,</span> <span class="mi">6</span><span class="x">,</span> <span class="mi">6</span><span class="x">,</span> <span class="mi">7</span><span class="x">]</span>
+
+<span class="c"># Função para encontrar a moda</span>
+<span class="k">function</span><span class="nf"> moda</span><span class="x">(</span><span class="n">x</span><span class="x">)</span>
+    <span class="c"># Cria um dicionário para contar a frequência de cada valor</span>
+    <span class="n">freq</span> <span class="o">=</span> <span class="kt">Dict</span><span class="x">{</span><span class="n">eltype</span><span class="x">(</span><span class="n">x</span><span class="x">),</span> <span class="kt">Int</span><span class="x">}()</span>
+    <span class="k">for</span> <span class="n">val</span> <span class="k">in</span> <span class="n">x</span>
+        <span class="n">freq</span><span class="x">[</span><span class="n">val</span><span class="x">]</span> <span class="o">=</span> <span class="n">get</span><span class="x">(</span><span class="n">freq</span><span class="x">,</span> <span class="n">val</span><span class="x">,</span> <span class="mi">0</span><span class="x">)</span> <span class="o">+</span> <span class="mi">1</span>
+    <span class="k">end</span>
+    
+    <span class="c"># Encontra o valor com maior frequência</span>
+    <span class="n">max_freq</span> <span class="o">=</span> <span class="n">maximum</span><span class="x">(</span><span class="n">values</span><span class="x">(</span><span class="n">freq</span><span class="x">))</span>
+    <span class="k">return</span> <span class="x">[</span><span class="n">k</span> <span class="k">for</span> <span class="x">(</span><span class="n">k</span><span class="x">,</span> <span class="n">v</span><span class="x">)</span> <span class="k">in</span> <span class="n">freq</span> <span class="k">if</span> <span class="n">v</span> <span class="o">==</span> <span class="n">max_freq</span><span class="x">]</span>
+<span class="k">end</span>
+
+<span class="c"># Calcula a moda</span>
+<span class="n">resultado</span> <span class="o">=</span> <span class="n">moda</span><span class="x">(</span><span class="n">dados</span><span class="x">)</span>
+<span class="n">println</span><span class="x">(</span><span class="s">"Moda: </span><span class="si">$</span><span class="s">resultado"</span><span class="x">)</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<h3 id="usando-o-pacote-statsbase">Usando o Pacote StatsBase</h3>
+
+<p>O pacote <code class="language-plaintext highlighter-rouge">StatsBase</code> oferece funções específicas para cálculos estatísticos:</p>
+
+<div class="language-julia highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+</pre></td><td class="rouge-code"><pre><span class="k">using</span> <span class="n">StatsBase</span>
+
+<span class="c"># Dados de exemplo</span>
+<span class="n">dados</span> <span class="o">=</span> <span class="x">[</span><span class="mi">2</span><span class="x">,</span> <span class="mi">3</span><span class="x">,</span> <span class="mi">3</span><span class="x">,</span> <span class="mi">4</span><span class="x">,</span> <span class="mi">5</span><span class="x">,</span> <span class="mi">5</span><span class="x">,</span> <span class="mi">5</span><span class="x">,</span> <span class="mi">6</span><span class="x">,</span> <span class="mi">6</span><span class="x">,</span> <span class="mi">7</span><span class="x">]</span>
+
+<span class="c"># Calcula a moda usando StatsBase</span>
+<span class="n">resultado</span> <span class="o">=</span> <span class="n">mode</span><span class="x">(</span><span class="n">dados</span><span class="x">)</span>
+<span class="n">println</span><span class="x">(</span><span class="s">"Moda: </span><span class="si">$</span><span class="s">resultado"</span><span class="x">)</span>
+
+<span class="c"># Para dados multimodais</span>
+<span class="n">resultado_multi</span> <span class="o">=</span> <span class="n">modes</span><span class="x">(</span><span class="n">dados</span><span class="x">)</span>
+<span class="n">println</span><span class="x">(</span><span class="s">"Todas as modas: </span><span class="si">$</span><span class="s">resultado_multi"</span><span class="x">)</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<h3 id="visualizando-a-moda-em-gráficos">Visualizando a Moda em Gráficos</h3>
+
+<p>Podemos visualizar a moda em um histograma para melhor compreensão:</p>
+
+<div class="language-julia highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+</pre></td><td class="rouge-code"><pre><span class="k">using</span> <span class="n">Plots</span>
+<span class="k">using</span> <span class="n">StatsBase</span>
+
+<span class="c"># Dados de exemplo</span>
+<span class="n">dados</span> <span class="o">=</span> <span class="n">rand</span><span class="x">(</span><span class="mi">1</span><span class="o">:</span><span class="mi">10</span><span class="x">,</span> <span class="mi">100</span><span class="x">)</span>  <span class="c"># 100 números aleatórios entre 1 e 10</span>
+
+<span class="c"># Calcula a moda</span>
+<span class="n">m</span> <span class="o">=</span> <span class="n">mode</span><span class="x">(</span><span class="n">dados</span><span class="x">)</span>
+
+<span class="c"># Cria um histograma</span>
+<span class="n">histogram</span><span class="x">(</span><span class="n">dados</span><span class="x">,</span> 
+    <span class="n">bins</span><span class="o">=</span><span class="mi">10</span><span class="x">,</span> 
+    <span class="n">title</span><span class="o">=</span><span class="s">"Histograma com Moda"</span><span class="x">,</span> 
+    <span class="n">xlabel</span><span class="o">=</span><span class="s">"Valor"</span><span class="x">,</span> 
+    <span class="n">ylabel</span><span class="o">=</span><span class="s">"Frequência"</span><span class="x">,</span>
+    <span class="n">legend</span><span class="o">=</span><span class="nb">false</span><span class="x">)</span>
+
+<span class="c"># Adiciona uma linha vertical na posição da moda</span>
+<span class="n">vline!</span><span class="x">([</span><span class="n">m</span><span class="x">],</span> <span class="n">color</span><span class="o">=:</span><span class="n">red</span><span class="x">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="x">,</span> <span class="n">label</span><span class="o">=</span><span class="s">"Moda (</span><span class="si">$</span><span class="s">m)"</span><span class="x">)</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<h2 id="dicas-para-trabalhar-com-a-moda">Dicas para Trabalhar com a Moda</h2>
+
+<ol>
+  <li>
+    <p><strong>Verifique a multimodalidade</strong>: Sempre verifique se seus dados têm mais de uma moda, pois isso pode revelar padrões interessantes.</p>
+  </li>
+  <li>
+    <p><strong>Combine com outras medidas</strong>: A moda é mais informativa quando analisada em conjunto com a média e a mediana. A relação entre essas três medidas pode revelar características importantes da distribuição.</p>
+  </li>
+  <li>
+    <p><strong>Atenção aos dados discretizados</strong>: A moda pode ser sensível à forma como os dados são agrupados ou discretizados. Diferentes tamanhos de bins em histogramas podem resultar em modas diferentes.</p>
+  </li>
+  <li>
+    <p><strong>Use a moda para dados categóricos</strong>: Lembre-se que a moda é a única medida de tendência central aplicável a dados qualitativos.</p>
+  </li>
+  <li>
+    <p><strong>Considere a densidade modal</strong>: Em distribuições contínuas, o conceito de moda é estendido para o ponto de máxima densidade de probabilidade.</p>
+  </li>
+</ol>
+
+<h2 id="conclusão">Conclusão</h2>
+
+<p>A moda, apesar de sua simplicidade conceitual, é uma ferramenta estatística poderosa com aplicações únicas. Sua capacidade de identificar o valor mais frequente em um conjunto de dados a torna especialmente valiosa em contextos onde a “tipicidade” ou “popularidade” são mais relevantes que médias ou medianas.</p>
+
+<p>Em um mundo cada vez mais orientado por dados, compreender as nuances das diferentes medidas de tendência central, incluindo a moda, é fundamental para extrair insights significativos e tomar decisões informadas.</p>
+
+<h2 id="referências">Referências</h2>
+
+<ol>
+  <li>Agresti, A., &amp; Finlay, B. (2009). <em>Statistical Methods for the Social Sciences</em> (4th ed.). Pearson.</li>
+  <li>Bezerra, F. (2019). <em>Introdução à Estatística</em>. EDUSP.</li>
+  <li>Larson, R., &amp; Farber, B. (2015). <em>Elementary Statistics: Picturing the World</em> (6th ed.). Pearson.</li>
+  <li>Morettin, P. A., &amp; Bussab, W. O. (2017). <em>Estatística Básica</em> (9ª ed.). Saraiva.</li>
+  <li>Triola, M. F. (2017). <em>Introdução à Estatística</em> (12ª ed.). LTC.</li>
+</ol>]]></content><author><name>Dante Bertuzzi</name></author><category term="ESTATÍSTICA DESCRITIVA" /><category term="moda" /><category term="medidas-de-tendencia-central" /><category term="estatistica-descritiva" /><summary type="html"><![CDATA[A moda é uma das três principais medidas de tendência central em estatística, junto com a média e a mediana. Embora seja frequentemente ofuscada por suas contrapartes mais complexas, a moda possui características únicas que a tornam insubstituível em determinados contextos de análise de dados.]]></summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://images.unsplash.com/photo-1635070041078-e363dbe005cb?ixlib=rb-4.0.3&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&amp;auto=format&amp;fit=crop&amp;w=1000&amp;q=80" /><media:content medium="image" url="https://images.unsplash.com/photo-1635070041078-e363dbe005cb?ixlib=rb-4.0.3&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&amp;auto=format&amp;fit=crop&amp;w=1000&amp;q=80" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">A Média Aritmética: História, Conceitos e Aplicações</title><link href="https://morrisonkulsenn.github.io/morrison-kulsenn/estat%C3%ADstica%20descritiva/2025/05/10/media-aritmetica.html" rel="alternate" type="text/html" title="A Média Aritmética: História, Conceitos e Aplicações" /><published>2025-05-10T09:40:00+00:00</published><updated>2025-05-10T09:40:00+00:00</updated><id>https://morrisonkulsenn.github.io/morrison-kulsenn/estat%C3%ADstica%20descritiva/2025/05/10/media-aritmetica</id><content type="html" xml:base="https://morrisonkulsenn.github.io/morrison-kulsenn/estat%C3%ADstica%20descritiva/2025/05/10/media-aritmetica.html"><![CDATA[<p>A média aritmética é provavelmente a medida estatística mais conhecida e utilizada no mundo. Presente em boletins escolares, relatórios financeiros e pesquisas científicas, este conceito aparentemente simples carrega uma rica história e fundamentação matemática que merece ser explorada.</p>
+
+<h2 id="origens-históricas">Origens Históricas</h2>
+
+<p>O conceito de média tem raízes que remontam às antigas civilizações. Os babilônios e egípcios já utilizavam formas primitivas de médias em seus cálculos astronômicos e agrícolas há mais de 4.000 anos. No entanto, foi na Grécia Antiga que o conceito começou a ganhar formalização matemática.</p>
+
+<blockquote>
+  <p>🏛️ <strong>Pitágoras e seus seguidores (século VI a.C.)</strong> já trabalhavam com médias em suas investigações sobre harmonia musical e proporções numéricas.</p>
+</blockquote>
+
+<p>O astrônomo grego Hiparco de Niceia (190-120 a.C.) é frequentemente creditado como um dos primeiros a utilizar sistematicamente a média aritmética em suas observações astronômicas para reduzir erros de medição.</p>
+
+<p>No mundo árabe medieval, matemáticos como Al-Biruni (973-1048) e Al-Kashi (1380-1429) refinaram os métodos de cálculo de médias, aplicando-os a problemas astronômicos e comerciais.</p>
+
+<h2 id="definição-formal-e-notação-matemática">Definição Formal e Notação Matemática</h2>
+
+<p>A média aritmética de um conjunto de valores é a soma de todos os valores dividida pelo número total de valores.</p>
+
+<p>Para um conjunto de $n$ valores $x_1, x_2, …, x_n$, a média aritmética ($\bar{x}$) é definida pela fórmula:</p>
+
+\[\bar{x} = \frac{1}{n}\sum_{i=1}^{n} x_i = \frac{x_1 + x_2 + ... + x_n}{n}\]
+
+<p>Em notação de somatório, esta expressão se torna mais compacta:</p>
+
+\[\bar{x} = \frac{1}{n}\sum_{i=1}^{n} x_i\]
+
+<h2 id="propriedades-matemáticas-importantes">Propriedades Matemáticas Importantes</h2>
+
+<p>A média aritmética possui diversas propriedades matemáticas que a tornam especialmente útil:</p>
+
+<ol>
+  <li>
+    <p><strong>Equilíbrio</strong>: A soma dos desvios em relação à média é sempre zero: $\sum_{i=1}^{n} (x_i - \bar{x}) = 0$</p>
+  </li>
+  <li>
+    <p><strong>Minimização</strong>: A média minimiza a soma dos quadrados dos desvios: $\sum_{i=1}^{n} (x_i - \bar{x})^2 \leq \sum_{i=1}^{n} (x_i - c)^2$ para qualquer valor $c$</p>
+  </li>
+  <li>
+    <p><strong>Linearidade</strong>: Para constantes $a$ e $b$: $\overline{ax_i + b} = a\bar{x} + b$</p>
+  </li>
+  <li>
+    <p><strong>Ponto de equilíbrio</strong>: Se imaginarmos cada valor como um peso sobre uma reta numérica, a média representa o ponto de equilíbrio</p>
+  </li>
+</ol>
+
+<h2 id="tipos-de-médias">Tipos de Médias</h2>
+
+<p>Além da média aritmética simples, existem outras variações importantes:</p>
+
+<h3 id="média-ponderada">Média Ponderada</h3>
+
+<p>Quando alguns valores têm maior importância (peso) que outros, utilizamos a média ponderada:</p>
+
+\[\bar{x}_w = \frac{\sum_{i=1}^{n} w_i x_i}{\sum_{i=1}^{n} w_i}\]
+
+<p>Onde $w_i$ representa o peso associado ao valor $x_i$.</p>
+
+<h3 id="média-geométrica">Média Geométrica</h3>
+
+<p>Útil para taxas de crescimento e razões, é calculada como:</p>
+
+\[\bar{x}_g = \sqrt[n]{x_1 \times x_2 \times ... \times x_n} = \left(\prod_{i=1}^{n} x_i\right)^{1/n}\]
+
+<h3 id="média-harmônica">Média Harmônica</h3>
+
+<p>Ideal para médias de taxas e velocidades:</p>
+
+\[\bar{x}_h = \frac{n}{\sum_{i=1}^{n} \frac{1}{x_i}}\]
+
+<h2 id="limitações-e-considerações">Limitações e Considerações</h2>
+
+<p>Apesar de sua utilidade, a média aritmética apresenta limitações importantes:</p>
+
+<ul>
+  <li><strong>Sensibilidade a valores extremos (outliers)</strong>: Um único valor muito discrepante pode distorcer significativamente a média</li>
+  <li><strong>Não representa necessariamente um valor “típico”</strong>: Em distribuições assimétricas, a média pode não representar adequadamente o centro dos dados</li>
+  <li><strong>Não aplicável a dados categóricos</strong>: A média só faz sentido para dados numéricos</li>
+</ul>
+
+<blockquote>
+  <p>⚠️ <strong>Exemplo clássico</strong>: Se Bill Gates entrar em uma sala com 10 pessoas de classe média, a média de riqueza aumentará drasticamente, mas a riqueza mediana permanecerá praticamente inalterada.</p>
+</blockquote>
+
+<h2 id="aplicações-práticas">Aplicações Práticas</h2>
+
+<p>A média aritmética encontra aplicações em praticamente todos os campos do conhecimento:</p>
+
+<ul>
+  <li><strong>Educação</strong>: Cálculo de notas e desempenho escolar</li>
+  <li><strong>Economia</strong>: Indicadores como PIB per capita, renda média, etc.</li>
+  <li><strong>Ciências</strong>: Análise de experimentos e medições</li>
+  <li><strong>Finanças</strong>: Retorno médio de investimentos, preços médios</li>
+  <li><strong>Engenharia</strong>: Cálculos de resistência, consumo médio, etc.</li>
+</ul>
+
+<h2 id="curiosidades-históricas">Curiosidades Históricas</h2>
+
+<p>O matemático francês Abraham de Moivre (1667-1754) foi um dos primeiros a estudar sistematicamente a distribuição das médias amostrais, lançando as bases para o que viria a ser o Teorema do Limite Central.</p>
+
+<p>Carl Friedrich Gauss (1777-1855) demonstrou que, sob certas condições, a média aritmética é o estimador de máxima verossimilhança para a média populacional, consolidando seu papel fundamental na estatística moderna.</p>
+
+<h2 id="implementação-em-julia">Implementação em Julia</h2>
+
+<p>Julia é uma linguagem de programação moderna, de alto desempenho e especialmente adequada para computação científica e análise de dados. Vamos explorar como calcular a média em Julia e algumas de suas aplicações.</p>
+
+<h3 id="cálculo-básico-da-média">Cálculo Básico da Média</h3>
+
+<p>Julia oferece várias maneiras de calcular a média:</p>
+
+<div class="language-julia highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+</pre></td><td class="rouge-code"><pre><span class="c"># Método 1: Implementação manual da fórmula</span>
+<span class="k">function</span><span class="nf"> media_manual</span><span class="x">(</span><span class="n">x</span><span class="x">)</span>
+    <span class="k">return</span> <span class="n">sum</span><span class="x">(</span><span class="n">x</span><span class="x">)</span> <span class="o">/</span> <span class="n">length</span><span class="x">(</span><span class="n">x</span><span class="x">)</span>
+<span class="k">end</span>
+
+<span class="c"># Método 2: Usando a função mean() da biblioteca Statistics</span>
+<span class="k">using</span> <span class="n">Statistics</span>
+
+<span class="c"># Exemplo de uso</span>
+<span class="n">dados</span> <span class="o">=</span> <span class="x">[</span><span class="mi">12</span><span class="x">,</span> <span class="mi">15</span><span class="x">,</span> <span class="mi">18</span><span class="x">,</span> <span class="mi">22</span><span class="x">,</span> <span class="mi">25</span><span class="x">,</span> <span class="mi">30</span><span class="x">]</span>
+
+<span class="n">println</span><span class="x">(</span><span class="s">"Média (manual): "</span><span class="x">,</span> <span class="n">media_manual</span><span class="x">(</span><span class="n">dados</span><span class="x">))</span>
+<span class="n">println</span><span class="x">(</span><span class="s">"Média (Statistics): "</span><span class="x">,</span> <span class="n">mean</span><span class="x">(</span><span class="n">dados</span><span class="x">))</span>
+
+<span class="c"># Saída:</span>
+<span class="c"># Média (manual): 20.333333333333332</span>
+<span class="c"># Média (Statistics): 20.333333333333332</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<h3 id="média-ponderada-em-julia">Média Ponderada em Julia</h3>
+
+<p>Para calcular a média ponderada, podemos usar a função <code class="language-plaintext highlighter-rouge">mean</code> com pesos:</p>
+
+<div class="language-julia highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+</pre></td><td class="rouge-code"><pre><span class="k">using</span> <span class="n">Statistics</span><span class="x">,</span> <span class="n">StatsBase</span>
+
+<span class="c"># Dados e seus respectivos pesos</span>
+<span class="n">dados</span> <span class="o">=</span> <span class="x">[</span><span class="mi">85</span><span class="x">,</span> <span class="mi">90</span><span class="x">,</span> <span class="mi">78</span><span class="x">,</span> <span class="mi">92</span><span class="x">,</span> <span class="mi">88</span><span class="x">]</span>
+<span class="n">pesos</span> <span class="o">=</span> <span class="x">[</span><span class="mf">0.2</span><span class="x">,</span> <span class="mf">0.3</span><span class="x">,</span> <span class="mf">0.1</span><span class="x">,</span> <span class="mf">0.3</span><span class="x">,</span> <span class="mf">0.1</span><span class="x">]</span>  <span class="c"># Soma dos pesos = 1</span>
+
+<span class="c"># Cálculo da média ponderada</span>
+<span class="n">media_ponderada</span> <span class="o">=</span> <span class="n">mean</span><span class="x">(</span><span class="n">dados</span><span class="x">,</span> <span class="n">weights</span><span class="x">(</span><span class="n">pesos</span><span class="x">))</span>
+<span class="n">println</span><span class="x">(</span><span class="s">"Média ponderada: "</span><span class="x">,</span> <span class="n">media_ponderada</span><span class="x">)</span>
+
+<span class="c"># Saída:</span>
+<span class="c"># Média ponderada: 88.0</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<h3 id="médias-móveis-em-julia">Médias Móveis em Julia</h3>
+
+<p>As médias móveis são amplamente utilizadas na análise de séries temporais:</p>
+
+<div class="language-julia highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+</pre></td><td class="rouge-code"><pre><span class="k">using</span> <span class="n">Statistics</span><span class="x">,</span> <span class="n">Plots</span>
+
+<span class="c"># Gerar dados de exemplo (série temporal com ruído)</span>
+<span class="n">t</span> <span class="o">=</span> <span class="mi">1</span><span class="o">:</span><span class="mi">100</span>
+<span class="n">sinal</span> <span class="o">=</span> <span class="n">sin</span><span class="o">.</span><span class="x">(</span><span class="n">t</span> <span class="o">/</span> <span class="mi">5</span><span class="x">)</span> <span class="o">.+</span> <span class="mf">0.5</span> <span class="o">.*</span> <span class="n">randn</span><span class="x">(</span><span class="mi">100</span><span class="x">)</span>
+
+<span class="c"># Calcular média móvel com janela de 10 pontos</span>
+<span class="k">function</span><span class="nf"> media_movel</span><span class="x">(</span><span class="n">x</span><span class="x">,</span> <span class="n">janela</span><span class="x">)</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="n">length</span><span class="x">(</span><span class="n">x</span><span class="x">)</span>
+    <span class="n">resultado</span> <span class="o">=</span> <span class="n">zeros</span><span class="x">(</span><span class="n">n</span> <span class="o">-</span> <span class="n">janela</span> <span class="o">+</span> <span class="mi">1</span><span class="x">)</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="k">in</span> <span class="mi">1</span><span class="o">:</span><span class="x">(</span><span class="n">n</span> <span class="o">-</span> <span class="n">janela</span> <span class="o">+</span> <span class="mi">1</span><span class="x">)</span>
+        <span class="n">resultado</span><span class="x">[</span><span class="n">i</span><span class="x">]</span> <span class="o">=</span> <span class="n">mean</span><span class="x">(</span><span class="n">x</span><span class="x">[</span><span class="n">i</span><span class="o">:</span><span class="x">(</span><span class="n">i</span><span class="o">+</span><span class="n">janela</span><span class="o">-</span><span class="mi">1</span><span class="x">)])</span>
+    <span class="k">end</span>
+    <span class="k">return</span> <span class="n">resultado</span>
+<span class="k">end</span>
+
+<span class="n">mm</span> <span class="o">=</span> <span class="n">media_movel</span><span class="x">(</span><span class="n">sinal</span><span class="x">,</span> <span class="mi">10</span><span class="x">)</span>
+
+<span class="c"># Visualização</span>
+<span class="n">plot</span><span class="x">(</span><span class="n">t</span><span class="x">,</span> <span class="n">sinal</span><span class="x">,</span> <span class="n">label</span><span class="o">=</span><span class="s">"Dados originais"</span><span class="x">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="x">)</span>
+<span class="n">plot!</span><span class="x">(</span><span class="n">t</span><span class="x">[</span><span class="mi">5</span><span class="o">:</span><span class="mi">95</span><span class="x">],</span> <span class="n">mm</span><span class="x">,</span> <span class="n">label</span><span class="o">=</span><span class="s">"Média móvel (janela=10)"</span><span class="x">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="x">)</span>
+<span class="n">title!</span><span class="x">(</span><span class="s">"Média Móvel para Suavização de Dados"</span><span class="x">)</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<h2 id="aplicações-avançadas-da-média">Aplicações Avançadas da Média</h2>
+
+<h3 id="correlação-e-covariância">Correlação e Covariância</h3>
+
+<p>A média é fundamental no cálculo da covariância e correlação entre variáveis. A fórmula da covariância entre duas variáveis X e Y é:</p>
+
+\[\text{Cov}(X,Y) = \frac{1}{n}\sum_{i=1}^{n} (x_i - \bar{x})(y_i - \bar{y})\]
+
+<p>E o coeficiente de correlação de Pearson é:</p>
+
+\[r = \frac{\text{Cov}(X,Y)}{\sigma_X \sigma_Y}\]
+
+<p>Onde $\sigma_X$ e $\sigma_Y$ são os desvios padrão de X e Y.</p>
+
+<p>Implementação em Julia:</p>
+
+<div class="language-julia highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+</pre></td><td class="rouge-code"><pre><span class="k">using</span> <span class="n">Statistics</span>
+
+<span class="c"># Dados de exemplo</span>
+<span class="n">x</span> <span class="o">=</span> <span class="x">[</span><span class="mi">15</span><span class="x">,</span> <span class="mi">18</span><span class="x">,</span> <span class="mi">21</span><span class="x">,</span> <span class="mi">24</span><span class="x">,</span> <span class="mi">27</span><span class="x">]</span>
+<span class="n">y</span> <span class="o">=</span> <span class="x">[</span><span class="mi">25</span><span class="x">,</span> <span class="mi">27</span><span class="x">,</span> <span class="mi">29</span><span class="x">,</span> <span class="mi">30</span><span class="x">,</span> <span class="mi">32</span><span class="x">]</span>
+
+<span class="c"># Cálculo manual da covariância</span>
+<span class="k">function</span><span class="nf"> covariancia_manual</span><span class="x">(</span><span class="n">x</span><span class="x">,</span> <span class="n">y</span><span class="x">)</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="n">length</span><span class="x">(</span><span class="n">x</span><span class="x">)</span>
+    <span class="n">media_x</span> <span class="o">=</span> <span class="n">mean</span><span class="x">(</span><span class="n">x</span><span class="x">)</span>
+    <span class="n">media_y</span> <span class="o">=</span> <span class="n">mean</span><span class="x">(</span><span class="n">y</span><span class="x">)</span>
+    <span class="n">soma</span> <span class="o">=</span> <span class="n">sum</span><span class="x">((</span><span class="n">x</span> <span class="o">.-</span> <span class="n">media_x</span><span class="x">)</span> <span class="o">.*</span> <span class="x">(</span><span class="n">y</span> <span class="o">.-</span> <span class="n">media_y</span><span class="x">))</span>
+    <span class="k">return</span> <span class="n">soma</span> <span class="o">/</span> <span class="n">n</span>
+<span class="k">end</span>
+
+<span class="c"># Cálculo manual da correlação</span>
+<span class="k">function</span><span class="nf"> correlacao_manual</span><span class="x">(</span><span class="n">x</span><span class="x">,</span> <span class="n">y</span><span class="x">)</span>
+    <span class="n">cov_xy</span> <span class="o">=</span> <span class="n">covariancia_manual</span><span class="x">(</span><span class="n">x</span><span class="x">,</span> <span class="n">y</span><span class="x">)</span>
+    <span class="n">std_x</span> <span class="o">=</span> <span class="n">std</span><span class="x">(</span><span class="n">x</span><span class="x">)</span>
+    <span class="n">std_y</span> <span class="o">=</span> <span class="n">std</span><span class="x">(</span><span class="n">y</span><span class="x">)</span>
+    <span class="k">return</span> <span class="n">cov_xy</span> <span class="o">/</span> <span class="x">(</span><span class="n">std_x</span> <span class="o">*</span> <span class="n">std_y</span><span class="x">)</span>
+<span class="k">end</span>
+
+<span class="c"># Usando funções integradas</span>
+<span class="n">cov_xy</span> <span class="o">=</span> <span class="n">cov</span><span class="x">(</span><span class="n">x</span><span class="x">,</span> <span class="n">y</span><span class="x">)</span>
+<span class="n">corr_xy</span> <span class="o">=</span> <span class="n">cor</span><span class="x">(</span><span class="n">x</span><span class="x">,</span> <span class="n">y</span><span class="x">)</span>
+
+<span class="n">println</span><span class="x">(</span><span class="s">"Covariância manual: "</span><span class="x">,</span> <span class="n">covariancia_manual</span><span class="x">(</span><span class="n">x</span><span class="x">,</span> <span class="n">y</span><span class="x">))</span>
+<span class="n">println</span><span class="x">(</span><span class="s">"Covariância (função): "</span><span class="x">,</span> <span class="n">cov_xy</span><span class="x">)</span>
+<span class="n">println</span><span class="x">(</span><span class="s">"Correlação manual: "</span><span class="x">,</span> <span class="n">correlacao_manual</span><span class="x">(</span><span class="n">x</span><span class="x">,</span> <span class="n">y</span><span class="x">))</span>
+<span class="n">println</span><span class="x">(</span><span class="s">"Correlação (função): "</span><span class="x">,</span> <span class="n">corr_xy</span><span class="x">)</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<h3 id="regressão-linear">Regressão Linear</h3>
+
+<p>A média é essencial na regressão linear. Os coeficientes da reta de regressão $y = \beta_0 + \beta_1 x$ são calculados usando:</p>
+
+\[\beta_1 = \frac{\sum_{i=1}^{n} (x_i - \bar{x})(y_i - \bar{y})}{\sum_{i=1}^{n} (x_i - \bar{x})^2}\]
+
+\[\beta_0 = \bar{y} - \beta_1 \bar{x}\]
+
+<p>Implementação em Julia:</p>
+
+<div class="language-julia highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+</pre></td><td class="rouge-code"><pre><span class="k">using</span> <span class="n">Statistics</span><span class="x">,</span> <span class="n">GLM</span><span class="x">,</span> <span class="n">DataFrames</span><span class="x">,</span> <span class="n">Plots</span>
+
+<span class="c"># Dados de exemplo</span>
+<span class="n">x</span> <span class="o">=</span> <span class="x">[</span><span class="mi">1</span><span class="x">,</span> <span class="mi">2</span><span class="x">,</span> <span class="mi">3</span><span class="x">,</span> <span class="mi">4</span><span class="x">,</span> <span class="mi">5</span><span class="x">,</span> <span class="mi">6</span><span class="x">,</span> <span class="mi">7</span><span class="x">,</span> <span class="mi">8</span><span class="x">,</span> <span class="mi">9</span><span class="x">,</span> <span class="mi">10</span><span class="x">]</span>
+<span class="n">y</span> <span class="o">=</span> <span class="x">[</span><span class="mi">2</span><span class="x">,</span> <span class="mi">3</span><span class="x">,</span> <span class="mi">5</span><span class="x">,</span> <span class="mi">4</span><span class="x">,</span> <span class="mi">6</span><span class="x">,</span> <span class="mi">8</span><span class="x">,</span> <span class="mi">7</span><span class="x">,</span> <span class="mi">9</span><span class="x">,</span> <span class="mi">10</span><span class="x">,</span> <span class="mi">12</span><span class="x">]</span>
+
+<span class="c"># Regressão linear manual</span>
+<span class="k">function</span><span class="nf"> regressao_manual</span><span class="x">(</span><span class="n">x</span><span class="x">,</span> <span class="n">y</span><span class="x">)</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="n">length</span><span class="x">(</span><span class="n">x</span><span class="x">)</span>
+    <span class="n">media_x</span> <span class="o">=</span> <span class="n">mean</span><span class="x">(</span><span class="n">x</span><span class="x">)</span>
+    <span class="n">media_y</span> <span class="o">=</span> <span class="n">mean</span><span class="x">(</span><span class="n">y</span><span class="x">)</span>
+    
+    <span class="c"># Calcular beta_1 (coeficiente angular)</span>
+    <span class="n">numerador</span> <span class="o">=</span> <span class="n">sum</span><span class="x">((</span><span class="n">x</span> <span class="o">.-</span> <span class="n">media_x</span><span class="x">)</span> <span class="o">.*</span> <span class="x">(</span><span class="n">y</span> <span class="o">.-</span> <span class="n">media_y</span><span class="x">))</span>
+    <span class="n">denominador</span> <span class="o">=</span> <span class="n">sum</span><span class="x">((</span><span class="n">x</span> <span class="o">.-</span> <span class="n">media_x</span><span class="x">)</span><span class="o">.^</span><span class="mi">2</span><span class="x">)</span>
+    <span class="n">beta_1</span> <span class="o">=</span> <span class="n">numerador</span> <span class="o">/</span> <span class="n">denominador</span>
+    
+    <span class="c"># Calcular beta_0 (intercepto)</span>
+    <span class="n">beta_0</span> <span class="o">=</span> <span class="n">media_y</span> <span class="o">-</span> <span class="n">beta_1</span> <span class="o">*</span> <span class="n">media_x</span>
+    
+    <span class="k">return</span> <span class="n">beta_0</span><span class="x">,</span> <span class="n">beta_1</span>
+<span class="k">end</span>
+
+<span class="c"># Usando a biblioteca GLM</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">DataFrame</span><span class="x">(</span><span class="n">X</span> <span class="o">=</span> <span class="n">x</span><span class="x">,</span> <span class="n">Y</span> <span class="o">=</span> <span class="n">y</span><span class="x">)</span>
+<span class="n">modelo</span> <span class="o">=</span> <span class="n">lm</span><span class="x">(</span><span class="nd">@formula</span><span class="x">(</span><span class="n">Y</span> <span class="o">~</span> <span class="n">X</span><span class="x">),</span> <span class="n">df</span><span class="x">)</span>
+
+<span class="c"># Comparar resultados</span>
+<span class="n">beta_0</span><span class="x">,</span> <span class="n">beta_1</span> <span class="o">=</span> <span class="n">regressao_manual</span><span class="x">(</span><span class="n">x</span><span class="x">,</span> <span class="n">y</span><span class="x">)</span>
+<span class="n">println</span><span class="x">(</span><span class="s">"Coeficientes manuais: intercepto = "</span><span class="x">,</span> <span class="n">beta_0</span><span class="x">,</span> <span class="s">", inclinação = "</span><span class="x">,</span> <span class="n">beta_1</span><span class="x">)</span>
+<span class="n">println</span><span class="x">(</span><span class="s">"Coeficientes GLM: "</span><span class="x">,</span> <span class="n">coef</span><span class="x">(</span><span class="n">modelo</span><span class="x">))</span>
+
+<span class="c"># Visualização</span>
+<span class="n">scatter</span><span class="x">(</span><span class="n">x</span><span class="x">,</span> <span class="n">y</span><span class="x">,</span> <span class="n">label</span><span class="o">=</span><span class="s">"Dados"</span><span class="x">)</span>
+<span class="n">plot!</span><span class="x">(</span><span class="n">x</span><span class="x">,</span> <span class="n">beta_0</span> <span class="o">.+</span> <span class="n">beta_1</span> <span class="o">.*</span> <span class="n">x</span><span class="x">,</span> <span class="n">label</span><span class="o">=</span><span class="s">"Reta de regressão"</span><span class="x">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="x">)</span>
+<span class="n">title!</span><span class="x">(</span><span class="s">"Regressão Linear"</span><span class="x">)</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<h3 id="detecção-de-anomalias">Detecção de Anomalias</h3>
+
+<p>A média é frequentemente usada na detecção de anomalias, como no método Z-score:</p>
+
+\[Z = \frac{x - \bar{x}}{\sigma}\]
+
+<table>
+  <tbody>
+    <tr>
+      <td>Onde valores com</td>
+      <td>Z</td>
+      <td>&gt; 3 são geralmente considerados outliers.</td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="language-julia highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+</pre></td><td class="rouge-code"><pre><span class="k">using</span> <span class="n">Statistics</span><span class="x">,</span> <span class="n">Plots</span>
+
+<span class="c"># Dados com outliers</span>
+<span class="n">dados</span> <span class="o">=</span> <span class="x">[</span><span class="mi">42</span><span class="x">,</span> <span class="mi">45</span><span class="x">,</span> <span class="mi">48</span><span class="x">,</span> <span class="mi">47</span><span class="x">,</span> <span class="mi">43</span><span class="x">,</span> <span class="mi">44</span><span class="x">,</span> <span class="mi">46</span><span class="x">,</span> <span class="mi">101</span><span class="x">,</span> <span class="mi">41</span><span class="x">,</span> <span class="mi">49</span><span class="x">]</span>
+
+<span class="c"># Função para calcular Z-scores</span>
+<span class="k">function</span><span class="nf"> z_scores</span><span class="x">(</span><span class="n">x</span><span class="x">)</span>
+    <span class="n">media</span> <span class="o">=</span> <span class="n">mean</span><span class="x">(</span><span class="n">x</span><span class="x">)</span>
+    <span class="n">desvio</span> <span class="o">=</span> <span class="n">std</span><span class="x">(</span><span class="n">x</span><span class="x">)</span>
+    <span class="k">return</span> <span class="x">(</span><span class="n">x</span> <span class="o">.-</span> <span class="n">media</span><span class="x">)</span> <span class="o">./</span> <span class="n">desvio</span>
+<span class="k">end</span>
+
+<span class="c"># Calcular Z-scores</span>
+<span class="n">z</span> <span class="o">=</span> <span class="n">z_scores</span><span class="x">(</span><span class="n">dados</span><span class="x">)</span>
+
+<span class="c"># Identificar outliers (|Z| &gt; 3)</span>
+<span class="n">outliers</span> <span class="o">=</span> <span class="n">findall</span><span class="x">(</span><span class="n">abs</span><span class="o">.</span><span class="x">(</span><span class="n">z</span><span class="x">)</span> <span class="o">.&gt;</span> <span class="mi">3</span><span class="x">)</span>
+
+<span class="n">println</span><span class="x">(</span><span class="s">"Dados: "</span><span class="x">,</span> <span class="n">dados</span><span class="x">)</span>
+<span class="n">println</span><span class="x">(</span><span class="s">"Z-scores: "</span><span class="x">,</span> <span class="n">z</span><span class="x">)</span>
+<span class="n">println</span><span class="x">(</span><span class="s">"Outliers (índices): "</span><span class="x">,</span> <span class="n">outliers</span><span class="x">)</span>
+<span class="n">println</span><span class="x">(</span><span class="s">"Valores outliers: "</span><span class="x">,</span> <span class="n">dados</span><span class="x">[</span><span class="n">outliers</span><span class="x">])</span>
+
+<span class="c"># Visualização</span>
+<span class="n">scatter</span><span class="x">(</span><span class="mi">1</span><span class="o">:</span><span class="n">length</span><span class="x">(</span><span class="n">dados</span><span class="x">),</span> <span class="n">dados</span><span class="x">,</span> <span class="n">label</span><span class="o">=</span><span class="s">"Dados"</span><span class="x">)</span>
+<span class="n">hline!</span><span class="x">([</span><span class="n">mean</span><span class="x">(</span><span class="n">dados</span><span class="x">)],</span> <span class="n">label</span><span class="o">=</span><span class="s">"Média"</span><span class="x">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="x">)</span>
+<span class="n">scatter!</span><span class="x">(</span><span class="n">outliers</span><span class="x">,</span> <span class="n">dados</span><span class="x">[</span><span class="n">outliers</span><span class="x">],</span> <span class="n">markersize</span><span class="o">=</span><span class="mi">8</span><span class="x">,</span> <span class="n">color</span><span class="o">=:</span><span class="n">red</span><span class="x">,</span> <span class="n">label</span><span class="o">=</span><span class="s">"Outliers"</span><span class="x">)</span>
+<span class="n">title!</span><span class="x">(</span><span class="s">"Detecção de Outliers usando Z-score"</span><span class="x">)</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<h2 id="conclusão">Conclusão</h2>
+
+<p>A média aritmética, apesar de sua aparente simplicidade, é um conceito matemático profundo que revolucionou nossa capacidade de analisar dados e tomar decisões baseadas em evidências. Sua história rica e suas propriedades matemáticas elegantes continuam a fascinar matemáticos e estatísticos, enquanto suas aplicações práticas permeiam praticamente todos os aspectos da vida moderna.</p>
+
+<p>Como vimos, a média é fundamental em conceitos estatísticos avançados como correlação, regressão e detecção de anomalias. Com linguagens modernas como Julia, podemos implementar facilmente esses conceitos e aplicar a média em análises de dados complexas e significativas.</p>]]></content><author><name>Dante Bertuzzi</name></author><category term="ESTATÍSTICA DESCRITIVA" /><category term="media" /><category term="medidas-de-tendencia-central" /><category term="estatistica-descritiva" /><summary type="html"><![CDATA[A média aritmética é provavelmente a medida estatística mais conhecida e utilizada no mundo. Presente em boletins escolares, relatórios financeiros e pesquisas científicas, este conceito aparentemente simples carrega uma rica história e fundamentação matemática que merece ser explorada.]]></summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://images.unsplash.com/photo-1635070041078-e363dbe005cb?ixlib=rb-4.0.3&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&amp;auto=format&amp;fit=crop&amp;w=1000&amp;q=80" /><media:content medium="image" url="https://images.unsplash.com/photo-1635070041078-e363dbe005cb?ixlib=rb-4.0.3&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&amp;auto=format&amp;fit=crop&amp;w=1000&amp;q=80" xmlns:media="http://search.yahoo.com/mrss/" /></entry></feed>

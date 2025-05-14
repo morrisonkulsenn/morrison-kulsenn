@@ -1,0 +1,1718 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <!-- Meta Tags Básicas -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    
+    <!-- Título Otimizado (Jekyll) -->
+    <title>Probabilidades no Jogo da Velha: Uma Análise Matemática | Portal dedicado ao estudo e aplicação de conceitos estatísticos e probabilísticos. Conteúdo educativo sobre análise de dados, inferência estatística e modelos estatísticos.</title>
+    
+    <!-- Meta Description (Jekyll) -->
+    <meta name="description" content="Portal dedicado ao estudo e aplicação de conceitos estatísticos e probabilísticos. Conteúdo educativo sobre análise de dados, inferência estatística e modelos estatísticos.">
+    
+    <!-- Favicon -->
+    <link rel="icon" href="/morrison-kulsenn/assets/images/icons/favicon.png" type="image/png">
+    <link rel="apple-touch-icon" href="/morrison-kulsenn/assets/images/icons/favicon.png">
+    
+    <!-- Canonical URL (Jekyll) -->
+    <link rel="canonical" href="https://morrisonkulsenn.github.io/morrison-kulsenn/probabilidade/2025/05/11/probabilidades-jogo-da-velha-copy.html">
+    
+    <!-- Open Graph / Social Media Meta Tags (Jekyll) -->
+    <meta property="og:title" content="Probabilidades no Jogo da Velha: Uma Análise Matemática">
+    <meta property="og:description" content="Portal dedicado ao estudo e aplicação de conceitos estatísticos e probabilísticos. Conteúdo educativo sobre análise de dados, inferência estatística e modelos estatísticos.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://morrisonkulsenn.github.io/morrison-kulsenn/probabilidade/2025/05/11/probabilidades-jogo-da-velha-copy.html">
+    <meta property="og:image" content="https://raw.githubusercontent.com/dancartorio/intuity/main/logo.png">
+    <meta property="og:site_name" content="Morrison Külsenn - Estatística e Probabilidade">
+    <meta property="og:locale" content="pt_BR">
+    
+    <!-- Twitter Card Meta Tags (Jekyll) -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Probabilidades no Jogo da Velha: Uma Análise Matemática">
+    <meta name="twitter:description" content="Portal dedicado ao estudo e aplicação de conceitos estatísticos e probabilísticos. Conteúdo educativo sobre análise de dados, inferência estatística e modelos estatísticos.">
+    <meta name="twitter:image" content="https://raw.githubusercontent.com/dancartorio/intuity/main/logo.png">
+    
+    <!-- CSS (Jekyll) -->
+    <link rel="stylesheet" href="/morrison-kulsenn/assets/css/styles.css">
+    <link rel="stylesheet" href="/morrison-kulsenn/assets/css/syntax-highlighting.css">
+    
+    <!-- Pré-conexão -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    <!-- MathJax para renderizar fórmulas matemáticas -->
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    
+    <!-- jQuery e dependências -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js"></script>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Inicialização do Bootstrap TOC -->
+    <script>
+      // Carregar jQuery primeiro
+      (function() {
+        var jqueryLoaded = false;
+        
+        function checkJQuery() {
+          if (typeof window.jQuery === 'undefined') {
+            console.log('jQuery ainda não está disponível, aguardando...');
+            setTimeout(checkJQuery, 100);
+            return;
+          }
+          
+          if (!jqueryLoaded) {
+            jqueryLoaded = true;
+            console.log('jQuery carregado com sucesso, versão:', window.jQuery.fn.jquery);
+            loadBootstrapToc();
+          }
+        }
+        
+        // Iniciar verificação do jQuery
+        checkJQuery();
+      })();
+      
+      // Função para carregar o Bootstrap TOC
+      function loadBootstrapToc() {
+        console.log('Iniciando carregamento do Bootstrap TOC...');
+        
+        // Verificar se já está carregado
+        if (typeof Toc !== 'undefined') {
+          console.log('Bootstrap TOC já está disponível');
+          dispatchTocLoaded();
+          return;
+        }
+        
+        // Carregar o script do Bootstrap TOC
+        var script = document.createElement('script');
+        script.src = '/morrison-kulsenn/assets/js/bootstrap-toc.min.js';
+        script.id = 'bootstrap-toc-script';
+        script.async = false; // Importante: carregar de forma síncrona
+        
+        script.onload = function() {
+          console.log('Script do Bootstrap TOC carregado com sucesso');
+          
+          // Dar um pequeno atraso para garantir que o Toc foi definido
+          var checkToc = setInterval(function() {
+            if (typeof Toc !== 'undefined') {
+              clearInterval(checkToc);
+              console.log('Toc está definido, disparando evento...');
+              dispatchTocLoaded();
+            } else {
+              console.log('Aguardando definição do Toc...');
+            }
+          }, 100);
+          
+          // Timeout de segurança
+          setTimeout(function() {
+            clearInterval(checkToc);
+            if (typeof Toc === 'undefined') {
+              console.error('Timeout: Toc não foi definido após o carregamento do script');
+            }
+          }, 3000);
+        };
+        
+        script.onerror = function(error) {
+          console.error('Erro ao carregar o script do Bootstrap TOC:', error);
+          console.error('Caminho tentado:', script.src);
+        };
+        
+        console.log('Adicionando script do Bootstrap TOC ao documento');
+        document.head.appendChild(script);
+      }
+      
+      // Função para disparar o evento de TOC carregado
+      function dispatchTocLoaded() {
+        console.log('Disparando evento toc:loaded');
+        var event = new Event('toc:loaded');
+        document.dispatchEvent(event);
+      }
+    </script>
+    <script>
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']],
+        processEscapes: true
+      },
+      svg: {
+        fontCache: 'global'
+      }
+    };
+    </script>
+    
+    <!-- Schema.org (Needs review for dynamic content if applicable) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "LocalBusiness",
+      "name": "Morrison Külsenn - Estatística e Probabilidade",
+      "image": "https://raw.githubusercontent.com/dancartorio/intuity/main/logo.png",
+      "@id": "",
+      "url": "https://morrisonkulsenn.github.io/morrison-kulsenn/",
+      "telephone": "+55 (XX) XXXX-XXXX", // Update with actual phone
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Endereço completo", // Update with actual address
+        "addressLocality": "Petrolina",
+        "addressRegion": "PE",
+        "postalCode": "XXXXX-XXX", // Update with actual postal code
+        "addressCountry": "BR"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": "-9.3887",
+        "longitude": "-40.5044"
+      },
+      "openingHoursSpecification": {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": [
+          "Monday",
+          "Tuesday",
+          "Wednesday",
+          "Thursday",
+          "Friday"
+        ],
+        "opens": "08:00",
+        "closes": "17:00"
+      },
+      "sameAs": [
+        "URL das redes sociais se houver" // Update with actual social links
+      ]
+    }
+    </script>
+    
+    <!-- Meta Tags para Buscas Locais -->
+    <meta name="geo.region" content="BR-PE">
+    <meta name="geo.placename" content="Petrolina">
+    <meta name="geo.position" content="-9.3887;-40.5044">
+    <meta name="ICBM" content="-9.3887, -40.5044">
+    
+    <!-- Robots Meta Tag -->
+    <meta name="robots" content="index, follow">
+    
+    <!-- Autor e Direitos Autorais -->
+    <meta name="author" content="Morrison Külsenn - Estatística e Probabilidade">
+    <meta name="copyright" content="© 2025 Morrison Külsenn - Estatística e Probabilidade">
+    
+    <!-- Meta Tags Adicionais para SEO -->
+    <meta name="keywords" content="estatística, probabilidade, análise de dados, medidas de tendência central, inferência estatística, probabilidade, teoria-dos-jogos, combinatoria, matematica-recreativa">
+    <meta name="application-name" content="Morrison Külsenn - Estatística e Probabilidade">
+    <meta name="apple-mobile-web-app-title" content="Morrison Külsenn - Estatística e Probabilidade">
+    <meta name="theme-color" content="#ffffff">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="format-detection" content="telephone=no">
+    
+    <!-- Verificação de propriedade -->
+    <!-- <meta name="google-site-verification" content="sua-chave-aqui"> -->
+    <!-- <meta name="msvalidate.01" content="sua-chave-aqui"> -->
+</head>
+<body>
+    <header>
+        <!-- Seletor de Idioma (fora do menu principal) - comentado para uso futuro -->
+        <!-- 
+        <div class="language-selector-container">
+            <div class="language-dropdown">
+                <select id="language-select" onchange="changeLanguage(this.value)" class="language-select">
+                    <option value="pt" selected>PT</option>
+                    <option value="en" >EN</option>
+                </select>
+            </div>
+        </div>
+        -->
+        
+        <nav>
+            <ul class="main-menu">
+                <div class="logo-container">
+                    <li class="main-menu-logo">
+                        <a href="/morrison-kulsenn/">
+                            <img src="/morrison-kulsenn/assets/images/logos/logo.png" alt="Logo Morrison Külsenn - Estatística e Probabilidade" class="header-logo">
+                        </a>
+                    </li>
+                </div>
+                <div class="menu-container">
+                    <!-- Morrison Külsenn -->
+                    <li class="morrison-name">
+                        <a href="/morrison-kulsenn/">Morrison Külsenn</a>
+                    </li>
+                    
+                    <!-- Estatística Descritiva -->
+                    <li class="has-submenu">
+                        <a href="#" class="submenu-toggle" onclick="toggleSubmenu(this.parentElement)">
+                            Estatística Descritiva
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="chevron" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708"/></svg>
+                        </a>
+                        <div class="submenu-bar">
+                            <ul class="submenu-items">
+                                <li class="has-dropdown">
+                                    <a href="/morrison-kulsenn/orientacoes/atendimento" onclick="toggleDropdown(this.parentElement)">
+                                        Medidas de Tendência Central
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="chevron" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708"/></svg>
+                                    </a>
+                                    <ul class="dropdown-list">
+                                        <li><a href="/morrison-kulsenn/medidas-tendencia-central/media">Média</a></li>
+                                        <li><a href="#">Mediana</a></li>
+                                        <li><a href="#">Moda</a></li>
+                                    </ul>
+                                </li>
+                                <li class="has-dropdown">
+                                    <a href="/morrison-kulsenn/orientacoes/documentos-necessarios" onclick="toggleDropdown(this.parentElement)">
+                                        Medidas de Dispersão
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="chevron" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708"/></svg>
+                                    </a>
+                                    <ul class="dropdown-list">
+                                        <li><a href="#">Variância</a></li>
+                                        <li><a href="#">Desvio Padrão</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="/morrison-kulsenn/orientacoes/etapas-processo">Quartis e Percentis</a></li>
+                                <li><a href="/morrison-kulsenn/orientacoes/prazos">Assimetria</a></li>
+                                <li><a href="/morrison-kulsenn/orientacoes/custas-e-emolumentos">Curtose</a></li>
+                                <li><a href="/morrison-kulsenn/orientacoes/abrangencia">Gráficos Estatísticos</a></li>
+                                <li><a href="/morrison-kulsenn/orientacoes/codigo-de-normas">Análise Exploratória</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    
+                    <!-- Probabilidade -->
+                    <li class="has-submenu">
+                        <a href="#" class="submenu-toggle" onclick="toggleSubmenu(this.parentElement)">
+                            Probabilidade
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="chevron" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708"/></svg>
+                        </a>
+                        <div class="submenu-bar">
+                            <ul class="submenu-items">
+                                <li><a href="/morrison-kulsenn/servicos/certidao">Distribuições de Probabilidade</a></li>
+                                <li><a href="https://sicase.tjpe.jus.br/sicase//externo/autenticidadeselo/form_validarautenticidadeselo.jsf" target="_blank" rel="noopener noreferrer">Variáveis Aleatórias</a></li>
+                                <li><a href="/morrison-kulsenn/servicos/registro-pets">Teorema do Limite Central</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    
+                    <!-- Inferência Estatística -->
+                    <li class="has-submenu">
+                        <a href="#" class="submenu-toggle" onclick="toggleSubmenu(this.parentElement)">
+                            Inferência Estatística
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="chevron" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708"/></svg>
+                        </a>
+                        <div class="submenu-bar">
+                            <ul class="submenu-items">
+                                <li><a href="/morrison-kulsenn/institucional/sobre-nos">Testes de Hipótese</a></li>
+                                <li><a href="#">Intervalos de Confiança</a></li>
+                                <li><a href="#">Amostragem</a></li>
+                                <li><a href="#">Estimadores</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    
+                    <!-- Modelos Estatísticos -->
+                    <li>
+                        <a href="/morrison-kulsenn/lgpd">Modelos Estatísticos</a>
+                    </li>
+                    
+                    <!-- Análise de Dados -->
+                    <li class="has-submenu">
+                        <a href="#" class="submenu-toggle" onclick="toggleSubmenu(this.parentElement)">
+                            Análise de Dados
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="chevron" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708"/></svg>
+                        </a>
+                        <div class="submenu-bar">
+                            <ul class="submenu-items">
+                                <li><a href="#">Regressão Linear</a></li>
+                                <li><a href="#">Séries Temporais</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    
+                    <!-- Blog -->
+                    <li class="highlight-menu-item">
+                        <a href="/morrison-kulsenn/blog/all/" style="color: rgb(140, 180, 255);">
+                            Blog
+                        </a>
+                    </li>
+                </div>
+            </ul>
+        </nav>
+    </header>
+    
+    <script>
+    function toggleSubmenu(parentElement) {
+        event.preventDefault();
+        
+        // Fecha todos os submenus primeiro
+        document.querySelectorAll('.submenu-bar').forEach(submenu => {
+            if (submenu !== parentElement.querySelector('.submenu-bar')) {
+                submenu.style.display = 'none';
+                submenu.parentElement.querySelector('.chevron').style.transform = 'rotate(0deg)';
+            }
+        });
+        
+        // Alterna o submenu atual
+        const submenu = parentElement.querySelector('.submenu-bar');
+        const chevron = parentElement.querySelector('.chevron');
+        
+        if (submenu.style.display === 'block') {
+            submenu.style.display = 'none';
+            chevron.style.transform = 'rotate(0deg)';
+        } else {
+            submenu.style.display = 'block';
+            chevron.style.transform = 'rotate(180deg)';
+        }
+    }
+    
+    function toggleDropdown(parentElement) {
+        event.preventDefault();
+        const dropdown = parentElement.querySelector('.dropdown-list');
+        const chevron = parentElement.querySelector('.chevron');
+        
+        if (dropdown.style.display === 'block') {
+            dropdown.style.display = 'none';
+            chevron.style.transform = 'rotate(0deg)';
+        } else {
+            // Fecha outros dropdowns no mesmo submenu
+            parentElement.parentElement.querySelectorAll('.dropdown-list').forEach(d => {
+                if (d !== dropdown) {
+                    d.style.display = 'none';
+                    d.parentElement.querySelector('.chevron').style.transform = 'rotate(0deg)';
+                }
+            });
+            
+            dropdown.style.display = 'block';
+            chevron.style.transform = 'rotate(180deg)';
+        }
+    }
+    
+    // Fecha os menus ao clicar fora
+    document.addEventListener('click', function(event) {
+        if (!event.target.closest('.has-submenu') && !event.target.closest('.submenu-bar')) {
+            document.querySelectorAll('.submenu-bar').forEach(submenu => {
+                submenu.style.display = 'none';
+                submenu.parentElement.querySelector('.chevron').style.transform = 'rotate(0deg)';
+            });
+        }
+        
+        if (!event.target.closest('.has-dropdown')) {
+            document.querySelectorAll('.dropdown-list').forEach(dropdown => {
+                dropdown.style.display = 'none';
+                if (dropdown.parentElement.querySelector('.chevron')) {
+                    dropdown.parentElement.querySelector('.chevron').style.transform = 'rotate(0deg)';
+                }
+            });
+        }
+    });
+    </script>
+    
+    <div id="main-content">
+        <style>
+:root {
+  --primary-color: #121212;
+  --secondary-color: #1e1e1e;
+  --accent-color: #5d8eff;
+  --accent-hover: #7ba1ff;
+  --text-color: #f0f0f0;
+  --text-muted: #b0b0b0;
+  --gradient-height: 120px;
+  --border-radius: 12px;
+  --box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  background-color: var(--primary-color);
+  color: var(--text-color);
+  line-height: 1.8;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Header Visual */
+.header-visual {
+  width: 100%;
+  height: 500px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: var(--box-shadow);
+}
+
+.header-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(0.8) contrast(1.1);
+  transition: transform 0.5s ease;
+}
+
+.header-visual:hover .header-image {
+  transform: scale(1.02);
+}
+
+.header-gradient {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: var(--gradient-height);
+  background: linear-gradient(to bottom, transparent 0%, var(--primary-color) 90%);
+}
+
+/* Title Section */
+.title-container {
+  max-width: 800px;
+  margin: -100px auto 0;
+  padding: 0 30px;
+  position: relative;
+  z-index: 2;
+}
+
+.post-title {
+  font-size: 3rem;
+  margin: 0 0 25px;
+  font-weight: 800;
+  line-height: 1.15;
+  color: white;
+  font-family: 'Montserrat', sans-serif;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+  letter-spacing: -0.5px;
+  position: relative;
+  padding-bottom: 20px;
+}
+
+.post-title::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 80px;
+  height: 4px;
+  background: var(--accent-color);
+  border-radius: 2px;
+}
+
+/* Meta Information */
+.meta-info {
+  display: flex;
+  align-items: center;
+  margin-bottom: 50px;
+  color: var(--text-muted);
+  background: rgba(30, 30, 30, 0.8);
+  backdrop-filter: blur(10px);
+  padding: 15px 20px;
+  border-radius: var(--border-radius);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  max-width: fit-content;
+}
+
+.author-avatar {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  margin-right: 18px;
+  object-fit: cover;
+  border: 3px solid var(--accent-color);
+  box-shadow: 0 4px 12px rgba(93, 142, 255, 0.3);
+  transition: var(--transition);
+}
+
+.author-avatar:hover {
+  transform: rotate(5deg) scale(1.1);
+  box-shadow: 0 6px 16px rgba(93, 142, 255, 0.4);
+}
+
+.author-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.author-name {
+  font-weight: 600;
+  color: var(--text-color);
+  margin-right: 15px;
+  font-size: 1.1rem;
+  display: flex;
+  align-items: center;
+}
+
+.author-name span {
+  margin-left: 8px;
+  color: var(--accent-color);
+  font-size: 0.9rem;
+}
+
+.publish-date {
+  font-size: 0.95rem;
+  display: flex;
+  align-items: center;
+  margin-top: 4px;
+}
+
+.publish-date i {
+  margin-right: 6px;
+  font-size: 0.9rem;
+  color: var(--accent-color);
+}
+
+.reading-time {
+  margin-left: 15px;
+  padding-left: 15px;
+  border-left: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Content */
+.content-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0 30px 80px;
+}
+
+.post-content {
+  font-size: 1.15rem;
+}
+
+.post-content h2 {
+  font-size: 1.9rem;
+  margin-top: 50px;
+  margin-bottom: 25px;
+  color: var(--accent-color);
+  position: relative;
+  padding-bottom: 10px;
+}
+
+.post-content h2::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 50px;
+  height: 3px;
+  background: linear-gradient(to right, var(--accent-color), transparent);
+  border-radius: 3px;
+}
+
+.post-content h3 {
+  font-size: 1.5rem;
+  margin-top: 40px;
+  margin-bottom: 20px;
+  color: var(--text-color);
+  font-weight: 600;
+}
+
+.post-content p {
+  margin-bottom: 25px;
+}
+
+.post-content a {
+  color: var(--accent-color);
+  text-decoration: none;
+  font-weight: 500;
+  transition: var(--transition);
+  border-bottom: 1px dashed rgba(93, 142, 255, 0.3);
+}
+
+.post-content a:hover {
+  color: var(--accent-hover);
+  border-bottom-color: var(--accent-hover);
+}
+
+.post-content blockquote {
+  border-left: 4px solid var(--accent-color);
+  padding: 20px 25px;
+  margin: 30px 0;
+  background: var(--secondary-color);
+  border-radius: 0 var(--border-radius) var(--border-radius) 0;
+  font-style: italic;
+  position: relative;
+  box-shadow: var(--box-shadow);
+}
+
+.post-content blockquote::before {
+  content: '"';
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  font-size: 3rem;
+  color: rgba(93, 142, 255, 0.1);
+  font-family: serif;
+  line-height: 1;
+}
+
+.post-content img {
+  max-width: 100%;
+  height: auto;
+  border-radius: var(--border-radius);
+  margin: 30px 0;
+  box-shadow: var(--box-shadow);
+  transition: var(--transition);
+}
+
+.post-content img:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+}
+
+.post-content code {
+  font-family: Consolas, 'Courier New', monospace;
+  background: rgba(0, 0, 0, 0.3);
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  color: #e6e6e6;
+}
+
+.post-content pre {
+  background: #1e1e1e;
+  padding: 20px;
+  border-radius: 8px;
+  overflow-x: auto;
+  margin: 25px 0;
+}
+
+.post-content pre code {
+  background: transparent;
+  padding: 0;
+  border: none;
+  display: block;
+  color: #f0f0f0;
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+/* Social Share Bar */
+.social-share {
+  position: fixed;
+  left: 30px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 100;
+  background: rgba(30, 30, 30, 0.7);
+  backdrop-filter: blur(10px);
+  padding: 15px 8px;
+  border-radius: 50px;
+  box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.social-icon {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  background-color: var(--secondary-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 6px 0;
+  color: var(--text-color);
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: var(--transition);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.social-icon:hover {
+  background-color: var(--accent-color);
+  transform: translateY(-3px) scale(1.1);
+  color: white;
+  box-shadow: 0 5px 15px rgba(93, 142, 255, 0.4);
+}
+
+.social-icon.facebook:hover { background-color: #1877f2; }
+.social-icon.twitter:hover { background-color: #1da1f2; }
+.social-icon.linkedin:hover { background-color: #0a66c2; }
+.social-icon.whatsapp:hover { background-color: #25d366; }
+
+.social-label {
+  position: absolute;
+  left: 70px;
+  background: var(--secondary-color);
+  padding: 5px 12px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  opacity: 0;
+  pointer-events: none;
+  transition: var(--transition);
+  white-space: nowrap;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+}
+
+.social-icon:hover .social-label {
+  opacity: 1;
+  left: 60px;
+}
+
+/* Floating Back to Top Button */
+.back-to-top {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  width: 50px;
+  height: 50px;
+  background: var(--accent-color);
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  opacity: 0;
+  transition: var(--transition);
+  z-index: 99;
+  box-shadow: 0 5px 20px rgba(93, 142, 255, 0.4);
+}
+
+.back-to-top.visible {
+  opacity: 1;
+}
+
+.back-to-top:hover {
+  background: var(--accent-hover);
+  transform: translateY(-5px);
+}
+
+/* Footer */
+.post-footer {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 40px 30px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 30px;
+}
+
+/* Estilo específico para tags */
+.tags a.tag {
+  text-decoration: none !important;
+  border-bottom: none !important;
+  background: rgba(93, 142, 255, 0.1);
+  color: var(--accent-color);
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  transition: var(--transition);
+  border: 1px solid rgba(93, 142, 255, 0.2);
+  display: inline-block;
+  margin-bottom: 5px;
+}
+
+.tags a.tag:hover {
+  background: rgba(93, 142, 255, 0.2);
+  transform: translateY(-2px);
+  text-decoration: none !important;
+  border-bottom: none !important;
+}
+
+.tag {
+  background: rgba(93, 142, 255, 0.1);
+  color: var(--accent-color);
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  transition: var(--transition);
+  border: 1px solid rgba(93, 142, 255, 0.2);
+}
+
+.tag:hover {
+  background: rgba(93, 142, 255, 0.2);
+  transform: translateY(-2px);
+}
+
+.author-bio {
+  display: flex;
+  align-items: center;
+  background: var(--secondary-color);
+  padding: 30px;
+  border-radius: var(--border-radius);
+  margin-top: 40px;
+  box-shadow: var(--box-shadow);
+}
+
+.bio-content {
+  margin-left: 25px;
+}
+
+.bio-content h3 {
+  margin: 0 0 10px;
+  color: var(--accent-color);
+}
+
+.bio-content p {
+  margin: 0;
+  color: var(--text-muted);
+}
+
+/* Responsive Adjustments */
+@media (max-width: 1200px) {
+  .social-share {
+    left: 15px;
+  }
+}
+
+@media (max-width: 992px) {
+  .header-visual {
+    height: 400px;
+  }
+  
+  .post-title {
+    font-size: 2.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .header-visual {
+    height: 350px;
+  }
+  
+  .title-container {
+    margin-top: -70px;
+  }
+  
+  .post-title {
+    font-size: 2.2rem;
+  }
+  
+  .social-share {
+    position: static;
+    flex-direction: row;
+    justify-content: center;
+    transform: none;
+    margin: 40px auto;
+    width: fit-content;
+    border-radius: var(--border-radius);
+    padding: 10px 20px;
+  }
+  
+  .back-to-top {
+    width: 40px;
+    height: 40px;
+    bottom: 20px;
+    right: 20px;
+  }
+}
+
+@media (max-width: 576px) {
+  .header-visual {
+    height: 300px;
+  }
+  
+  .post-title {
+    font-size: 1.9rem;
+  }
+  
+  .meta-info {
+    flex-wrap: wrap;
+    padding: 12px;
+  }
+  
+  .author-avatar {
+    width: 46px;
+    height: 46px;
+  }
+  
+  .content-container, .title-container {
+    padding: 0 20px 40px;
+  }
+  
+  .post-content h2 {
+    font-size: 1.6rem;
+  }
+  
+  .post-content h3 {
+    font-size: 1.3rem;
+  }
+}
+</style>
+
+<!-- Header Visual -->
+<div class="header-visual">
+  
+    <img src="/morrison-kulsenn/assets/images/img/tictactoes.png" alt="Probabilidades no Jogo da Velha: Uma Análise Matemática" class="header-image">
+  
+  <div class="header-gradient"></div>
+</div>
+
+<!-- Title Section -->
+<div class="title-container">
+  <h1 class="post-title">Probabilidades no Jogo da Velha: Uma Análise Matemática</h1>
+  
+  <!-- Meta Information - PARTE ATUALIZADA -->
+  <div class="meta-info">
+    
+    
+    
+      <img src="https://ui-avatars.com/api/?name=Morrison+K%C3%BClsenn&background=random" alt="Morrison Külsenn" class="author-avatar">
+    
+    
+    <div class="author-info">
+      <div class="author-name">Morrison Külsenn <span>• Autor</span></div>
+      <div class="publish-date">
+        <i class="far fa-calendar-alt"></i> 
+        Publicado em 11/05/2025
+        <span class="reading-time">
+          
+            7 minutos de leitura
+          
+        </span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Content -->
+<div class="content-container">
+  <article class="post-content">
+    <p>O jogo da velha, conhecido em inglês como “Tic-tac-toe” ou “Noughts and Crosses”, é um dos jogos mais simples e populares do mundo. Apesar de sua aparente simplicidade, este jogo oferece um fascinante campo de estudo para a teoria da probabilidade e a matemática combinatória.</p>
+
+<h2 id="introdução-ao-jogo-da-velha">Introdução ao Jogo da Velha</h2>
+
+<p>O jogo da velha é disputado em um tabuleiro 3×3, onde dois jogadores alternam marcando espaços vazios com seus símbolos (geralmente X e O). O objetivo é formar uma linha de três símbolos iguais na horizontal, vertical ou diagonal.</p>
+
+<blockquote>
+  <p>🎮 <strong>Curiosidade</strong>: Evidências arqueológicas sugerem que versões primitivas do jogo da velha já eram jogadas no Antigo Egito, por volta de 1300 a.C.</p>
+</blockquote>
+
+<h2 id="espaço-amostral-quantos-jogos-possíveis-existem">Espaço Amostral: Quantos Jogos Possíveis Existem?</h2>
+
+<p>Para entender as probabilidades no jogo da velha, precisamos primeiro determinar o número total de possíveis configurações do tabuleiro.</p>
+
+<h3 id="abordagem-inicial">Abordagem Inicial</h3>
+
+<p>À primeira vista, poderíamos pensar que, com 9 células e cada uma podendo estar em 3 estados (X, O ou vazio), teríamos 3^9 = 19.683 possibilidades. No entanto, esta contagem é imprecisa, pois:</p>
+
+<ol>
+  <li>Os jogadores se alternam, então o número de X’s e O’s deve ser igual ou diferir em apenas 1</li>
+  <li>O jogo termina quando um jogador vence ou o tabuleiro está cheio</li>
+  <li>Certas configurações são impossíveis de alcançar em um jogo real</li>
+</ol>
+
+<h3 id="cálculo-refinado">Cálculo Refinado</h3>
+
+<p>Considerando as restrições acima, o número real de possíveis estados de jogo válidos é significativamente menor:</p>
+
+<ul>
+  <li><strong>Número total de jogos possíveis (incluindo jogos incompletos)</strong>: 255.168</li>
+  <li><strong>Número de jogos completos possíveis</strong>: 26.830</li>
+</ul>
+
+<p>Quando consideramos a simetria do tabuleiro (rotações e reflexões), este número se reduz ainda mais:</p>
+
+<ul>
+  <li><strong>Número de jogos distintos considerando simetria</strong>: 31.896</li>
+</ul>
+
+<h2 id="probabilidades-de-resultados">Probabilidades de Resultados</h2>
+
+<h3 id="distribuição-de-resultados">Distribuição de Resultados</h3>
+
+<p>Em um jogo aleatório (onde ambos os jogadores fazem movimentos aleatórios), as probabilidades de cada resultado são:</p>
+
+<ul>
+  <li><strong>Vitória do primeiro jogador (X)</strong>: 58,27%</li>
+  <li><strong>Vitória do segundo jogador (O)</strong>: 28,65%</li>
+  <li><strong>Empate</strong>: 13,08%</li>
+</ul>
+
+<p>Estes números revelam uma vantagem significativa para o primeiro jogador, o que é esperado em jogos de informação perfeita com número ímpar de casas.</p>
+
+<h3 id="probabilidade-condicional">Probabilidade Condicional</h3>
+
+<p>A probabilidade de vitória muda drasticamente dependendo do primeiro movimento:</p>
+
+\[P(X_{vence} \mid X_{centro}) = 0,659\]
+
+\[P(X_{vence} \mid X_{canto}) = 0,612\]
+
+\[P(X_{vence} \mid X_{lateral}) = 0,521\]
+
+<p>Isto demonstra que iniciar no centro oferece a maior vantagem estatística.</p>
+
+<h2 id="análise-combinatória">Análise Combinatória</h2>
+
+<h3 id="número-de-configurações-vencedoras">Número de Configurações Vencedoras</h3>
+
+<p>Existem 8 linhas vencedoras possíveis (3 horizontais, 3 verticais e 2 diagonais). Para cada linha, existem 2 possibilidades (X ou O), resultando em 16 configurações vencedoras possíveis.</p>
+
+<p>No entanto, nem todas são alcançáveis em um jogo real. O número de configurações vencedoras realmente possíveis é:</p>
+
+<ul>
+  <li><strong>Configurações com vitória de X</strong>: 626</li>
+  <li><strong>Configurações com vitória de O</strong>: 316</li>
+</ul>
+
+<h3 id="cálculo-manual-de-possibilidades">Cálculo Manual de Possibilidades</h3>
+
+<p>Vamos calcular formalmente o número de possíveis jogos até o terceiro movimento:</p>
+
+<h4 id="análise-sem-considerar-simetria">Análise sem considerar simetria</h4>
+
+<ol>
+  <li>
+    <p><strong>Primeiro movimento (X)</strong>: 
+\(N_1 = \binom{9}{1} = 9\)</p>
+
+    <p>Onde $\binom{9}{1}$ representa o número de maneiras de escolher 1 posição dentre 9 disponíveis.</p>
+  </li>
+  <li>
+    <p><strong>Segundo movimento (O)</strong>:
+\(N_2 = N_1 \times \binom{8}{1} = 9 \times 8 = 72\)</p>
+
+    <p>Para cada uma das 9 configurações anteriores, temos 8 posições restantes para O.</p>
+  </li>
+  <li>
+    <p><strong>Terceiro movimento (X)</strong>:
+\(N_3 = N_2 \times \binom{7}{1} = 72 \times 7 = 504\)</p>
+
+    <p>Para cada uma das 72 configurações anteriores, temos 7 posições restantes para X.</p>
+  </li>
+</ol>
+
+<h4 id="análise-considerando-simetria">Análise considerando simetria</h4>
+
+<p>O tabuleiro 3×3 possui 8 simetrias (4 rotações e 4 reflexões). Definindo $G$ como o grupo de simetrias e $X$ como o conjunto de configurações, pelo Lema de Burnside, o número de órbitas distintas é:</p>
+
+\[|X/G| = \frac{1}{|G|} \sum_{g \in G} |X^g|\]
+
+<table>
+  <tbody>
+    <tr>
+      <td>Onde $</td>
+      <td>X^g</td>
+      <td>$ é o número de configurações fixadas pela simetria $g$.</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Aplicando ao primeiro movimento:</p>
+
+<ol>
+  <li><strong>Primeiro movimento (X)</strong>:
+    <ul>
+      <li>Devido à simetria, as 9 posições se reduzem a 3 classes de equivalência:
+        <ul>
+          <li>$C_1 = {(1,1)}$ (centro): 1 posição</li>
+          <li>$C_2 = {(0,0), (0,2), (2,0), (2,2)}$ (cantos): 4 posições equivalentes</li>
+          <li>$C_3 = {(0,1), (1,0), (1,2), (2,1)}$ (laterais): 4 posições equivalentes</li>
+        </ul>
+      </li>
+      <li>
+        <table>
+          <tbody>
+            <tr>
+              <td>Total: $</td>
+              <td>X/G</td>
+              <td>= 3$ possibilidades distintas</td>
+            </tr>
+          </tbody>
+        </table>
+      </li>
+    </ul>
+  </li>
+  <li><strong>Segundo movimento (O) após X no centro</strong>:
+    <ul>
+      <li>Com X no centro, as simetrias preservam 2 classes de equivalência para O:
+        <ul>
+          <li>$D_1 = {(0,0), (0,2), (2,0), (2,2)}$ (cantos): 4 posições equivalentes</li>
+          <li>$D_2 = {(0,1), (1,0), (1,2), (2,1)}$ (laterais): 4 posições equivalentes</li>
+        </ul>
+      </li>
+      <li>
+        <table>
+          <tbody>
+            <tr>
+              <td>Total: $</td>
+              <td>X/G</td>
+              <td>= 2$ possibilidades distintas</td>
+            </tr>
+          </tbody>
+        </table>
+      </li>
+    </ul>
+  </li>
+  <li><strong>Segundo movimento (O) após X no canto</strong>:
+    <ul>
+      <li>Com X em um canto (por exemplo, (0,0)), as simetrias preservam 4 classes:
+        <ul>
+          <li>$E_1 = {(1,1)}$ (centro): 1 posição</li>
+          <li>$E_2 = {(0,2), (2,0)}$ (cantos adjacentes): 2 posições equivalentes</li>
+          <li>$E_3 = {(2,2)}$ (canto oposto): 1 posição</li>
+          <li>$E_4 = {(0,1), (1,0)}$ (laterais adjacentes): 2 posições equivalentes</li>
+          <li>$E_5 = {(1,2), (2,1)}$ (laterais opostas): 2 posições equivalentes</li>
+        </ul>
+      </li>
+      <li>
+        <table>
+          <tbody>
+            <tr>
+              <td>Total: $</td>
+              <td>X/G</td>
+              <td>= 4$ possibilidades distintas</td>
+            </tr>
+          </tbody>
+        </table>
+      </li>
+    </ul>
+  </li>
+  <li><strong>Segundo movimento (O) após X na lateral</strong>:
+    <ul>
+      <li>Com X em uma lateral (por exemplo, (0,1)), as simetrias preservam 4 classes:
+        <ul>
+          <li>$F_1 = {(1,1)}$ (centro): 1 posição</li>
+          <li>$F_2 = {(0,0), (0,2)}$ (cantos adjacentes): 2 posições equivalentes</li>
+          <li>$F_3 = {(2,0), (2,2)}$ (cantos opostos): 2 posições equivalentes</li>
+          <li>$F_4 = {(1,0), (1,2)}$ (laterais adjacentes): 2 posições equivalentes</li>
+          <li>$F_5 = {(2,1)}$ (lateral oposta): 1 posição</li>
+        </ul>
+      </li>
+      <li>
+        <table>
+          <tbody>
+            <tr>
+              <td>Total: $</td>
+              <td>X/G</td>
+              <td>= 4$ possibilidades distintas</td>
+            </tr>
+          </tbody>
+        </table>
+      </li>
+    </ul>
+  </li>
+</ol>
+
+<p>Assim, pelo princípio da adição, o número total de configurações distintas após dois movimentos é:</p>
+
+\[N_{2,simetria} = 2 + 4 + 4 = 10\]
+
+<p>Em vez das 72 configurações sem considerar simetria.</p>
+
+<h3 id="cálculo-de-probabilidade-com-combinatória">Cálculo de Probabilidade com Combinatória</h3>
+
+<p>A probabilidade de uma configuração específica $c$ após $n$ movimentos pode ser calculada usando:</p>
+
+\[P(c) = \frac{1}{|C_n|}\]
+
+<table>
+  <tbody>
+    <tr>
+      <td>Onde $</td>
+      <td>C_n</td>
+      <td>$ é a cardinalidade do conjunto de todas as configurações possíveis após $n$ movimentos.</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Para calcular o número de jogos $N(k)$ que terminam em exatamente $k$ movimentos (onde $k \geq 5$), usamos:</p>
+
+\[N(k) = \binom{9}{k} \times P_{vit\acute{o}ria}(k)\]
+
+<p>Onde $P_{vit\acute{o}ria}(k)$ é a probabilidade de uma configuração de vitória ocorrer no $k$-ésimo movimento, e $\binom{9}{k}$ representa o coeficiente binomial “9 escolhe $k$”.</p>
+
+<p>A probabilidade de vitória do jogador X em um jogo aleatório pode ser expressa como:</p>
+
+\[P(X_{vence}) = \sum_{k=5}^{9} P(X_{vence} \mid k) \times P(k)\]
+
+<p>Onde $P(X_{vence} \mid k)$ é a probabilidade condicional de X vencer dado que o jogo termina em exatamente $k$ movimentos, e $P(k)$ é a probabilidade de um jogo terminar em exatamente $k$ movimentos.</p>
+
+<h3 id="árvore-de-possibilidades">Árvore de Possibilidades</h3>
+
+<p>A árvore completa de possibilidades do jogo da velha tem:</p>
+
+<ul>
+  <li><strong>Profundidade máxima</strong>: 9 níveis (correspondendo aos 9 movimentos possíveis)</li>
+  <li><strong>Fator de ramificação inicial</strong>: 9 (número de primeiras jogadas possíveis)</li>
+  <li><strong>Fator de ramificação médio</strong>: aproximadamente 4,47</li>
+</ul>
+
+<h2 id="estratégia-perfeita-e-teoria-dos-jogos">Estratégia Perfeita e Teoria dos Jogos</h2>
+
+<p>O jogo da velha é considerado “resolvido” na teoria dos jogos, o que significa que conhecemos a estratégia ótima para ambos os jogadores.</p>
+
+<h3 id="teorema-minimax">Teorema Minimax</h3>
+
+<p>Aplicando o algoritmo minimax, podemos provar que:</p>
+
+<ul>
+  <li>Com jogo perfeito de ambos os lados, o resultado será sempre um empate</li>
+  <li>O primeiro jogador pode forçar no mínimo um empate</li>
+  <li>O segundo jogador pode no máximo forçar um empate</li>
+</ul>
+
+<h3 id="árvore-de-decisão-simplificada">Árvore de Decisão Simplificada</h3>
+
+<p>Uma versão simplificada da árvore de decisão para o primeiro movimento mostra:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+</pre></td><td class="rouge-code"><pre>Centro → Oponente no canto → Canto oposto
+Canto → Oponente no centro → Canto adjacente
+Canto → Oponente no canto adjacente → Centro
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<h2 id="implementação-em-julia">Implementação em Julia</h2>
+
+<p>Podemos simular jogos aleatórios para verificar empiricamente as probabilidades teóricas usando Julia, uma linguagem moderna e de alto desempenho para computação científica:</p>
+
+<div class="language-julia highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+</pre></td><td class="rouge-code"><pre><span class="k">using</span> <span class="n">Random</span>
+<span class="k">using</span> <span class="n">StatsBase</span>
+
+<span class="k">function</span><span class="nf"> criar_tabuleiro</span><span class="x">()</span>
+    <span class="k">return</span> <span class="n">zeros</span><span class="x">(</span><span class="kt">Int</span><span class="x">,</span> <span class="mi">3</span><span class="x">,</span> <span class="mi">3</span><span class="x">)</span>
+<span class="k">end</span>
+
+<span class="k">function</span><span class="nf"> verificar_vitoria</span><span class="x">(</span><span class="n">tabuleiro</span><span class="x">,</span> <span class="n">jogador</span><span class="x">)</span>
+    <span class="c"># Verificar linhas e colunas</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="k">in</span> <span class="mi">1</span><span class="o">:</span><span class="mi">3</span>
+        <span class="k">if</span> <span class="n">all</span><span class="x">(</span><span class="n">tabuleiro</span><span class="x">[</span><span class="n">i</span><span class="x">,</span> <span class="o">:</span><span class="x">]</span> <span class="o">.==</span> <span class="n">jogador</span><span class="x">)</span> <span class="o">||</span> <span class="n">all</span><span class="x">(</span><span class="n">tabuleiro</span><span class="x">[</span><span class="o">:</span><span class="x">,</span> <span class="n">i</span><span class="x">]</span> <span class="o">.==</span> <span class="n">jogador</span><span class="x">)</span>
+            <span class="k">return</span> <span class="nb">true</span>
+        <span class="k">end</span>
+    <span class="k">end</span>
+    
+    <span class="c"># Verificar diagonais</span>
+    <span class="k">if</span> <span class="n">all</span><span class="x">(</span><span class="n">diag</span><span class="x">(</span><span class="n">tabuleiro</span><span class="x">)</span> <span class="o">.==</span> <span class="n">jogador</span><span class="x">)</span> <span class="o">||</span> <span class="n">all</span><span class="x">(</span><span class="n">diag</span><span class="x">(</span><span class="n">reverse</span><span class="x">(</span><span class="n">tabuleiro</span><span class="x">,</span> <span class="n">dims</span><span class="o">=</span><span class="mi">2</span><span class="x">))</span> <span class="o">.==</span> <span class="n">jogador</span><span class="x">)</span>
+        <span class="k">return</span> <span class="nb">true</span>
+    <span class="k">end</span>
+    
+    <span class="k">return</span> <span class="nb">false</span>
+<span class="k">end</span>
+
+<span class="k">function</span><span class="nf"> tabuleiro_cheio</span><span class="x">(</span><span class="n">tabuleiro</span><span class="x">)</span>
+    <span class="k">return</span> <span class="o">!</span><span class="n">any</span><span class="x">(</span><span class="n">tabuleiro</span> <span class="o">.==</span> <span class="mi">0</span><span class="x">)</span>
+<span class="k">end</span>
+
+<span class="k">function</span><span class="nf"> simular_jogo</span><span class="x">()</span>
+    <span class="n">tabuleiro</span> <span class="o">=</span> <span class="n">criar_tabuleiro</span><span class="x">()</span>
+    <span class="n">jogador_atual</span> <span class="o">=</span> <span class="mi">1</span>  <span class="c"># 1 para X, 2 para O</span>
+    
+    <span class="k">while</span> <span class="nb">true</span>
+        <span class="c"># Encontrar posições vazias</span>
+        <span class="n">posicoes_vazias</span> <span class="o">=</span> <span class="n">findall</span><span class="x">(</span><span class="n">tabuleiro</span> <span class="o">.==</span> <span class="mi">0</span><span class="x">)</span>
+        
+        <span class="k">if</span> <span class="n">isempty</span><span class="x">(</span><span class="n">posicoes_vazias</span><span class="x">)</span>
+            <span class="k">return</span> <span class="mi">0</span>  <span class="c"># Empate</span>
+        <span class="k">end</span>
+        
+        <span class="c"># Escolher movimento aleatório</span>
+        <span class="n">movimento</span> <span class="o">=</span> <span class="n">rand</span><span class="x">(</span><span class="n">posicoes_vazias</span><span class="x">)</span>
+        <span class="n">tabuleiro</span><span class="x">[</span><span class="n">movimento</span><span class="x">]</span> <span class="o">=</span> <span class="n">jogador_atual</span>
+        
+        <span class="c"># Verificar vitória</span>
+        <span class="k">if</span> <span class="n">verificar_vitoria</span><span class="x">(</span><span class="n">tabuleiro</span><span class="x">,</span> <span class="n">jogador_atual</span><span class="x">)</span>
+            <span class="k">return</span> <span class="n">jogador_atual</span>
+        <span class="k">end</span>
+        
+        <span class="c"># Alternar jogador</span>
+        <span class="n">jogador_atual</span> <span class="o">=</span> <span class="mi">3</span> <span class="o">-</span> <span class="n">jogador_atual</span>  <span class="c"># Alterna entre 1 e 2</span>
+    <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="c"># Simular 10.000 jogos</span>
+<span class="n">resultados</span> <span class="o">=</span> <span class="x">[</span><span class="n">simular_jogo</span><span class="x">()</span> <span class="k">for</span> <span class="n">_</span> <span class="k">in</span> <span class="mi">1</span><span class="o">:</span><span class="mi">10000</span><span class="x">]</span>
+<span class="n">contagem</span> <span class="o">=</span> <span class="n">countmap</span><span class="x">(</span><span class="n">resultados</span><span class="x">)</span>
+
+<span class="n">println</span><span class="x">(</span><span class="s">"X vence: </span><span class="si">$</span><span class="s">(round(contagem[1]/100, digits=2))%"</span><span class="x">)</span>
+<span class="n">println</span><span class="x">(</span><span class="s">"O vence: </span><span class="si">$</span><span class="s">(round(contagem[2]/100, digits=2))%"</span><span class="x">)</span>
+<span class="n">println</span><span class="x">(</span><span class="s">"Empate: </span><span class="si">$</span><span class="s">(round(get(contagem, 0, 0)/100, digits=2))%"</span><span class="x">)</span>
+
+<span class="c"># Visualização dos resultados</span>
+<span class="k">using</span> <span class="n">Plots</span>
+
+<span class="n">labels</span> <span class="o">=</span> <span class="x">[</span><span class="s">"X vence"</span><span class="x">,</span> <span class="s">"O vence"</span><span class="x">,</span> <span class="s">"Empate"</span><span class="x">]</span>
+<span class="n">valores</span> <span class="o">=</span> <span class="x">[</span><span class="n">get</span><span class="x">(</span><span class="n">contagem</span><span class="x">,</span> <span class="mi">1</span><span class="x">,</span> <span class="mi">0</span><span class="x">),</span> <span class="n">get</span><span class="x">(</span><span class="n">contagem</span><span class="x">,</span> <span class="mi">2</span><span class="x">,</span> <span class="mi">0</span><span class="x">),</span> <span class="n">get</span><span class="x">(</span><span class="n">contagem</span><span class="x">,</span> <span class="mi">0</span><span class="x">,</span> <span class="mi">0</span><span class="x">)]</span>
+<span class="n">porcentagens</span> <span class="o">=</span> <span class="n">round</span><span class="o">.</span><span class="x">(</span><span class="n">valores</span> <span class="o">./</span> <span class="n">sum</span><span class="x">(</span><span class="n">valores</span><span class="x">)</span> <span class="o">.*</span> <span class="mi">100</span><span class="x">,</span> <span class="n">digits</span><span class="o">=</span><span class="mi">1</span><span class="x">)</span>
+
+<span class="n">pie</span><span class="x">(</span><span class="n">labels</span><span class="x">,</span> <span class="n">valores</span><span class="x">,</span> 
+    <span class="n">title</span> <span class="o">=</span> <span class="s">"Distribuição de Resultados em 10.000 Jogos"</span><span class="x">,</span>
+    <span class="n">legend</span> <span class="o">=</span> <span class="o">:</span><span class="n">topright</span><span class="x">,</span>
+    <span class="n">annotations</span> <span class="o">=</span> <span class="x">[(</span><span class="mf">0.5</span><span class="x">,</span> <span class="mf">0.5</span><span class="x">,</span> <span class="n">text</span><span class="x">(</span><span class="s">"Total: 10.000"</span><span class="x">,</span> <span class="o">:</span><span class="n">center</span><span class="x">,</span> <span class="mi">10</span><span class="x">))],</span>
+    <span class="n">autopct</span> <span class="o">=</span> <span class="x">(</span><span class="n">x</span><span class="x">)</span> <span class="o">-&gt;</span> <span class="s">"</span><span class="si">$</span><span class="s">(round(x, digits=1))%"</span><span class="x">)</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p>A implementação em Julia oferece várias vantagens:</p>
+
+<ol>
+  <li><strong>Desempenho</strong>: Julia combina a facilidade de uso de Python com o desempenho próximo ao C</li>
+  <li><strong>Sintaxe matemática</strong>: Notação mais próxima da matemática formal</li>
+  <li><strong>Visualização integrada</strong>: Biblioteca Plots para visualização dos resultados</li>
+  <li><strong>Paralelização automática</strong>: Operações vetorizadas são automaticamente paralelizadas</li>
+</ol>
+
+<h2 id="curiosidades-matemáticas">Curiosidades Matemáticas</h2>
+
+<h3 id="relação-com-a-teoria-dos-grafos">Relação com a Teoria dos Grafos</h3>
+
+<p>O jogo da velha pode ser representado como um grafo onde:</p>
+<ul>
+  <li>Cada nó representa um estado do tabuleiro</li>
+  <li>Cada aresta representa um movimento válido</li>
+  <li>O grafo completo contém 5.478 nós</li>
+</ul>
+
+<h3 id="complexidade-computacional">Complexidade Computacional</h3>
+
+<p>Apesar de sua simplicidade, o jogo da velha tem uma complexidade de:</p>
+<ul>
+  <li><strong>Complexidade espacial</strong>: O(b^d) ≈ O(9!)</li>
+  <li><strong>Complexidade temporal para solução exata</strong>: O(b^d) ≈ O(9!)</li>
+</ul>
+
+<p>onde b é o fator de ramificação médio e d é a profundidade máxima.</p>
+
+<h2 id="aplicações-educacionais">Aplicações Educacionais</h2>
+
+<p>O jogo da velha oferece excelentes oportunidades para ensinar conceitos matemáticos:</p>
+
+<ul>
+  <li><strong>Probabilidade condicional</strong>: Como as chances mudam após cada jogada</li>
+  <li><strong>Combinatória</strong>: Contagem de possíveis estados do jogo</li>
+  <li><strong>Teoria dos jogos</strong>: Estratégias ótimas e equilíbrio</li>
+  <li><strong>Simetria</strong>: Como rotações e reflexões reduzem o espaço de estados</li>
+</ul>
+
+<h2 id="conclusão">Conclusão</h2>
+
+<p>Apesar de sua aparente simplicidade, o jogo da velha revela uma rica estrutura matemática quando analisado sob a ótica da probabilidade e da combinatória. Sua completa resolução matemática não diminui seu valor educacional e recreativo, pelo contrário, nos permite apreciar a elegância dos princípios matemáticos subjacentes a este jogo milenar.</p>
+
+<blockquote>
+  <p>🧠 <strong>Reflexão</strong>: A próxima vez que você jogar uma partida de jogo da velha, observe como cada movimento altera drasticamente o espaço de probabilidades do jogo!</p>
+</blockquote>
+
+<h2 id="referências">Referências</h2>
+
+<ol>
+  <li>Ferguson, T. S. (2020). “Game Theory” (2nd ed.). Mathematics Department, UCLA.</li>
+  <li>Schaeffer, J., et al. (2007). “Checkers Is Solved”. Science, 317(5844), 1518-1522.</li>
+  <li>Patashnik, O. (1980). “Qubic: 4×4×4 Tic-Tac-Toe”. Mathematics Magazine, 53(4), 202-216.</li>
+  <li>Gardner, M. (2001). “The Colossal Book of Mathematics: Classic Puzzles, Paradoxes, and Problems”. W. W. Norton &amp; Company.</li>
+</ol>
+
+  </article>
+</div>
+
+<!-- Footer -->
+<div class="post-footer">
+  
+  <div class="tags">
+    
+      <a href="/morrison-kulsenn/tags/probabilidade/" class="tag">probabilidade</a>
+    
+      <a href="/morrison-kulsenn/tags/teoria-dos-jogos/" class="tag">teoria-dos-jogos</a>
+    
+      <a href="/morrison-kulsenn/tags/combinatoria/" class="tag">combinatoria</a>
+    
+      <a href="/morrison-kulsenn/tags/matematica-recreativa/" class="tag">matematica-recreativa</a>
+    
+  </div>
+  
+  
+  <div class="author-bio">
+    
+      <img src="https://ui-avatars.com/api/?name=Morrison+K%C3%BClsenn&background=random" alt="Morrison Külsenn" class="author-avatar">
+    
+    <div class="bio-content">
+      <h3>Sobre o Autor</h3>
+      <p>Especialista em Teoria dos Jogos e Probabilidade Aplicada</p>
+    </div>
+  </div>
+
+<!-- Social Share Bar -->
+<div class="social-share">
+  <div class="social-icon facebook">
+    <i class="fab fa-facebook-f"></i>
+    <span class="social-label">Compartilhar</span>
+  </div>
+  <div class="social-icon twitter">
+    <i class="fab fa-twitter"></i>
+    <span class="social-label">Tweetar</span>
+  </div>
+  <div class="social-icon linkedin">
+    <i class="fab fa-linkedin-in"></i>
+    <span class="social-label">Compartilhar</span>
+  </div>
+  <div class="social-icon whatsapp">
+    <i class="fab fa-whatsapp"></i>
+    <span class="social-label">Enviar</span>
+  </div>
+</div>
+
+<!-- Back to Top Button -->
+<div class="back-to-top">
+  <i class="fas fa-arrow-up"></i>
+</div>
+
+<!-- Font Awesome for icons -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+<script>
+// Back to Top Button
+const backToTopButton = document.querySelector('.back-to-top');
+
+window.addEventListener('scroll', () => {
+  if (window.pageYOffset > 300) {
+    backToTopButton.classList.add('visible');
+  } else {
+    backToTopButton.classList.remove('visible');
+  }
+});
+
+backToTopButton.addEventListener('click', () => {
+  window.scrollTo({
+    top: 0,
+    behavior: 'smooth'
+  });
+});
+
+// Social Share Functions
+document.querySelector('.social-icon.facebook').addEventListener('click', () => {
+  window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(window.location.href)}`, '_blank');
+});
+
+document.querySelector('.social-icon.twitter').addEventListener('click', () => {
+  window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(document.title)}&url=${encodeURIComponent(window.location.href)}`, '_blank');
+});
+
+document.querySelector('.social-icon.linkedin').addEventListener('click', () => {
+  window.open(`https://www.linkedin.com/shareArticle?mini=true&url=${encodeURIComponent(window.location.href)}&title=${encodeURIComponent(document.title)}`, '_blank');
+});
+
+document.querySelector('.social-icon.whatsapp').addEventListener('click', () => {
+  window.open(`https://wa.me/?text=${encodeURIComponent(document.title + ' ' + window.location.href)}`, '_blank');
+});
+</script>
+    </div>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-columns">
+                <div class="footer-menu">
+                    <h3>Estatística Descritiva</h3>
+                    <ul>
+                        <li><a href="#">Medidas de Tendência Central</a></li>
+                        <li><a href="#">Medidas de Dispersão</a></li>
+                        <li><a href="#">Gráficos Estatísticos</a></li>
+                        <li><a href="#">Análise Exploratória</a></li>
+                        <li><a href="#">Visualização de Dados</a></li>
+                    </ul>
+                </div>
+                <div class="footer-menu">
+                    <h3>Probabilidade</h3>
+                    <ul>
+                        <li><a href="#">Distribuições de Probabilidade</a></li>
+                        <li><a href="#">Variáveis Aleatórias</a></li>
+                        <li><a href="#">Teorema do Limite Central</a></li>
+                        <li><a href="#">Eventos e Espaço Amostral</a></li>
+                        <li><a href="#">Probabilidade Condicional</a></li>
+                    </ul>
+                </div>
+                <div class="footer-menu">
+                    <h3>Inferência Estatística</h3>
+                    <ul>
+                        <li><a href="#">Testes de Hipótese</a></li>
+                        <li><a href="#">Intervalos de Confiança</a></li>
+                        <li><a href="#">Amostragem</a></li>
+                        <li><a href="#">Estimadores</a></li>
+                        <li><a href="#">Análise de Variância</a></li>
+                    </ul>
+                </div>
+                <div class="footer-menu">
+                    <h3>Análise de Dados</h3>
+                    <ul>
+                        <li><a href="#">Regressão Linear</a></li>
+                        <li><a href="#">Séries Temporais</a></li>
+                        <li><a href="#">Análise Multivariada</a></li>
+                        <li><a href="#">Modelos Preditivos</a></li>
+                        <li><a href="https://jekyllrb.com/" target="_blank">Jekyll Site</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-logo-container">
+                <img src="/morrison-kulsenn/assets/images/logos/logo2.png" alt="Logo do Cartório" class="logo">
+            </div>
+            <div class="footer-bottom">
+                <p class="copyright" style="font-size: 1em;">
+                  <a href="https://morrisonkulsenn.com" style="color: #ffffff; text-decoration: none;">Morrison Külsenn</a> © 2025 by
+                  <a href="https://creativecommons.org" style="color: #ffffff; text-decoration: none;">Morrison Külsenn</a> is licensed under
+                  <a href="https://creativecommons.org/licenses/by/4.0/" style="color: #ffffff; text-decoration: none;">CC BY 4.0</a>
+                  <img src="https://mirrors.creativecommons.org/presskit/icons/cc.svg" style="max-width: 1em; max-height:1em; margin-left: .2em; vertical-align: text-bottom;">
+                  <img src="https://mirrors.creativecommons.org/presskit/icons/by.svg" style="max-width: 1em; max-height:1em; margin-left: .2em; vertical-align: text-bottom;">
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modal de Feriado -->
+    <div id="feriadoModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2>Aviso de Funcionamento</h2>
+            <p>Hoje, <strong id="feriadoNome">[Nome do Feriado]</strong>, nosso horário de atendimento será:</p>
+            <p><strong id="feriadoHorario">[Horário Especial]</strong></p>
+            <button id="entendiBtn">Entendi</button>
+        </div>
+    </div>
+
+    <!-- Modal de Cookie -->
+    <div id="cookie-consent-modal" class="cookie-modal">
+        <div class="cookie-content" id="cookie-main-view">
+            <div class="cookie-text">
+                <h3>🍪 Uso de Cookies</h3>
+                <p>Nós usamos cookies para melhorar sua experiência no site. Ao continuar navegando, você concorda com nossa <a href="/politica-de-privacidade" target="_blank">Política de Privacidade</a>.</p>
+            </div>
+            <div class="cookie-buttons">
+                <button id="cookie-accept" class="cookie-btn accept">Aceitar todos</button>
+                <button id="cookie-settings" class="cookie-btn settings">Configurar</button>
+                <button id="cookie-decline" class="cookie-btn decline">Recusar todos</button>
+            </div>
+        </div>
+        <!-- Configurações avançadas -->
+        <div class="cookie-settings" id="cookie-settings-view" style="display: none;">
+            <div class="cookie-text">
+                <h3>⚙️ Configurações de Cookies</h3>
+                <p>Selecione quais tipos de cookies você permite que utilizemos:</p>
+                
+                <div class="cookie-category">
+                    <div class="cookie-toggle">
+                        <label class="toggle-switch">
+                            <input type="checkbox" id="necessary-cookies" checked disabled>
+                            <span class="slider round"></span>
+                        </label>
+                        <div class="toggle-label">
+                            <strong>Cookies Necessários</strong>
+                            <small>Essenciais para o funcionamento do site (sempre ativos)</small>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="cookie-category">
+                    <div class="cookie-toggle">
+                        <label class="toggle-switch">
+                            <input type="checkbox" id="analytics-cookies">
+                            <span class="slider round"></span>
+                        </label>
+                        <div class="toggle-label">
+                            <strong>Cookies Analíticos</strong>
+                            <small>Ajudam a entender como os visitantes interagem com o site.</small>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="cookie-category">
+                    <div class="cookie-toggle">
+                        <label class="toggle-switch">
+                            <input type="checkbox" id="marketing-cookies">
+                            <span class="slider round"></span>
+                        </label>
+                        <div class="toggle-label">
+                            <strong>Cookies de Marketing</strong>
+                            <small>Usados para rastrear visitantes e exibir anúncios relevantes.</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="cookie-settings-buttons">
+                <button id="cookie-save-settings" class="cookie-btn save">Salvar Configurações</button>
+                <button id="cookie-settings-back" class="cookie-btn back">Voltar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- JS (Jekyll) -->
+    <script src="/morrison-kulsenn/assets/js/script.js" defer></script>
+    <script src="/morrison-kulsenn/assets/js/copy-code.js" defer></script>
+    <script src="/morrison-kulsenn/assets/js/language-switcher.js" defer></script>
+    
+    <!-- Bootstrap TOC -->
+    <script src="/morrison-kulsenn/assets/js/bootstrap-toc.min.js"></script>
+</body>
+</html>
+
+    <script src="/morrison-kulsenn/assets/js/bootstrap-toc.min.js"></script>
+</body>
+</html>
+

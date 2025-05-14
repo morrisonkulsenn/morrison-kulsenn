@@ -1,0 +1,789 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <!-- Meta Tags Básicas -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    
+    <!-- Título Otimizado (Jekyll) -->
+    <title>Morrison Külsenn - Estatística e Probabilidade | Portal dedicado ao estudo e aplicação de conceitos estatísticos e probabilísticos. Conteúdo educativo sobre análise de dados, inferência estatística e modelos estatísticos.</title>
+    
+    <!-- Meta Description (Jekyll) -->
+    <meta name="description" content="Portal dedicado ao estudo e aplicação de conceitos estatísticos e probabilísticos. Conteúdo educativo sobre análise de dados, inferência estatística e modelos estatísticos.">
+    
+    <!-- Favicon -->
+    <link rel="icon" href="/morrison-kulsenn/assets/images/icons/favicon.png" type="image/png">
+    <link rel="apple-touch-icon" href="/morrison-kulsenn/assets/images/icons/favicon.png">
+    
+    <!-- Canonical URL (Jekyll) -->
+    <link rel="canonical" href="https://morrisonkulsenn.github.io/morrison-kulsenn/tags/medidas-de-tendencia-central/">
+    
+    <!-- Open Graph / Social Media Meta Tags (Jekyll) -->
+    <meta property="og:title" content="Morrison Külsenn - Estatística e Probabilidade">
+    <meta property="og:description" content="Portal dedicado ao estudo e aplicação de conceitos estatísticos e probabilísticos. Conteúdo educativo sobre análise de dados, inferência estatística e modelos estatísticos.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://morrisonkulsenn.github.io/morrison-kulsenn/tags/medidas-de-tendencia-central/">
+    <meta property="og:image" content="https://raw.githubusercontent.com/dancartorio/intuity/main/logo.png">
+    <meta property="og:site_name" content="Morrison Külsenn - Estatística e Probabilidade">
+    <meta property="og:locale" content="pt_BR">
+    
+    <!-- Twitter Card Meta Tags (Jekyll) -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Morrison Külsenn - Estatística e Probabilidade">
+    <meta name="twitter:description" content="Portal dedicado ao estudo e aplicação de conceitos estatísticos e probabilísticos. Conteúdo educativo sobre análise de dados, inferência estatística e modelos estatísticos.">
+    <meta name="twitter:image" content="https://raw.githubusercontent.com/dancartorio/intuity/main/logo.png">
+    
+    <!-- CSS (Jekyll) -->
+    <link rel="stylesheet" href="/morrison-kulsenn/assets/css/styles.css">
+    <link rel="stylesheet" href="/morrison-kulsenn/assets/css/syntax-highlighting.css">
+    
+    <!-- Pré-conexão -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    <!-- MathJax para renderizar fórmulas matemáticas -->
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    
+    <!-- jQuery e dependências -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js"></script>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Inicialização do Bootstrap TOC -->
+    <script>
+      // Carregar jQuery primeiro
+      (function() {
+        var jqueryLoaded = false;
+        
+        function checkJQuery() {
+          if (typeof window.jQuery === 'undefined') {
+            console.log('jQuery ainda não está disponível, aguardando...');
+            setTimeout(checkJQuery, 100);
+            return;
+          }
+          
+          if (!jqueryLoaded) {
+            jqueryLoaded = true;
+            console.log('jQuery carregado com sucesso, versão:', window.jQuery.fn.jquery);
+            loadBootstrapToc();
+          }
+        }
+        
+        // Iniciar verificação do jQuery
+        checkJQuery();
+      })();
+      
+      // Função para carregar o Bootstrap TOC
+      function loadBootstrapToc() {
+        console.log('Iniciando carregamento do Bootstrap TOC...');
+        
+        // Verificar se já está carregado
+        if (typeof Toc !== 'undefined') {
+          console.log('Bootstrap TOC já está disponível');
+          dispatchTocLoaded();
+          return;
+        }
+        
+        // Carregar o script do Bootstrap TOC
+        var script = document.createElement('script');
+        script.src = '/morrison-kulsenn/assets/js/bootstrap-toc.min.js';
+        script.id = 'bootstrap-toc-script';
+        script.async = false; // Importante: carregar de forma síncrona
+        
+        script.onload = function() {
+          console.log('Script do Bootstrap TOC carregado com sucesso');
+          
+          // Dar um pequeno atraso para garantir que o Toc foi definido
+          var checkToc = setInterval(function() {
+            if (typeof Toc !== 'undefined') {
+              clearInterval(checkToc);
+              console.log('Toc está definido, disparando evento...');
+              dispatchTocLoaded();
+            } else {
+              console.log('Aguardando definição do Toc...');
+            }
+          }, 100);
+          
+          // Timeout de segurança
+          setTimeout(function() {
+            clearInterval(checkToc);
+            if (typeof Toc === 'undefined') {
+              console.error('Timeout: Toc não foi definido após o carregamento do script');
+            }
+          }, 3000);
+        };
+        
+        script.onerror = function(error) {
+          console.error('Erro ao carregar o script do Bootstrap TOC:', error);
+          console.error('Caminho tentado:', script.src);
+        };
+        
+        console.log('Adicionando script do Bootstrap TOC ao documento');
+        document.head.appendChild(script);
+      }
+      
+      // Função para disparar o evento de TOC carregado
+      function dispatchTocLoaded() {
+        console.log('Disparando evento toc:loaded');
+        var event = new Event('toc:loaded');
+        document.dispatchEvent(event);
+      }
+    </script>
+    <script>
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']],
+        processEscapes: true
+      },
+      svg: {
+        fontCache: 'global'
+      }
+    };
+    </script>
+    
+    <!-- Schema.org (Needs review for dynamic content if applicable) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "LocalBusiness",
+      "name": "Morrison Külsenn - Estatística e Probabilidade",
+      "image": "https://raw.githubusercontent.com/dancartorio/intuity/main/logo.png",
+      "@id": "",
+      "url": "https://morrisonkulsenn.github.io/morrison-kulsenn/",
+      "telephone": "+55 (XX) XXXX-XXXX", // Update with actual phone
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Endereço completo", // Update with actual address
+        "addressLocality": "Petrolina",
+        "addressRegion": "PE",
+        "postalCode": "XXXXX-XXX", // Update with actual postal code
+        "addressCountry": "BR"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": "-9.3887",
+        "longitude": "-40.5044"
+      },
+      "openingHoursSpecification": {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": [
+          "Monday",
+          "Tuesday",
+          "Wednesday",
+          "Thursday",
+          "Friday"
+        ],
+        "opens": "08:00",
+        "closes": "17:00"
+      },
+      "sameAs": [
+        "URL das redes sociais se houver" // Update with actual social links
+      ]
+    }
+    </script>
+    
+    <!-- Meta Tags para Buscas Locais -->
+    <meta name="geo.region" content="BR-PE">
+    <meta name="geo.placename" content="Petrolina">
+    <meta name="geo.position" content="-9.3887;-40.5044">
+    <meta name="ICBM" content="-9.3887, -40.5044">
+    
+    <!-- Robots Meta Tag -->
+    <meta name="robots" content="index, follow">
+    
+    <!-- Autor e Direitos Autorais -->
+    <meta name="author" content="Morrison Külsenn - Estatística e Probabilidade">
+    <meta name="copyright" content="© 2025 Morrison Külsenn - Estatística e Probabilidade">
+    
+    <!-- Meta Tags Adicionais para SEO -->
+    <meta name="keywords" content="estatística, probabilidade, análise de dados, medidas de tendência central, inferência estatística">
+    <meta name="application-name" content="Morrison Külsenn - Estatística e Probabilidade">
+    <meta name="apple-mobile-web-app-title" content="Morrison Külsenn - Estatística e Probabilidade">
+    <meta name="theme-color" content="#ffffff">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="format-detection" content="telephone=no">
+    
+    <!-- Verificação de propriedade -->
+    <!-- <meta name="google-site-verification" content="sua-chave-aqui"> -->
+    <!-- <meta name="msvalidate.01" content="sua-chave-aqui"> -->
+</head>
+<body>
+    <header>
+        <!-- Seletor de Idioma (fora do menu principal) - comentado para uso futuro -->
+        <!-- 
+        <div class="language-selector-container">
+            <div class="language-dropdown">
+                <select id="language-select" onchange="changeLanguage(this.value)" class="language-select">
+                    <option value="pt" selected>PT</option>
+                    <option value="en" >EN</option>
+                </select>
+            </div>
+        </div>
+        -->
+        
+        <nav>
+            <ul class="main-menu">
+                <div class="logo-container">
+                    <li class="main-menu-logo">
+                        <a href="/morrison-kulsenn/">
+                            <img src="/morrison-kulsenn/assets/images/logos/logo.png" alt="Logo Morrison Külsenn - Estatística e Probabilidade" class="header-logo">
+                        </a>
+                    </li>
+                </div>
+                <div class="menu-container">
+                    <!-- Morrison Külsenn -->
+                    <li class="morrison-name">
+                        <a href="/morrison-kulsenn/">Morrison Külsenn</a>
+                    </li>
+                    
+                    <!-- Estatística Descritiva -->
+                    <li class="has-submenu">
+                        <a href="#" class="submenu-toggle" onclick="toggleSubmenu(this.parentElement)">
+                            Estatística Descritiva
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="chevron" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708"/></svg>
+                        </a>
+                        <div class="submenu-bar">
+                            <ul class="submenu-items">
+                                <li class="has-dropdown">
+                                    <a href="/morrison-kulsenn/orientacoes/atendimento" onclick="toggleDropdown(this.parentElement)">
+                                        Medidas de Tendência Central
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="chevron" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708"/></svg>
+                                    </a>
+                                    <ul class="dropdown-list">
+                                        <li><a href="/morrison-kulsenn/medidas-tendencia-central/media">Média</a></li>
+                                        <li><a href="#">Mediana</a></li>
+                                        <li><a href="#">Moda</a></li>
+                                    </ul>
+                                </li>
+                                <li class="has-dropdown">
+                                    <a href="/morrison-kulsenn/orientacoes/documentos-necessarios" onclick="toggleDropdown(this.parentElement)">
+                                        Medidas de Dispersão
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="chevron" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708"/></svg>
+                                    </a>
+                                    <ul class="dropdown-list">
+                                        <li><a href="#">Variância</a></li>
+                                        <li><a href="#">Desvio Padrão</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="/morrison-kulsenn/orientacoes/etapas-processo">Quartis e Percentis</a></li>
+                                <li><a href="/morrison-kulsenn/orientacoes/prazos">Assimetria</a></li>
+                                <li><a href="/morrison-kulsenn/orientacoes/custas-e-emolumentos">Curtose</a></li>
+                                <li><a href="/morrison-kulsenn/orientacoes/abrangencia">Gráficos Estatísticos</a></li>
+                                <li><a href="/morrison-kulsenn/orientacoes/codigo-de-normas">Análise Exploratória</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    
+                    <!-- Probabilidade -->
+                    <li class="has-submenu">
+                        <a href="#" class="submenu-toggle" onclick="toggleSubmenu(this.parentElement)">
+                            Probabilidade
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="chevron" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708"/></svg>
+                        </a>
+                        <div class="submenu-bar">
+                            <ul class="submenu-items">
+                                <li><a href="/morrison-kulsenn/servicos/certidao">Distribuições de Probabilidade</a></li>
+                                <li><a href="https://sicase.tjpe.jus.br/sicase//externo/autenticidadeselo/form_validarautenticidadeselo.jsf" target="_blank" rel="noopener noreferrer">Variáveis Aleatórias</a></li>
+                                <li><a href="/morrison-kulsenn/servicos/registro-pets">Teorema do Limite Central</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    
+                    <!-- Inferência Estatística -->
+                    <li class="has-submenu">
+                        <a href="#" class="submenu-toggle" onclick="toggleSubmenu(this.parentElement)">
+                            Inferência Estatística
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="chevron" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708"/></svg>
+                        </a>
+                        <div class="submenu-bar">
+                            <ul class="submenu-items">
+                                <li><a href="/morrison-kulsenn/institucional/sobre-nos">Testes de Hipótese</a></li>
+                                <li><a href="#">Intervalos de Confiança</a></li>
+                                <li><a href="#">Amostragem</a></li>
+                                <li><a href="#">Estimadores</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    
+                    <!-- Modelos Estatísticos -->
+                    <li>
+                        <a href="/morrison-kulsenn/lgpd">Modelos Estatísticos</a>
+                    </li>
+                    
+                    <!-- Análise de Dados -->
+                    <li class="has-submenu">
+                        <a href="#" class="submenu-toggle" onclick="toggleSubmenu(this.parentElement)">
+                            Análise de Dados
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="chevron" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708"/></svg>
+                        </a>
+                        <div class="submenu-bar">
+                            <ul class="submenu-items">
+                                <li><a href="#">Regressão Linear</a></li>
+                                <li><a href="#">Séries Temporais</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    
+                    <!-- Blog -->
+                    <li class="highlight-menu-item">
+                        <a href="/morrison-kulsenn/blog/all/" style="color: rgb(140, 180, 255);">
+                            Blog
+                        </a>
+                    </li>
+                </div>
+            </ul>
+        </nav>
+    </header>
+    
+    <script>
+    function toggleSubmenu(parentElement) {
+        event.preventDefault();
+        
+        // Fecha todos os submenus primeiro
+        document.querySelectorAll('.submenu-bar').forEach(submenu => {
+            if (submenu !== parentElement.querySelector('.submenu-bar')) {
+                submenu.style.display = 'none';
+                submenu.parentElement.querySelector('.chevron').style.transform = 'rotate(0deg)';
+            }
+        });
+        
+        // Alterna o submenu atual
+        const submenu = parentElement.querySelector('.submenu-bar');
+        const chevron = parentElement.querySelector('.chevron');
+        
+        if (submenu.style.display === 'block') {
+            submenu.style.display = 'none';
+            chevron.style.transform = 'rotate(0deg)';
+        } else {
+            submenu.style.display = 'block';
+            chevron.style.transform = 'rotate(180deg)';
+        }
+    }
+    
+    function toggleDropdown(parentElement) {
+        event.preventDefault();
+        const dropdown = parentElement.querySelector('.dropdown-list');
+        const chevron = parentElement.querySelector('.chevron');
+        
+        if (dropdown.style.display === 'block') {
+            dropdown.style.display = 'none';
+            chevron.style.transform = 'rotate(0deg)';
+        } else {
+            // Fecha outros dropdowns no mesmo submenu
+            parentElement.parentElement.querySelectorAll('.dropdown-list').forEach(d => {
+                if (d !== dropdown) {
+                    d.style.display = 'none';
+                    d.parentElement.querySelector('.chevron').style.transform = 'rotate(0deg)';
+                }
+            });
+            
+            dropdown.style.display = 'block';
+            chevron.style.transform = 'rotate(180deg)';
+        }
+    }
+    
+    // Fecha os menus ao clicar fora
+    document.addEventListener('click', function(event) {
+        if (!event.target.closest('.has-submenu') && !event.target.closest('.submenu-bar')) {
+            document.querySelectorAll('.submenu-bar').forEach(submenu => {
+                submenu.style.display = 'none';
+                submenu.parentElement.querySelector('.chevron').style.transform = 'rotate(0deg)';
+            });
+        }
+        
+        if (!event.target.closest('.has-dropdown')) {
+            document.querySelectorAll('.dropdown-list').forEach(dropdown => {
+                dropdown.style.display = 'none';
+                if (dropdown.parentElement.querySelector('.chevron')) {
+                    dropdown.parentElement.querySelector('.chevron').style.transform = 'rotate(0deg)';
+                }
+            });
+        }
+    });
+    </script>
+    
+    <div id="main-content">
+        <div class="tag-page-container">
+  <h1 class="tag-page-title">Posts marcados com <span class="highlight">"medidas-de-tendencia-central"</span></h1>
+
+  <div class="tag-post-list">
+    
+    
+      <article class="tag-post-item">
+        <div class="tag-post-image">
+          
+            <img src="https://images.unsplash.com/photo-1635070041078-e363dbe005cb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="A Moda: História, Conceitos e Aplicações em Estatística">
+          
+        </div>
+        <div class="tag-post-content">
+          <h2><a href="/morrison-kulsenn/estat%C3%ADstica%20descritiva/2025/05/10/moda.html">A Moda: História, Conceitos e Aplicações em Estatística</a></h2>
+          <div class="tag-post-meta">
+            <span class="tag-post-date">10/05/2025</span>
+            
+              <span class="tag-post-author">por Dante Bertuzzi</span>
+            
+          </div>
+          
+            <p class="tag-post-excerpt">A moda é uma das três principais medidas de tendência central em estatística, junto com a média e a mediana. Embora seja frequentemente ofuscada por suas contrapartes mais complexas, a...</p>
+          
+          <a href="/morrison-kulsenn/estat%C3%ADstica%20descritiva/2025/05/10/moda.html" class="read-more">Continuar lendo</a>
+        </div>
+      </article>
+    
+      <article class="tag-post-item">
+        <div class="tag-post-image">
+          
+            <img src="https://images.unsplash.com/photo-1635070041078-e363dbe005cb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="A Mediana: Conceito, Propriedades e Aplicações Práticas">
+          
+        </div>
+        <div class="tag-post-content">
+          <h2><a href="/morrison-kulsenn/estat%C3%ADstica%20descritiva/2025/05/10/mediana.html">A Mediana: Conceito, Propriedades e Aplicações Práticas</a></h2>
+          <div class="tag-post-meta">
+            <span class="tag-post-date">10/05/2025</span>
+            
+              <span class="tag-post-author">por Carlos Mendes</span>
+            
+          </div>
+          
+            <p class="tag-post-excerpt">A mediana é uma das medidas de tendência central mais importantes na estatística, frequentemente utilizada em conjunto com a média e a moda. Enquanto a média aritmética pode ser influenciada...</p>
+          
+          <a href="/morrison-kulsenn/estat%C3%ADstica%20descritiva/2025/05/10/mediana.html" class="read-more">Continuar lendo</a>
+        </div>
+      </article>
+    
+      <article class="tag-post-item">
+        <div class="tag-post-image">
+          
+            <img src="https://images.unsplash.com/photo-1635070041078-e363dbe005cb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="A Média Aritmética: História, Conceitos e Aplicações">
+          
+        </div>
+        <div class="tag-post-content">
+          <h2><a href="/morrison-kulsenn/estat%C3%ADstica%20descritiva/2025/05/10/media-aritmetica.html">A Média Aritmética: História, Conceitos e Aplicações</a></h2>
+          <div class="tag-post-meta">
+            <span class="tag-post-date">10/05/2025</span>
+            
+              <span class="tag-post-author">por Dante Bertuzzi</span>
+            
+          </div>
+          
+            <p class="tag-post-excerpt">A média aritmética é provavelmente a medida estatística mais conhecida e utilizada no mundo. Presente em boletins escolares, relatórios financeiros e pesquisas científicas, este conceito aparentemente simples carrega uma rica...</p>
+          
+          <a href="/morrison-kulsenn/estat%C3%ADstica%20descritiva/2025/05/10/media-aritmetica.html" class="read-more">Continuar lendo</a>
+        </div>
+      </article>
+    
+  </div>
+</div>
+
+<style>
+.tag-page-container {
+  max-width: 900px;
+  margin: 60px auto;
+  padding: 0 20px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #333;
+}
+
+.tag-page-title {
+  font-size: 2.4rem;
+  text-align: center;
+  margin-bottom: 40px;
+  color: #222;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  line-height: 1.3;
+}
+
+.tag-page-title .highlight {
+  color: #0066cc;
+  font-weight: 600;
+}
+
+.tag-post-list {
+  padding: 0;
+  margin: 0;
+}
+
+.tag-post-item {
+  background: #fff;
+  border: 1px solid #f0f0f0;
+  border-radius: 12px;
+  margin-bottom: 30px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.03);
+  transition: all 0.3s ease;
+  display: flex;
+  overflow: hidden;
+}
+
+.tag-post-item:hover {
+  box-shadow: 0 6px 24px rgba(0,0,0,0.06);
+  transform: translateY(-2px);
+}
+
+.tag-post-image {
+  flex: 0 0 220px;
+  background-color: #f8f8f8;
+  position: relative;
+  overflow: hidden;
+}
+
+.tag-post-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.tag-post-item:hover .tag-post-image img {
+  transform: scale(1.05);
+}
+
+.placeholder-image {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  background-color: #f5f5f5;
+}
+
+.tag-post-content {
+  flex: 1;
+  padding: 25px 30px;
+  display: flex;
+  flex-direction: column;
+}
+
+.tag-post-item h2 {
+  margin: 0 0 12px;
+  font-size: 1.6rem;
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+.tag-post-item h2 a {
+  text-decoration: none;
+  color: #222;
+  transition: color 0.3s;
+  border-bottom: 1px solid transparent;
+}
+
+.tag-post-item h2 a:hover {
+  color: #0066cc;
+  border-bottom-color: currentColor;
+}
+
+.tag-post-meta {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+  font-size: 0.9rem;
+  color: #888;
+}
+
+.tag-post-date {
+  margin-right: 15px;
+}
+
+.tag-post-author {
+  font-style: italic;
+}
+
+.tag-post-excerpt {
+  color: #555;
+  line-height: 1.7;
+  margin-bottom: 15px;
+  flex-grow: 1;
+}
+
+.read-more {
+  align-self: flex-start;
+  color: #0066cc;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 0.95rem;
+  padding: 6px 0;
+  border-bottom: 1px solid transparent;
+  transition: all 0.2s;
+}
+
+.read-more:hover {
+  border-bottom-color: currentColor;
+}
+
+.no-posts {
+  text-align: center;
+  color: #777;
+  font-style: italic;
+  padding: 40px 0;
+  background: #f9f9f9;
+  border-radius: 12px;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .tag-post-item {
+    flex-direction: column;
+  }
+  
+  .tag-post-image {
+    flex: 0 0 200px;
+    width: 100%;
+  }
+}
+</style>
+
+    </div>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-columns">
+                <div class="footer-menu">
+                    <h3>Estatística Descritiva</h3>
+                    <ul>
+                        <li><a href="#">Medidas de Tendência Central</a></li>
+                        <li><a href="#">Medidas de Dispersão</a></li>
+                        <li><a href="#">Gráficos Estatísticos</a></li>
+                        <li><a href="#">Análise Exploratória</a></li>
+                        <li><a href="#">Visualização de Dados</a></li>
+                    </ul>
+                </div>
+                <div class="footer-menu">
+                    <h3>Probabilidade</h3>
+                    <ul>
+                        <li><a href="#">Distribuições de Probabilidade</a></li>
+                        <li><a href="#">Variáveis Aleatórias</a></li>
+                        <li><a href="#">Teorema do Limite Central</a></li>
+                        <li><a href="#">Eventos e Espaço Amostral</a></li>
+                        <li><a href="#">Probabilidade Condicional</a></li>
+                    </ul>
+                </div>
+                <div class="footer-menu">
+                    <h3>Inferência Estatística</h3>
+                    <ul>
+                        <li><a href="#">Testes de Hipótese</a></li>
+                        <li><a href="#">Intervalos de Confiança</a></li>
+                        <li><a href="#">Amostragem</a></li>
+                        <li><a href="#">Estimadores</a></li>
+                        <li><a href="#">Análise de Variância</a></li>
+                    </ul>
+                </div>
+                <div class="footer-menu">
+                    <h3>Análise de Dados</h3>
+                    <ul>
+                        <li><a href="#">Regressão Linear</a></li>
+                        <li><a href="#">Séries Temporais</a></li>
+                        <li><a href="#">Análise Multivariada</a></li>
+                        <li><a href="#">Modelos Preditivos</a></li>
+                        <li><a href="https://jekyllrb.com/" target="_blank">Jekyll Site</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-logo-container">
+                <img src="/morrison-kulsenn/assets/images/logos/logo2.png" alt="Logo do Cartório" class="logo">
+            </div>
+            <div class="footer-bottom">
+                <p class="copyright" style="font-size: 1em;">
+                  <a href="https://morrisonkulsenn.com" style="color: #ffffff; text-decoration: none;">Morrison Külsenn</a> © 2025 by
+                  <a href="https://creativecommons.org" style="color: #ffffff; text-decoration: none;">Morrison Külsenn</a> is licensed under
+                  <a href="https://creativecommons.org/licenses/by/4.0/" style="color: #ffffff; text-decoration: none;">CC BY 4.0</a>
+                  <img src="https://mirrors.creativecommons.org/presskit/icons/cc.svg" style="max-width: 1em; max-height:1em; margin-left: .2em; vertical-align: text-bottom;">
+                  <img src="https://mirrors.creativecommons.org/presskit/icons/by.svg" style="max-width: 1em; max-height:1em; margin-left: .2em; vertical-align: text-bottom;">
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modal de Feriado -->
+    <div id="feriadoModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2>Aviso de Funcionamento</h2>
+            <p>Hoje, <strong id="feriadoNome">[Nome do Feriado]</strong>, nosso horário de atendimento será:</p>
+            <p><strong id="feriadoHorario">[Horário Especial]</strong></p>
+            <button id="entendiBtn">Entendi</button>
+        </div>
+    </div>
+
+    <!-- Modal de Cookie -->
+    <div id="cookie-consent-modal" class="cookie-modal">
+        <div class="cookie-content" id="cookie-main-view">
+            <div class="cookie-text">
+                <h3>🍪 Uso de Cookies</h3>
+                <p>Nós usamos cookies para melhorar sua experiência no site. Ao continuar navegando, você concorda com nossa <a href="/politica-de-privacidade" target="_blank">Política de Privacidade</a>.</p>
+            </div>
+            <div class="cookie-buttons">
+                <button id="cookie-accept" class="cookie-btn accept">Aceitar todos</button>
+                <button id="cookie-settings" class="cookie-btn settings">Configurar</button>
+                <button id="cookie-decline" class="cookie-btn decline">Recusar todos</button>
+            </div>
+        </div>
+        <!-- Configurações avançadas -->
+        <div class="cookie-settings" id="cookie-settings-view" style="display: none;">
+            <div class="cookie-text">
+                <h3>⚙️ Configurações de Cookies</h3>
+                <p>Selecione quais tipos de cookies você permite que utilizemos:</p>
+                
+                <div class="cookie-category">
+                    <div class="cookie-toggle">
+                        <label class="toggle-switch">
+                            <input type="checkbox" id="necessary-cookies" checked disabled>
+                            <span class="slider round"></span>
+                        </label>
+                        <div class="toggle-label">
+                            <strong>Cookies Necessários</strong>
+                            <small>Essenciais para o funcionamento do site (sempre ativos)</small>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="cookie-category">
+                    <div class="cookie-toggle">
+                        <label class="toggle-switch">
+                            <input type="checkbox" id="analytics-cookies">
+                            <span class="slider round"></span>
+                        </label>
+                        <div class="toggle-label">
+                            <strong>Cookies Analíticos</strong>
+                            <small>Ajudam a entender como os visitantes interagem com o site.</small>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="cookie-category">
+                    <div class="cookie-toggle">
+                        <label class="toggle-switch">
+                            <input type="checkbox" id="marketing-cookies">
+                            <span class="slider round"></span>
+                        </label>
+                        <div class="toggle-label">
+                            <strong>Cookies de Marketing</strong>
+                            <small>Usados para rastrear visitantes e exibir anúncios relevantes.</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="cookie-settings-buttons">
+                <button id="cookie-save-settings" class="cookie-btn save">Salvar Configurações</button>
+                <button id="cookie-settings-back" class="cookie-btn back">Voltar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- JS (Jekyll) -->
+    <script src="/morrison-kulsenn/assets/js/script.js" defer></script>
+    <script src="/morrison-kulsenn/assets/js/copy-code.js" defer></script>
+    <script src="/morrison-kulsenn/assets/js/language-switcher.js" defer></script>
+    
+    <!-- Bootstrap TOC -->
+    <script src="/morrison-kulsenn/assets/js/bootstrap-toc.min.js"></script>
+</body>
+</html>
+
+    <script src="/morrison-kulsenn/assets/js/bootstrap-toc.min.js"></script>
+</body>
+</html>
+

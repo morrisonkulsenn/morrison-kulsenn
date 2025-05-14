@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://morrisonkulsenn.github.io/morrison-kulsenn/sitemap.xml
