@@ -139,7 +139,7 @@ pagination:
             Precisa de ajuda ou quer tirar dúvidas? <br>
             Fale com nossa equipe diretamente pelo WhatsApp e receba atendimento personalizado em tempo real.
         </p>
-        <a href="https://wa.me/5587981702538" target="_blank" class="whatsapp-button" aria-label="WhatsApp" style="display: inline-flex; align-items: center; gap: 8px; text-decoration: none; color: white; background-color: #25D366; padding: 10px 20px; border-radius: 5px; transition: all 0.3s ease; margin-bottom: 8px;">
+        <a href="https://wa.me/55999999999" target="_blank" class="whatsapp-button" aria-label="WhatsApp" style="display: inline-flex; align-items: center; gap: 8px; text-decoration: none; color: white; background-color: #25D366; padding: 10px 20px; border-radius: 5px; transition: all 0.3s ease; margin-bottom: 8px;">
             <!-- Ícone WhatsApp SVG -->
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="white" viewBox="0 0 24 24" style="transition: all 0.3s ease;">
                 <path d="M20.52 3.48A11.76 11.76 0 0012 0 11.76 11.76 0 002.65 17.35L.13 24l6.91-2.5A11.76 11.76 0 0012 24a11.76 11.76 0 008.52-20.52zM12 21.54a9.44 9.44 0 01-4.8-1.3l-.34-.2-4.1 1.48 1.46-3.94-.22-.36a9.44 9.44 0 1117.78-4.42A9.43 9.43 0 0112 21.54zm5.3-7.17c-.3-.15-1.79-.88-2.06-.97s-.48-.15-.67.15-.77.97-.94 1.18-.35.22-.64.07a7.7 7.7 0 01-2.27-1.4 8.52 8.52 0 01-1.58-2c-.17-.3 0-.47.13-.61s.3-.35.45-.52a2 2 0 00.3-.5.55.55 0 00-.03-.53c-.08-.15-.67-1.6-.92-2.18s-.5-.48-.67-.49h-.57a1.1 1.1 0 00-.78.37 3.3 3.3 0 00-1 2.44 5.74 5.74 0 001.2 2.92 13 13 0 004.92 4.52 4.5 4.5 0 002.62.75 3.63 3.63 0 002.4-1.68 3 3 0 00.22-1.68c-.1-.14-.26-.22-.56-.37z"/>
