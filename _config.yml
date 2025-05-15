@@ -19,7 +19,7 @@ pagination:
 
 plugins:
   - jekyll-feed
-  - jekyll-paginate-v2
+  - jekyll-paginate
   - rouge
   # - jekyll-polyglot
   - jekyll-sitemap
