@@ -6,6 +6,69 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     
+    <!-- Critical CSS Inline -->
+    <style>
+      /* Critical CSS to prevent layout shifts */
+      html { scroll-behavior: smooth; }
+      body { 
+        opacity: 0; 
+        transition: opacity 0.1s ease-in;
+        margin: 0;
+        padding: 0;
+        overflow-x: hidden;
+      }
+      body.loaded { opacity: 1; }
+      
+      /* Critical header styles */
+      header {
+        position: relative;
+        z-index: 100;
+        background: #fff;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      }
+      
+      /* Ensure content doesn't jump when loading */
+      .container {
+        opacity: 0;
+        transition: opacity 0.2s ease-in;
+      }
+      body.loaded .container {
+        opacity: 1;
+      }
+      .loading {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: #fff;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 9999;
+      }
+      .spinner {
+        width: 40px;
+        height: 40px;
+        border: 4px solid #f3f3f3;
+        border-top: 4px solid #3498db;
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+      }
+      @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+    </style>
+    
+    <!-- Preload critical resources -->
+    <link rel="preload" href="/morrison-kulsenn/assets/css/styles.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="preload" href="/morrison-kulsenn/assets/images/logos/logo.png" as="image">
+    
+    <!-- Fallback CSS if JavaScript is disabled -->
+    <noscript><link rel="stylesheet" href="/morrison-kulsenn/assets/css/styles.css"></noscript>
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap"></noscript>
+    
     <!-- Título Otimizado (Jekyll) -->
     <title>Início - Página 2 | Portal dedicado ao estudo e aplicação de conceitos estatísticos e probabilísticos. Conteúdo educativo sobre análise de dados, inferência estatística e modelos estatísticos.</title>
     
@@ -13,17 +76,17 @@
     <meta name="description" content="Portal dedicado ao estudo e aplicação de conceitos estatísticos e probabilísticos. Conteúdo educativo sobre análise de dados, inferência estatística e modelos estatísticos.">
     
     <!-- Favicon -->
-    <link rel="icon" href="/assets/images/icons/favicon.png" type="image/png">
-    <link rel="apple-touch-icon" href="/assets/images/icons/favicon.png">
+    <link rel="icon" href="/morrison-kulsenn/assets/images/icons/favicon.png" type="image/png">
+    <link rel="apple-touch-icon" href="/morrison-kulsenn/assets/images/icons/favicon.png">
     
     <!-- Canonical URL (Jekyll) -->
-    <link rel="canonical" href="http://localhost:4000/page/2/index.html">
+    <link rel="canonical" href="http://localhost:4000/morrison-kulsenn/page/2/index.html">
     
     <!-- Open Graph / Social Media Meta Tags (Jekyll) -->
     <meta property="og:title" content="Início - Página 2">
     <meta property="og:description" content="Portal dedicado ao estudo e aplicação de conceitos estatísticos e probabilísticos. Conteúdo educativo sobre análise de dados, inferência estatística e modelos estatísticos.">
     <meta property="og:type" content="website">
-    <meta property="og:url" content="http://localhost:4000/page/2/index.html">
+    <meta property="og:url" content="http://localhost:4000/morrison-kulsenn/page/2/index.html">
     <meta property="og:image" content="https://raw.githubusercontent.com/dancartorio/intuity/main/logo.png">
     <meta property="og:site_name" content="Morrison Külsenn - Estatística e Probabilidade">
     <meta property="og:locale" content="pt_BR">
@@ -34,23 +97,30 @@
     <meta name="twitter:description" content="Portal dedicado ao estudo e aplicação de conceitos estatísticos e probabilísticos. Conteúdo educativo sobre análise de dados, inferência estatística e modelos estatísticos.">
     <meta name="twitter:image" content="https://raw.githubusercontent.com/dancartorio/intuity/main/logo.png">
     
-    <!-- CSS (Jekyll) -->
-    <link rel="stylesheet" href="/assets/css/styles.css">
-    <link rel="stylesheet" href="/assets/css/syntax-highlighting.css">
+    <!-- Non-critical CSS -->
+    <link rel="stylesheet" href="/morrison-kulsenn/assets/css/syntax-highlighting.css" media="print" onload="this.media='all'">
     
-    <!-- Pré-conexão -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- Critical CSS (inlined) -->
+    <style>
+    /* Critical CSS - Minimal styles to prevent FOUC */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { opacity: 0; transition: opacity 0.3s ease-in; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+    body.loaded { opacity: 1; }
+    .loading { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #fff; z-index: 9999; display: flex; justify-content: center; align-items: center; }
+    </style>
     
-    <!-- MathJax para renderizar fórmulas matemáticas -->
-    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <!-- Load scripts with defer/async -->
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6" defer></script>
+    <script id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" async></script>
     
-    <!-- jQuery e dependências -->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js"></script>
-    <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Load non-critical CSS -->
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css" media="print" onload="this.media='all'">
+    
+    <!-- Load scripts with defer -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" defer></script>
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" defer></script>
     
     <!-- Inicialização do Bootstrap TOC -->
     <script>
@@ -89,7 +159,7 @@
         
         // Carregar o script do Bootstrap TOC
         var script = document.createElement('script');
-        script.src = '/assets/js/bootstrap-toc.min.js';
+        script.src = '/morrison-kulsenn/assets/js/bootstrap-toc.min.js';
         script.id = 'bootstrap-toc-script';
         script.async = false; // Importante: carregar de forma síncrona
         
@@ -153,7 +223,7 @@
       "name": "Morrison Külsenn - Estatística e Probabilidade",
       "image": "https://raw.githubusercontent.com/dancartorio/intuity/main/logo.png",
       "@id": "",
-      "url": "http://localhost:4000/",
+      "url": "http://localhost:4000/morrison-kulsenn/",
       "telephone": "+55 (XX) XXXX-XXXX", // Update with actual phone
       "address": {
         "@type": "PostalAddress",
@@ -211,7 +281,10 @@
     <!-- <meta name="google-site-verification" content="sua-chave-aqui"> -->
     <!-- <meta name="msvalidate.01" content="sua-chave-aqui"> -->
 </head>
-<body>
+<body class="loading">
+    <div class="loading">
+        <div class="spinner"></div>
+    </div>
     <header>
         <!-- Seletor de Idioma (fora do menu principal) - comentado para uso futuro -->
         <!-- 
@@ -229,15 +302,15 @@
             <ul class="main-menu">
                 <div class="logo-container">
                     <li class="main-menu-logo">
-                        <a href="/">
-                            <img src="/assets/images/logos/logo.png" alt="Logo Morrison Külsenn - Estatística e Probabilidade" class="header-logo">
+                        <a href="/morrison-kulsenn/">
+                            <img src="/morrison-kulsenn/assets/images/logos/logo.png" alt="Logo Morrison Külsenn - Estatística e Probabilidade" class="header-logo">
                         </a>
                     </li>
                 </div>
                 <div class="menu-container">
                     <!-- Morrison Külsenn -->
                     <li class="morrison-name">
-                        <a href="/">Morrison Külsenn</a>
+                        <a href="/morrison-kulsenn/">Morrison Külsenn</a>
                     </li>
                     
                     <!-- Estatística Descritiva -->
@@ -249,18 +322,18 @@
                         <div class="submenu-bar">
                             <ul class="submenu-items">
                                 <li class="has-dropdown">
-                                    <a href="/orientacoes/atendimento" onclick="toggleDropdown(this.parentElement)">
+                                    <a href="/morrison-kulsenn/orientacoes/atendimento" onclick="toggleDropdown(this.parentElement)">
                                         Medidas de Tendência Central
                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="chevron" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708"/></svg>
                                     </a>
                                     <ul class="dropdown-list">
-                                        <li><a href="/medidas-tendencia-central/media">Média</a></li>
+                                        <li><a href="/morrison-kulsenn/medidas-tendencia-central/media">Média</a></li>
                                         <li><a href="#">Mediana</a></li>
                                         <li><a href="#">Moda</a></li>
                                     </ul>
                                 </li>
                                 <li class="has-dropdown">
-                                    <a href="/orientacoes/documentos-necessarios" onclick="toggleDropdown(this.parentElement)">
+                                    <a href="/morrison-kulsenn/orientacoes/documentos-necessarios" onclick="toggleDropdown(this.parentElement)">
                                         Medidas de Dispersão
                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="chevron" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708"/></svg>
                                     </a>
@@ -269,11 +342,11 @@
                                         <li><a href="#">Desvio Padrão</a></li>
                                     </ul>
                                 </li>
-                                <li><a href="/orientacoes/etapas-processo">Quartis e Percentis</a></li>
-                                <li><a href="/orientacoes/prazos">Assimetria</a></li>
-                                <li><a href="/orientacoes/custas-e-emolumentos">Curtose</a></li>
-                                <li><a href="/orientacoes/abrangencia">Gráficos Estatísticos</a></li>
-                                <li><a href="/orientacoes/codigo-de-normas">Análise Exploratória</a></li>
+                                <li><a href="/morrison-kulsenn/orientacoes/etapas-processo">Quartis e Percentis</a></li>
+                                <li><a href="/morrison-kulsenn/orientacoes/prazos">Assimetria</a></li>
+                                <li><a href="/morrison-kulsenn/orientacoes/custas-e-emolumentos">Curtose</a></li>
+                                <li><a href="/morrison-kulsenn/orientacoes/abrangencia">Gráficos Estatísticos</a></li>
+                                <li><a href="/morrison-kulsenn/orientacoes/codigo-de-normas">Análise Exploratória</a></li>
                             </ul>
                         </div>
                     </li>
@@ -286,9 +359,9 @@
                         </a>
                         <div class="submenu-bar">
                             <ul class="submenu-items">
-                                <li><a href="/servicos/certidao">Distribuições de Probabilidade</a></li>
+                                <li><a href="/morrison-kulsenn/servicos/certidao">Distribuições de Probabilidade</a></li>
                                 <li><a href="https://sicase.tjpe.jus.br/sicase//externo/autenticidadeselo/form_validarautenticidadeselo.jsf" target="_blank" rel="noopener noreferrer">Variáveis Aleatórias</a></li>
-                                <li><a href="/servicos/registro-pets">Teorema do Limite Central</a></li>
+                                <li><a href="/morrison-kulsenn/servicos/registro-pets">Teorema do Limite Central</a></li>
                             </ul>
                         </div>
                     </li>
@@ -301,7 +374,7 @@
                         </a>
                         <div class="submenu-bar">
                             <ul class="submenu-items">
-                                <li><a href="/institucional/sobre-nos">Testes de Hipótese</a></li>
+                                <li><a href="/morrison-kulsenn/institucional/sobre-nos">Testes de Hipótese</a></li>
                                 <li><a href="#">Intervalos de Confiança</a></li>
                                 <li><a href="#">Amostragem</a></li>
                                 <li><a href="#">Estimadores</a></li>
@@ -311,7 +384,7 @@
                     
                     <!-- Modelos Estatísticos -->
                     <li>
-                        <a href="/lgpd">Modelos Estatísticos</a>
+                        <a href="/morrison-kulsenn/lgpd">Modelos Estatísticos</a>
                     </li>
                     
                     <!-- Análise de Dados -->
@@ -330,7 +403,7 @@
                     
                     <!-- Blog -->
                     <li class="highlight-menu-item">
-                        <a href="/blog/all/" style="color: rgb(140, 180, 255);">
+                        <a href="/morrison-kulsenn/blog/all/" style="color: rgb(140, 180, 255);">
                             Blog
                         </a>
                     </li>
@@ -410,13 +483,13 @@
         <section class="hero">
     <h1>Seja Bem-vindo</h1>
     <p>Este espaço é dedicado ao estudo e à aplicação de Estatística e Probabilidade. Nosso objetivo é tornar conceitos técnicos mais acessíveis, promovendo o entendimento por meio de conteúdos claros, exemplos práticos e ferramentas interativas.</p>
-    <a href="/servicos/" class="cta-button">Saiba mais</a>
+    <a href="/morrison-kulsenn/servicos/" class="cta-button">Saiba mais</a>
 </section>
 
 <div class="container">
     <h2 class="section-title">Conteúdo Didático e Tutoriais</h2>
     <div class="features">
-        <a href="/tabela-z/" class="feature-card feature-card-link">
+        <a href="/morrison-kulsenn/tabela-z/" class="feature-card feature-card-link">
             <div class="feature-icon">
                 <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="currentColor" viewBox="0 0 16 16">
                     <path d="M0 12.5A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-13A1.5 1.5 0 0 0 0 3.5v9zM1.5 3a.5.5 0 0 1 .5-.5h13a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-13a.5.5 0 0 1-.5-.5v-9z"/>
@@ -539,7 +612,7 @@
             Precisa de ajuda ou quer tirar dúvidas? <br>
             Fale com nossa equipe diretamente pelo WhatsApp e receba atendimento personalizado em tempo real.
         </p>
-        <a href="https://wa.me/5587981702538" target="_blank" class="whatsapp-button" aria-label="WhatsApp" style="display: inline-flex; align-items: center; gap: 8px; text-decoration: none; color: white; background-color: #25D366; padding: 10px 20px; border-radius: 5px; transition: all 0.3s ease; margin-bottom: 8px;">
+        <a href="https://wa.me/55999999999" target="_blank" class="whatsapp-button" aria-label="WhatsApp" style="display: inline-flex; align-items: center; gap: 8px; text-decoration: none; color: white; background-color: #25D366; padding: 10px 20px; border-radius: 5px; transition: all 0.3s ease; margin-bottom: 8px;">
             <!-- Ícone WhatsApp SVG -->
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="white" viewBox="0 0 24 24" style="transition: all 0.3s ease;">
                 <path d="M20.52 3.48A11.76 11.76 0 0012 0 11.76 11.76 0 002.65 17.35L.13 24l6.91-2.5A11.76 11.76 0 0012 24a11.76 11.76 0 008.52-20.52zM12 21.54a9.44 9.44 0 01-4.8-1.3l-.34-.2-4.1 1.48 1.46-3.94-.22-.36a9.44 9.44 0 1117.78-4.42A9.43 9.43 0 0112 21.54zm5.3-7.17c-.3-.15-1.79-.88-2.06-.97s-.48-.15-.67.15-.77.97-.94 1.18-.35.22-.64.07a7.7 7.7 0 01-2.27-1.4 8.52 8.52 0 01-1.58-2c-.17-.3 0-.47.13-.61s.3-.35.45-.52a2 2 0 00.3-.5.55.55 0 00-.03-.53c-.08-.15-.67-1.6-.92-2.18s-.5-.48-.67-.49h-.57a1.1 1.1 0 00-.78.37 3.3 3.3 0 00-1 2.44 5.74 5.74 0 001.2 2.92 13 13 0 004.92 4.52 4.5 4.5 0 002.62.75 3.63 3.63 0 002.4-1.68 3 3 0 00.22-1.68c-.1-.14-.26-.22-.56-.37z"/>
@@ -560,7 +633,7 @@
         </div>
     </div>
     <div style="text-align: center; margin-top: 20px;">
-        <a href="/faq/" class="cta-button">Ver todas as Dúvidas</a>
+        <a href="/morrison-kulsenn/faq/" class="cta-button">Ver todas as Dúvidas</a>
     </div>
 </section>
 
@@ -592,24 +665,68 @@
   </div>
 </section>
     <div class="blog-cards-wrapper" id="posts-container">
-        <!-- Botões de paginação mantidos, mas os de carrossel de posts foram removidos -->
         <div class="blog-cards">
             
+            
             <article class="blog-card">
-                <a href="/estat%C3%ADstica%20descritiva/2025/05/10/media-aritmetica.html" style="text-decoration: none; color: inherit;">
+                <a href="/morrison-kulsenn/probabilidade/2025/05/11/probabilidades-jogo-da-velha-copy.html" style="text-decoration: none; color: inherit;">
                     
-                    <img src="https://images.unsplash.com/photo-1635070041078-e363dbe005cb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="A Média Aritmética: História, Conceitos e Aplicações" class="blog-card-img">
+                    <img src="/assets/images/img/tictactoes.png" alt="Probabilidades no Jogo da Velha: Uma Análise Matemática" class="blog-card-img">
+                    
+                    <div class="blog-card-content">
+                        <span class="blog-card-category">PROBABILIDADE</span>
+                        <h3 class="blog-card-title">Probabilidades no Jogo da Velha: Uma Análise Matemática</h3>
+                        <p class="blog-card-desc">O jogo da velha, conhecido em inglês como “Tic-tac-toe” ou “Noughts and Crosses”, é um dos jogos mais simples e...</p>
+                        <div class="blog-card-author">
+                            <img src="https://cdn4.iconfinder.com/data/icons/symbols-vol-1-1/40/user-person-single-id-account-player-male-female-512.png" alt="Morrison Külsenn" class="blog-card-author-img">
+                            <div>
+                                <span class="blog-card-author-name">Por Morrison Külsenn</span>
+                                
+                                <span class="blog-card-meta">7 minutos de leitura</span>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </article>
+            
+            <article class="blog-card">
+                <a href="/morrison-kulsenn/estat%C3%ADstica%20descritiva/2025/05/10/moda.html" style="text-decoration: none; color: inherit;">
+                    
+                    <img src="https://images.unsplash.com/photo-1635070041078-e363dbe005cb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="A Moda: História, Conceitos e Aplicações em Estatística" class="blog-card-img">
                     
                     <div class="blog-card-content">
                         <span class="blog-card-category">ESTATÍSTICA DESCRITIVA</span>
-                        <h3 class="blog-card-title">A Média Aritmética: História, Conceitos e Aplicações</h3>
-                        <p class="blog-card-desc">A média aritmética é provavelmente a medida estatística mais conhecida e utilizada no mundo. Presente em boletins escolares, relatórios financeiros...</p>
+                        <h3 class="blog-card-title">A Moda: História, Conceitos e Aplicações em Estatística</h3>
+                        <p class="blog-card-desc">A moda é uma das três principais medidas de tendência central em estatística, junto com a média e a mediana....</p>
                         <div class="blog-card-author">
                             <img src="https://cdn4.iconfinder.com/data/icons/symbols-vol-1-1/40/user-person-single-id-account-player-male-female-512.png" alt="Dante Bertuzzi" class="blog-card-author-img">
                             <div>
                                 <span class="blog-card-author-name">Por Dante Bertuzzi</span>
                                 
-                                <span class="blog-card-meta">6 minutos de leitura</span>
+                                <span class="blog-card-meta">7 minutos de leitura</span>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </article>
+            
+            <article class="blog-card">
+                <a href="/morrison-kulsenn/estat%C3%ADstica%20descritiva/2025/05/10/mediana.html" style="text-decoration: none; color: inherit;">
+                    
+                    <img src="https://images.unsplash.com/photo-1635070041078-e363dbe005cb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="A Mediana: Conceito, Propriedades e Aplicações Práticas" class="blog-card-img">
+                    
+                    <div class="blog-card-content">
+                        <span class="blog-card-category">ESTATÍSTICA DESCRITIVA</span>
+                        <h3 class="blog-card-title">A Mediana: Conceito, Propriedades e Aplicações Práticas</h3>
+                        <p class="blog-card-desc">A mediana é uma das medidas de tendência central mais importantes na estatística, frequentemente utilizada em conjunto com a média...</p>
+                        <div class="blog-card-author">
+                            <img src="https://cdn4.iconfinder.com/data/icons/symbols-vol-1-1/40/user-person-single-id-account-player-male-female-512.png" alt="Carlos Mendes" class="blog-card-author-img">
+                            <div>
+                                <span class="blog-card-author-name">Por Carlos Mendes</span>
+                                
+                                <span class="blog-card-meta">5 minutos de leitura</span>
                                 
                             </div>
                         </div>
@@ -620,28 +737,9 @@
         </div>
     </div>
     <div style="text-align: center; margin-top: 20px; margin-bottom: 20px;">
-        <a href="/blog/all/" class="cta-button">Ver todos os Posts</a> <!-- Link atualizado -->
+        <a href="/morrison-kulsenn/blog/all/" class="cta-button">Ver todos os Posts</a>
     </div>
-
-    <script>
-    // Controle específico para os posts do blog - removido script de carrossel, mantido o de scroll position para paginação
-    document.addEventListener('DOMContentLoaded', function() {
-        if (sessionStorage.getItem('postsScrollPosition')) {
-            window.scrollTo(0, parseInt(sessionStorage.getItem('postsScrollPosition')));
-            sessionStorage.removeItem('postsScrollPosition');
-        }
-
-        const paginationLinks = document.querySelectorAll('.blog-cards-wrapper a[href*="page"]'); // Seletor mais específico para links de paginação
-        paginationLinks.forEach(link => {
-            link.addEventListener('click', function() {
-                sessionStorage.setItem('postsScrollPosition', window.scrollY);
-            });
-        });
-    });
-    </script>
 </section>
-
-<!-- Seção removida: Links Úteis com Logos de Instituições -->
 
 
 
@@ -695,7 +793,7 @@
                 </div>
             </div>
             <div class="footer-logo-container">
-                <img src="/assets/images/logos/logo2.png" alt="Logo do Cartório" class="logo">
+                <img src="/morrison-kulsenn/assets/images/logos/logo2.png" alt="Logo do Cartório" class="logo">
             </div>
             <div class="footer-bottom">
                 <p class="copyright" style="font-size: 1em;">
@@ -786,16 +884,31 @@
     </div>
 
     <!-- JS (Jekyll) -->
-    <script src="/assets/js/script.js" defer></script>
-    <script src="/assets/js/copy-code.js" defer></script>
-    <script src="/assets/js/language-switcher.js" defer></script>
+    <script src="/morrison-kulsenn/assets/js/script.js" defer></script>
+    <script src="/morrison-kulsenn/assets/js/copy-code.js" defer></script>
+    <script src="/morrison-kulsenn/assets/js/language-switcher.js" defer></script>
     
-    <!-- Bootstrap TOC -->
-    <script src="/assets/js/bootstrap-toc.min.js"></script>
-</body>
-</html>
+    <!-- Loading handler -->
+    <script>
+    // Handle page load
+    function handleContentLoaded() {
+        document.body.classList.add('loaded');
+        document.body.classList.remove('loading');
+        const loadingEl = document.querySelector('.loading');
+        if (loadingEl) loadingEl.style.display = 'none';
+    }
 
-    <script src="/assets/js/bootstrap-toc.min.js"></script>
+    // If page is already loaded
+    if (document.readyState === 'complete') {
+        handleContentLoaded();
+    } else {
+        // Wait for everything to load
+        window.addEventListener('load', handleContentLoaded);
+        
+        // Fallback in case load event doesn't fire
+        setTimeout(handleContentLoaded, 3000);
+    }
+    </script>
 </body>
 </html>
 
