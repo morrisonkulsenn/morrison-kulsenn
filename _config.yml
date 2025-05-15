@@ -1,40 +1,27 @@
 title: Morrison Külsenn - Estatística e Probabilidade
-description: Portal dedicado ao estudo e aplicação de conceitos estatísticos e probabilísticos. Conteúdo educativo sobre análise de dados, inferência estatística e modelos estatísticos.
-baseurl: "/morrison-kulsenn" # the subpath of your site, e.g. /blog
-url: "https://morrisonkulsenn.github.io" # substitua pelo seu domínio real quando estiver em produção
+description: Portal dedicado ao estudo e aplicação de conceitos estatísticos e probabilísticos.
+baseurl: "/morrison-kulsenn"
+url: "https://morrisonkulsenn.github.io"
 
 # Build settings
 markdown: kramdown
-theme: minima # Using a theme for simplicity, can be removed if custom layout is fully built
+theme: minima
 
-# Pagination Settings (using jekyll-paginate-v2)
-pagination:
-  enabled: true
-  per_page: 3 # Show 3 posts per page on the blog index
-  permalink: 	'/page/:num/' # URL structure for paginated pages
-  title: 	':title - Página :num'
-  limit: 0
-  sort_field: 'date'
-  sort_reverse: true
+# Pagination Settings
+paginate: 3
+paginate_path: "/page:num/"
 
 plugins:
   - jekyll-feed
   - jekyll-paginate
   - rouge
-  # - jekyll-polyglot
   - jekyll-sitemap
-
-# Configurações de internacionalização (comentadas para uso futuro)
-# languages: ["pt", "en"]
-# default_lang: "pt"
-# exclude_from_localization: ["assets", "images", "css", "js"]
-# parallel_localization: false
 
 # Configuração de idioma padrão
 lang: "pt"
 
 # Configuração de destaque de sintaxe
-highligher: rouge
+highlighter: rouge
 kramdown:
   input: GFM
   syntax_highlighter: rouge
@@ -45,6 +32,4 @@ kramdown:
     block:
       line_numbers: true
       start_line: 1
-
-# A linha 'include: - tag_pages_generated' foi removida daqui.
 
