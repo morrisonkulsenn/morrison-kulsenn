@@ -429,7 +429,7 @@ body {
     width: 420px;
     background: 
         linear-gradient(to right, rgba(0,0,0,0.45) 0%, rgba(0,0,0,0.15) 60%, rgba(0,0,0,0) 100%),
-        url('/assets/images/img/dados.png') no-repeat left center;
+        url('/morrison-kulsenn/assets/images/img/dados.png') no-repeat left center;
     background-size: cover;
     opacity: 0.85;
     z-index: 1;
@@ -449,7 +449,7 @@ body {
     width: 420px;
     background: 
         linear-gradient(to left, rgba(0,0,0,0.45) 0%, rgba(0,0,0,0.15) 60%, rgba(0,0,0,0) 100%),
-        url('/assets/images/img/spiral.jpg') no-repeat right center;
+        url('/morrison-kulsenn/assets/images/img/spiral.jpg') no-repeat right center;
     background-size: cover;
     opacity: 0.85;
     z-index: 1;
