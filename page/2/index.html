@@ -596,20 +596,64 @@
         <div class="blog-cards">
             
             <article class="blog-card">
-                <a href="/morrison-kulsenn/estat%C3%ADstica%20descritiva/2025/05/10/media-aritmetica.html" style="text-decoration: none; color: inherit;">
+                <a href="/morrison-kulsenn/probabilidade/2025/05/11/probabilidades-jogo-da-velha-copy.html" style="text-decoration: none; color: inherit;">
                     
-                    <img src="https://images.unsplash.com/photo-1635070041078-e363dbe005cb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="A Média Aritmética: História, Conceitos e Aplicações" class="blog-card-img">
+                    <img src="/assets/images/img/tictactoes.png" alt="Probabilidades no Jogo da Velha: Uma Análise Matemática" class="blog-card-img">
+                    
+                    <div class="blog-card-content">
+                        <span class="blog-card-category">PROBABILIDADE</span>
+                        <h3 class="blog-card-title">Probabilidades no Jogo da Velha: Uma Análise Matemática</h3>
+                        <p class="blog-card-desc">O jogo da velha, conhecido em inglês como “Tic-tac-toe” ou “Noughts and Crosses”, é um dos jogos mais simples e...</p>
+                        <div class="blog-card-author">
+                            <img src="https://cdn4.iconfinder.com/data/icons/symbols-vol-1-1/40/user-person-single-id-account-player-male-female-512.png" alt="Morrison Külsenn" class="blog-card-author-img">
+                            <div>
+                                <span class="blog-card-author-name">Por Morrison Külsenn</span>
+                                
+                                <span class="blog-card-meta">7 minutos de leitura</span>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </article>
+            
+            <article class="blog-card">
+                <a href="/morrison-kulsenn/estat%C3%ADstica%20descritiva/2025/05/10/moda.html" style="text-decoration: none; color: inherit;">
+                    
+                    <img src="https://images.unsplash.com/photo-1635070041078-e363dbe005cb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="A Moda: História, Conceitos e Aplicações em Estatística" class="blog-card-img">
                     
                     <div class="blog-card-content">
                         <span class="blog-card-category">ESTATÍSTICA DESCRITIVA</span>
-                        <h3 class="blog-card-title">A Média Aritmética: História, Conceitos e Aplicações</h3>
-                        <p class="blog-card-desc">A média aritmética é provavelmente a medida estatística mais conhecida e utilizada no mundo. Presente em boletins escolares, relatórios financeiros...</p>
+                        <h3 class="blog-card-title">A Moda: História, Conceitos e Aplicações em Estatística</h3>
+                        <p class="blog-card-desc">A moda é uma das três principais medidas de tendência central em estatística, junto com a média e a mediana....</p>
                         <div class="blog-card-author">
                             <img src="https://cdn4.iconfinder.com/data/icons/symbols-vol-1-1/40/user-person-single-id-account-player-male-female-512.png" alt="Dante Bertuzzi" class="blog-card-author-img">
                             <div>
                                 <span class="blog-card-author-name">Por Dante Bertuzzi</span>
                                 
-                                <span class="blog-card-meta">6 minutos de leitura</span>
+                                <span class="blog-card-meta">7 minutos de leitura</span>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </article>
+            
+            <article class="blog-card">
+                <a href="/morrison-kulsenn/estat%C3%ADstica%20descritiva/2025/05/10/mediana.html" style="text-decoration: none; color: inherit;">
+                    
+                    <img src="https://images.unsplash.com/photo-1635070041078-e363dbe005cb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="A Mediana: Conceito, Propriedades e Aplicações Práticas" class="blog-card-img">
+                    
+                    <div class="blog-card-content">
+                        <span class="blog-card-category">ESTATÍSTICA DESCRITIVA</span>
+                        <h3 class="blog-card-title">A Mediana: Conceito, Propriedades e Aplicações Práticas</h3>
+                        <p class="blog-card-desc">A mediana é uma das medidas de tendência central mais importantes na estatística, frequentemente utilizada em conjunto com a média...</p>
+                        <div class="blog-card-author">
+                            <img src="https://cdn4.iconfinder.com/data/icons/symbols-vol-1-1/40/user-person-single-id-account-player-male-female-512.png" alt="Carlos Mendes" class="blog-card-author-img">
+                            <div>
+                                <span class="blog-card-author-name">Por Carlos Mendes</span>
+                                
+                                <span class="blog-card-meta">5 minutos de leitura</span>
                                 
                             </div>
                         </div>
@@ -624,19 +668,12 @@
     </div>
 
     <script>
-    // Controle específico para os posts do blog - removido script de carrossel, mantido o de scroll position para paginação
+    // Controle específico para os posts do blog
     document.addEventListener('DOMContentLoaded', function() {
         if (sessionStorage.getItem('postsScrollPosition')) {
             window.scrollTo(0, parseInt(sessionStorage.getItem('postsScrollPosition')));
             sessionStorage.removeItem('postsScrollPosition');
         }
-
-        const paginationLinks = document.querySelectorAll('.blog-cards-wrapper a[href*="page"]'); // Seletor mais específico para links de paginação
-        paginationLinks.forEach(link => {
-            link.addEventListener('click', function() {
-                sessionStorage.setItem('postsScrollPosition', window.scrollY);
-            });
-        });
     });
     </script>
 </section>

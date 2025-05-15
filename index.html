@@ -668,19 +668,12 @@
     </div>
 
     <script>
-    // Controle específico para os posts do blog - removido script de carrossel, mantido o de scroll position para paginação
+    // Controle específico para os posts do blog
     document.addEventListener('DOMContentLoaded', function() {
         if (sessionStorage.getItem('postsScrollPosition')) {
             window.scrollTo(0, parseInt(sessionStorage.getItem('postsScrollPosition')));
             sessionStorage.removeItem('postsScrollPosition');
         }
-
-        const paginationLinks = document.querySelectorAll('.blog-cards-wrapper a[href*="page"]'); // Seletor mais específico para links de paginação
-        paginationLinks.forEach(link => {
-            link.addEventListener('click', function() {
-                sessionStorage.setItem('postsScrollPosition', window.scrollY);
-            });
-        });
     });
     </script>
 </section>
