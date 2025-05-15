@@ -3,6 +3,8 @@ layout: default
 title: Início
 pagination:
   enabled: true
+  paginate: 3 # número de posts por página
+  paginate_path: "/page:num/"
 ---
 
 <section class="hero">
@@ -187,8 +189,7 @@ pagination:
 </section>
     <div class="blog-cards-wrapper" id="posts-container">
         <div class="blog-cards">
-            {% assign recent_posts = site.posts | sort: 'date' | reverse | slice: 0, 3 %}
-            {% for post in recent_posts %}
+            {% for post in paginator.posts %}
             <article class="blog-card">
                 <a href="{{ post.url | relative_url }}" style="text-decoration: none; color: inherit;">
                     {% if post.image %}
