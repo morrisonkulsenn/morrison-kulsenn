@@ -186,9 +186,9 @@ pagination:
   </div>
 </section>
     <div class="blog-cards-wrapper" id="posts-container">
-        <!-- Botões de paginação mantidos, mas os de carrossel de posts foram removidos -->
         <div class="blog-cards">
-            {% for post in paginator.posts %}
+            {% assign recent_posts = site.posts | sort: 'date' | reverse | slice: 0, 3 %}
+            {% for post in recent_posts %}
             <article class="blog-card">
                 <a href="{{ post.url | relative_url }}" style="text-decoration: none; color: inherit;">
                     {% if post.image %}
@@ -218,28 +218,9 @@ pagination:
         </div>
     </div>
     <div style="text-align: center; margin-top: 20px; margin-bottom: 20px;">
-        <a href="{{ '/blog/all/' | relative_url }}" class="cta-button">Ver todos os Posts</a> <!-- Link atualizado -->
+        <a href="{{ '/blog/all/' | relative_url }}" class="cta-button">Ver todos os Posts</a>
     </div>
-
-    <script>
-    // Controle específico para os posts do blog - removido script de carrossel, mantido o de scroll position para paginação
-    document.addEventListener('DOMContentLoaded', function() {
-        if (sessionStorage.getItem('postsScrollPosition')) {
-            window.scrollTo(0, parseInt(sessionStorage.getItem('postsScrollPosition')));
-            sessionStorage.removeItem('postsScrollPosition');
-        }
-
-        const paginationLinks = document.querySelectorAll('.blog-cards-wrapper a[href*="page"]'); // Seletor mais específico para links de paginação
-        paginationLinks.forEach(link => {
-            link.addEventListener('click', function() {
-                sessionStorage.setItem('postsScrollPosition', window.scrollY);
-            });
-        });
-    });
-    </script>
 </section>
-
-<!-- Seção removida: Links Úteis com Logos de Instituições -->
 
 
 
