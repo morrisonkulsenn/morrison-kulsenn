@@ -6,6 +6,69 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     
+    <!-- Critical CSS Inline -->
+    <style>
+      /* Critical CSS to prevent layout shifts */
+      html { scroll-behavior: smooth; }
+      body { 
+        opacity: 0; 
+        transition: opacity 0.1s ease-in;
+        margin: 0;
+        padding: 0;
+        overflow-x: hidden;
+      }
+      body.loaded { opacity: 1; }
+      
+      /* Critical header styles */
+      header {
+        position: relative;
+        z-index: 100;
+        background: #fff;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      }
+      
+      /* Ensure content doesn't jump when loading */
+      .container {
+        opacity: 0;
+        transition: opacity 0.2s ease-in;
+      }
+      body.loaded .container {
+        opacity: 1;
+      }
+      .loading {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: #fff;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 9999;
+      }
+      .spinner {
+        width: 40px;
+        height: 40px;
+        border: 4px solid #f3f3f3;
+        border-top: 4px solid #3498db;
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+      }
+      @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+    </style>
+    
+    <!-- Preload critical resources -->
+    <link rel="preload" href="/morrison-kulsenn/assets/css/styles.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="preload" href="/morrison-kulsenn/assets/images/logos/logo.png" as="image">
+    
+    <!-- Fallback CSS if JavaScript is disabled -->
+    <noscript><link rel="stylesheet" href="/morrison-kulsenn/assets/css/styles.css"></noscript>
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap"></noscript>
+    
     <!-- Título Otimizado (Jekyll) -->
     <title>Morrison Külsenn - Estatística e Probabilidade | Portal dedicado ao estudo e aplicação de conceitos estatísticos e probabilísticos. Conteúdo educativo sobre análise de dados, inferência estatística e modelos estatísticos.</title>
     
@@ -34,23 +97,30 @@
     <meta name="twitter:description" content="Portal dedicado ao estudo e aplicação de conceitos estatísticos e probabilísticos. Conteúdo educativo sobre análise de dados, inferência estatística e modelos estatísticos.">
     <meta name="twitter:image" content="https://raw.githubusercontent.com/dancartorio/intuity/main/logo.png">
     
-    <!-- CSS (Jekyll) -->
-    <link rel="stylesheet" href="/morrison-kulsenn/assets/css/styles.css">
-    <link rel="stylesheet" href="/morrison-kulsenn/assets/css/syntax-highlighting.css">
+    <!-- Non-critical CSS -->
+    <link rel="stylesheet" href="/morrison-kulsenn/assets/css/syntax-highlighting.css" media="print" onload="this.media='all'">
     
-    <!-- Pré-conexão -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- Critical CSS (inlined) -->
+    <style>
+    /* Critical CSS - Minimal styles to prevent FOUC */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { opacity: 0; transition: opacity 0.3s ease-in; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+    body.loaded { opacity: 1; }
+    .loading { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #fff; z-index: 9999; display: flex; justify-content: center; align-items: center; }
+    </style>
     
-    <!-- MathJax para renderizar fórmulas matemáticas -->
-    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <!-- Load scripts with defer/async -->
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6" defer></script>
+    <script id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" async></script>
     
-    <!-- jQuery e dependências -->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js"></script>
-    <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Load non-critical CSS -->
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css" media="print" onload="this.media='all'">
+    
+    <!-- Load scripts with defer -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" defer></script>
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" defer></script>
     
     <!-- Inicialização do Bootstrap TOC -->
     <script>
@@ -211,7 +281,10 @@
     <!-- <meta name="google-site-verification" content="sua-chave-aqui"> -->
     <!-- <meta name="msvalidate.01" content="sua-chave-aqui"> -->
 </head>
-<body>
+<body class="loading">
+    <div class="loading">
+        <div class="spinner"></div>
+    </div>
     <header>
         <!-- Seletor de Idioma (fora do menu principal) - comentado para uso futuro -->
         <!-- 
@@ -736,12 +809,27 @@
     <script src="/morrison-kulsenn/assets/js/copy-code.js" defer></script>
     <script src="/morrison-kulsenn/assets/js/language-switcher.js" defer></script>
     
-    <!-- Bootstrap TOC -->
-    <script src="/morrison-kulsenn/assets/js/bootstrap-toc.min.js"></script>
-</body>
-</html>
+    <!-- Loading handler -->
+    <script>
+    // Handle page load
+    function handleContentLoaded() {
+        document.body.classList.add('loaded');
+        document.body.classList.remove('loading');
+        const loadingEl = document.querySelector('.loading');
+        if (loadingEl) loadingEl.style.display = 'none';
+    }
 
-    <script src="/morrison-kulsenn/assets/js/bootstrap-toc.min.js"></script>
+    // If page is already loaded
+    if (document.readyState === 'complete') {
+        handleContentLoaded();
+    } else {
+        // Wait for everything to load
+        window.addEventListener('load', handleContentLoaded);
+        
+        // Fallback in case load event doesn't fire
+        setTimeout(handleContentLoaded, 3000);
+    }
+    </script>
 </body>
 </html>
 
