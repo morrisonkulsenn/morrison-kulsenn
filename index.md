@@ -162,7 +162,7 @@ title: Início
     </div>
 </section>
 
-<!-- Seção dinâmica dos últimos artigos do blog com PAGINAÇÃO -->
+<!-- Seção dinâmica dos últimos artigos do blog com PAGINAÇÃO
 <section class="blog-latest-cards">
   <div class="scrolling-words-container">
     <span>Últimos Artigos sobre</span>
@@ -218,7 +218,7 @@ title: Início
         <a href="{{ '/blog/all/' | relative_url }}" class="cta-button">Ver todos os Posts</a>
     </div>
 </section>
-
+-->
 
 
 
