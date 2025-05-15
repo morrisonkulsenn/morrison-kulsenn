@@ -1,10 +1,6 @@
 ---
 layout: default
 title: Início
-pagination:
-  enabled: true
-  paginate: 3 # número de posts por página
-  paginate_path: "/page:num/"
 ---
 
 <section class="hero">
