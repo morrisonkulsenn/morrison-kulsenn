@@ -188,7 +188,7 @@ pagination:
     <div class="blog-cards-wrapper" id="posts-container">
         <!-- Botões de paginação mantidos, mas os de carrossel de posts foram removidos -->
         <div class="blog-cards">
-            {% for post in paginator.posts %}
+            {% for post in site.posts limit:3 %}
             <article class="blog-card">
                 <a href="{{ post.url | relative_url }}" style="text-decoration: none; color: inherit;">
                     {% if post.image %}
@@ -222,19 +222,12 @@ pagination:
     </div>
 
     <script>
-    // Controle específico para os posts do blog - removido script de carrossel, mantido o de scroll position para paginação
+    // Controle específico para os posts do blog
     document.addEventListener('DOMContentLoaded', function() {
         if (sessionStorage.getItem('postsScrollPosition')) {
             window.scrollTo(0, parseInt(sessionStorage.getItem('postsScrollPosition')));
             sessionStorage.removeItem('postsScrollPosition');
         }
-
-        const paginationLinks = document.querySelectorAll('.blog-cards-wrapper a[href*="page"]'); // Seletor mais específico para links de paginação
-        paginationLinks.forEach(link => {
-            link.addEventListener('click', function() {
-                sessionStorage.setItem('postsScrollPosition', window.scrollY);
-            });
-        });
     });
     </script>
 </section>
