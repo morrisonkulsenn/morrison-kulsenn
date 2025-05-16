@@ -4,8 +4,6 @@ title: Média Aritmética
 subtitle: Conceitos fundamentais e aplicações práticas
 ---
 
-Uma das principais medidas de tendência central em estatística, a média aritmética é fundamental para análise de dados e interpretação estatística.
-
 ## O que é a Média Aritmética?
 
 A média aritmética é a medida de tendência central mais utilizada e conhecida. Ela representa o valor que mostra para onde os dados tendem a se agrupar, ou seja, o ponto de equilíbrio de um conjunto de valores.
